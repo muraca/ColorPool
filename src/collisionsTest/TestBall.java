@@ -66,6 +66,7 @@ public class TestBall {
 			return d/2;
 		}
 		
+        // do these two balls collide?
 		public static Boolean ballsCollide(TestBall b1, TestBall b2) {
 			int x1 = b1.x + b1.getR();
 			int x2 = b2.x + b2.getR();

@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 public class Collisions1D {
+    
 	public static final int HEIGHT = 800;
 	public static final int WIDTH = 1000;
 	
@@ -85,9 +86,5 @@ public class Collisions1D {
 		}
 	}
 
-
-
-
-	
 }
 
