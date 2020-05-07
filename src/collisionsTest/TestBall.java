@@ -27,7 +27,7 @@ public class TestBall {
 			
 			Random r = new Random();
 			this.vx = r.nextInt(7) + 3;
-			this.vy = 0;
+			this.vy = r.nextInt(9) + 1;
 		}
 
 		public int getVx() {

@@ -14,13 +14,17 @@ public class Collisions2D {
 	public static int balls_size;
 	
 	public static void collisions2D() {
-		TestBall ball1 = new TestBall(0, HEIGHT/2, Color.RED);
-		TestBall ball2 = new TestBall(900, HEIGHT/2, Color.BLUE);
+		TestBall ball1 = new TestBall(0, 15, Color.RED);
+		TestBall ball2 = new TestBall(900, 720, Color.BLUE);
+		TestBall ball3 = new TestBall(33, 15, Color.GREEN);
+		TestBall ball4 = new TestBall(500, 700, Color.MAGENTA);
 		
-		balls = new TestBall[2];
+		balls = new TestBall[4];
 		balls[0] = ball1;
 		balls[1] = ball2;
-		balls_size = 2;
+		balls[2] = ball3;
+		balls[3] = ball4;
+		balls_size = 4;
 		
 		JFrame frame = new JFrame("Collisions2D");
 		frame.setSize(WIDTH, HEIGHT);
@@ -89,11 +93,23 @@ public class Collisions2D {
 		
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 		
-		int v1f[] = {(int) ((double) b1.getVx() * cos + (double) b1.getVy() * sin), (int) ((double) -b1.getVx() * sin + (double) b1.getVy() * cos)};
+		int v1[] = {(int) ((double) b1.getVx() * cos + (double) b1.getVy() * sin), (int) ((double) -b1.getVx() * sin + (double) b1.getVy() * cos)};
 		
-		v1[0] = (int) ((b1.getR() - b2.getR())*v1f() + b2.getD()*b2.getVx())/(b1.getR()+b2.getR()); 
+		int v2[] = {(int) ((double) b2.getVx() * cos + (double) b2.getVy() * sin), (int) ((double) -b2.getVx() * sin + (double) b2.getVy() * cos)};
 		
-		int v2[] = {b2.getVx(), b2.getVy()};
+		b1.vx = v1[0];
+		b1.vy = v1[1];
+		
+		b2.vx = v2[0];
+		b2.vy = v2[1];
+		
+		v1[0] = finalVX(b1, b2);
+		
+		v2[0] = finalVX(b2, b1);
+		
+		b1.vx = (int) ((double) v1[0] * cos - (double) v1[1] * sin);
+		b1.vy = (int) ((double) v2[0] * sin + (double) v2[1] * cos);
+		
 		
 	}
 }

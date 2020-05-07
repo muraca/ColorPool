@@ -24,8 +24,8 @@ public class BallPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(Color.BLUE);
 		for(TestBall b: balls) {
+			g.setColor(b.getColor());
 			g.fillOval(b.getX(), b.getY(), b.getD(), b.getD());
 		}
 	}
