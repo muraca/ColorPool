@@ -30,7 +30,7 @@ public class TestBall {
 			this.vy = 0;
 		}
 
-		public double getVx() {
+		public int getVx() {
 			return vx;
 		}
 
@@ -38,7 +38,7 @@ public class TestBall {
 			this.vx = vx;
 		}
 
-		public double getVy() {
+		public int getVy() {
 			return vy;
 		}
 

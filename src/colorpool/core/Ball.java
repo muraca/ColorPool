@@ -11,8 +11,8 @@ public class Ball {
 	protected int d;
 	
 	//Speed on both axises
-	double vx;
-	double vy;
+	int vx;
+	int vy;
 	
 	//Color of the ball
 	Color color;
@@ -24,23 +24,23 @@ public class Ball {
 		this.color = _c;
 		this.d = 30;
 		
-		this.vx = 0.0;
-		this.vy = 0.0;
+		this.vx = 0;
+		this.vy = 0;
 	}
 
-	public double getVx() {
+	public int getVx() {
 		return vx;
 	}
 
-	public void setVx(double vx) {
+	public void setVx(int vx) {
 		this.vx = vx;
 	}
 
-	public double getVy() {
+	public int getVy() {
 		return vy;
 	}
 
-	public void setVy(double vy) {
+	public void setVy(int vy) {
 		this.vy = vy;
 	}
 
@@ -62,18 +62,6 @@ public class Ball {
 	
 	public int getR() {
 		return d/2;
-	}
-	
-	public static Boolean ballsCollide(Ball b1, Ball b2) {
-		int x1 = b1.x + b1.getR();
-		int x2 = b2.x + b2.getR();
-		
-		int y1 = b1.y + b1.getR();
-		int y2 = b2.y + b2.getR();
-		
-		int distanceSquared = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-		
-		return distanceSquared < (b1.getR() + b2.getR()) * (b1.getR() + b2.getR());
 	}
 	
 }

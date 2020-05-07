@@ -45,9 +45,7 @@ public class Collisions2D {
 		
 	}
 	
-	public static int finalVX(TestBall ball1, TestBall ball2) {
-		return (int) ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx())/(ball1.getR()+ball2.getR()); 
-	}
+	
 	
 	public static void moveBalls() {
 		
@@ -80,10 +78,15 @@ public class Collisions2D {
 		}
 	}
 	
-	protected static int findAngle(TestBall b1, TestBall b2) {
-		int angle=3;
+	protected static void computeNewVelocity(TestBall b1, TestBall b2) {
 		
-		return angle;
+		double angle = Math.atan2((double) b1.getX()-b2.getX(), (double) b1.getY()-b2.getY());
+		
+		double sin = Math.sin(angle), cos = Math.cos(angle);
+		
+		int v1[] = {b1.getVx(), b1.getVy()};
+		
+		int v2[] = {b2.getVx(), b2.getVy()};
+		
 	}
-	
 }
