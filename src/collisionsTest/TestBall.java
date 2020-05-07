@@ -8,12 +8,12 @@ public class TestBall {
 		int x;
 		int y;
 		
-		//Dimension of the ball
+		//Dimension of the ball, also used as mass
 		protected int d;
 		
 		//Speed on both axises
-		double vx;
-		double vy;
+		int vx;
+		int vy;
 		
 		//Color of the ball
 		Color color;
@@ -26,15 +26,15 @@ public class TestBall {
 			this.d = 30;
 			
 			Random r = new Random();
-			this.vx = (double) r.nextInt(7) + 3;
-			this.vy = 0.0;
+			this.vx = r.nextInt(7) + 3;
+			this.vy = 0;
 		}
 
 		public double getVx() {
 			return vx;
 		}
 
-		public void setVx(double vx) {
+		public void setVx(int vx) {
 			this.vx = vx;
 		}
 
@@ -42,7 +42,7 @@ public class TestBall {
 			return vy;
 		}
 
-		public void setVy(double vy) {
+		public void setVy(int vy) {
 			this.vy = vy;
 		}
 

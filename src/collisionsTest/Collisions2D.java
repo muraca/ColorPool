@@ -1,19 +1,17 @@
 package collisionsTest;
 
-
 import java.awt.Color;
 
 import javax.swing.JFrame;
 
-public class Collisions1D {
-    
+public class Collisions2D {
 	public static final int HEIGHT = 800;
 	public static final int WIDTH = 1000;
 	
 	public static TestBall[] balls;
 	public static int balls_size;
 	
-	public static void collisions1d() {
+	public static void collisions2D() {
 		TestBall ball1 = new TestBall(0, HEIGHT/2, Color.RED);
 		TestBall ball2 = new TestBall(900, HEIGHT/2, Color.BLUE);
 		
@@ -22,7 +20,7 @@ public class Collisions1D {
 		balls[1] = ball2;
 		balls_size = 2;
 		
-		JFrame frame = new JFrame("Collisions1D");
+		JFrame frame = new JFrame("Collisions2D");
 		frame.setSize(WIDTH, HEIGHT);
 		
 		BallPanel panel = new BallPanel();
@@ -47,12 +45,8 @@ public class Collisions1D {
 		
 	}
 	
-	public static int finalVX1(TestBall ball1, TestBall ball2) {
-		return (int) ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx()) / (ball1.getR()+ball2.getR()); 
-	}
-	
-	public static int finalVX2(TestBall ball1, TestBall ball2) {
-		return (int) ((ball2.getR() - ball1.getR())*ball2.getVx() + ball1.getD()*ball1.getVx()) / (ball1.getR()+ball2.getR()); 
+	public static int finalVX(TestBall ball1, TestBall ball2) {
+		return (int) ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx())/(ball1.getR()+ball2.getR()); 
 	}
 	
 	public static void moveBalls() {
@@ -79,12 +73,17 @@ public class Collisions1D {
 		for(int i=0; i<balls_size-1; i++) {
 			for(int j=i+1; j<balls_size; j++) {
 				if(TestBall.ballsCollide(balls[i], balls[j])) {
-					balls[i].vx = finalVX1(balls[i], balls[j]);
-					balls[j].vx = -finalVX2(balls[i], balls[j]);
+					balls[i].vx = finalVX(balls[i], balls[j]);
+					balls[j].vx = -finalVX(balls[j], balls[i]);
 				}
 			}
 		}
 	}
-
+	
+	protected static int findAngle(TestBall b1, TestBall b2) {
+		int angle=3;
+		
+		return angle;
+	}
+	
 }
-
