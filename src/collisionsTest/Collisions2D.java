@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import colorpool.core.Ball;
+
 public class Collisions2D {
 	public static final int HEIGHT = 800;
 	public static final int WIDTH = 1000;
@@ -45,6 +47,9 @@ public class Collisions2D {
 		
 	}
 	
+	private static int finalVX(TestBall ball1, TestBall ball2) {
+		return (int) ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx())/(ball1.getR()+ball2.getR()); 
+	}
 	
 	
 	public static void moveBalls() {
@@ -84,7 +89,9 @@ public class Collisions2D {
 		
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 		
-		int v1[] = {b1.getVx(), b1.getVy()};
+		int v1f[] = {(int) ((double) b1.getVx() * cos + (double) b1.getVy() * sin), (int) ((double) -b1.getVx() * sin + (double) b1.getVy() * cos)};
+		
+		v1[0] = (int) ((b1.getR() - b2.getR())*v1f() + b2.getD()*b2.getVx())/(b1.getR()+b2.getR()); 
 		
 		int v2[] = {b2.getVx(), b2.getVy()};
 		
