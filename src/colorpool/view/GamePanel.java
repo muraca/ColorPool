@@ -5,8 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import colorpool.core.Ball;
-import colorpool.core.Game;
+import colorpool.core.*;
 
 public class GamePanel extends JPanel {
 
@@ -16,11 +15,12 @@ public class GamePanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		drawBalls(g);
+		drawPots(g);
 	}
 	
 	private void drawBalls(Graphics g) {
-		this.setBackground(Color.GREEN);
 		g.setColor(Color.WHITE);
+		this.setBackground(Color.GREEN);
 		g.fillOval(Game.getGame().whiteball.getX(), Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
 		for(Ball b: Game.getGame().balls) {
 			g.setColor(b.getColor());
@@ -28,4 +28,11 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
+	private void drawPots(Graphics g) {
+		this.setBackground(Color.GREEN);
+		g.setColor(Color.BLACK);
+		for(Pot p: Game.getGame().pots) {
+			g.fillOval(p.getX(), p.getY(), Pot.getDimension(), Pot.getDimension());
+		}
+	}
 }

@@ -1,5 +1,8 @@
 package colorpool;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 import colorpool.config.*;
@@ -17,6 +20,8 @@ public class Main {
 		panel.setFocusable(true);
 		f.add(panel);
 		f.setUndecorated(true); // Remove title bar
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		f.setLocation(dim.width / 2 - f.getSize().width / 2, dim.height / 2 - f.getSize().height / 2);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		while(true) {

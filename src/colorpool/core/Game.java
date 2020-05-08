@@ -9,11 +9,13 @@ import colorpool.config.Settings;
 public class Game {
 	public WhiteBall whiteball;
 	public ArrayList<Ball> balls;
+	public ArrayList<Pot> pots;
 	public int points;
 	private static Game game = null;
 	
 	public Game(int p) {
 		this.points = p;
+		generatePots();
 		generateBalls();
 	}
 	
@@ -36,6 +38,18 @@ public class Game {
 		}
 		return true;
 	}
+	
+	private void generatePots() {
+		pots = new ArrayList<>();
+		
+		pots.add(new Pot(0, 0));
+		pots.add(new Pot(0, Settings.HEIGHT-Pot.getDimension()));
+		pots.add(new Pot(Settings.WIDTH/2 - Pot.getDimension()/2, 0));
+		pots.add(new Pot(Settings.WIDTH/2 - Pot.getDimension()/2, Settings.HEIGHT-Pot.getDimension()));
+		pots.add(new Pot(Settings.WIDTH - Pot.getDimension(), 0));
+		pots.add(new Pot(Settings.WIDTH - Pot.getDimension(), Settings.HEIGHT-Pot.getDimension()));
+	}
+	
 	
 	private void generateBalls() {
 		whiteball = randomWhiteBall();
