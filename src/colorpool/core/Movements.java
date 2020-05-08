@@ -11,8 +11,12 @@ public class Movements {
 		if(Game.getGame().canShot()) {
 			double dx = (double) Math.abs(Game.getGame().whiteball.x-x);
 			double dy = (double) Math.abs(Game.getGame().whiteball.y-y);
-			int speedx = (int) Math.round(speed * dx / (dx+dy));
-			int speedy = (int) Math.round(speed * dy / (dx+dy));
+			
+			double angle = Math.atan2(dy, dx);
+			double sin = Math.sin(angle), cos = Math.cos(angle);
+			
+			int speedx = (int) (speed * cos);
+			int speedy = (int) (speed * sin);
 			
 			if(x>Game.getGame().whiteball.x)
 				Game.getGame().whiteball.vx = speedx;
@@ -103,7 +107,7 @@ public class Movements {
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
 		
-		double angle = Math.atan2(  b1.getY()-b2.getY(),   b1.getX()-b2.getX());
+		double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
 		
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 		
