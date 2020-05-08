@@ -16,14 +16,14 @@ public class Collisions2D {
 	public static void collisions2D() {
 		
 		balls = new TestBall[8];
-		balls[0] = new TestBall(0, 15, Color.RED);
-		balls[1] = new TestBall(900, 720, Color.BLUE);
-		balls[2] = new TestBall(33, 15, Color.GREEN);
-		balls[3] = new TestBall(500, 700, Color.MAGENTA);
-		balls[4] = new TestBall(100, 15, Color.WHITE);
-		balls[5] = new TestBall(570, 640, Color.BLACK);
-		balls[6] = new TestBall(10, 300, Color.CYAN);
-		balls[7] = new TestBall(200, 305, Color.ORANGE);
+		balls[0] = new TestBall(0.0, 15.0, Color.RED);
+		balls[1] = new TestBall(900.0, 720.0, Color.BLUE);
+		balls[2] = new TestBall(33.0, 15.0, Color.GREEN);
+		balls[3] = new TestBall(500.0, 700.0, Color.MAGENTA);
+		balls[4] = new TestBall(100.0, 15.0, Color.WHITE);
+		balls[5] = new TestBall(570.0, 640.0, Color.BLACK);
+		balls[6] = new TestBall(10.0, 300.0, Color.CYAN);
+		balls[7] = new TestBall(200.0, 305.0, Color.ORANGE);
 		balls_size = 8;
 		
 		JFrame frame = new JFrame("Collisions2D");
@@ -51,8 +51,8 @@ public class Collisions2D {
 		
 	}
 	
-	private static int finalVX(TestBall ball1, TestBall ball2) {
-		return (int) ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx())/(ball1.getR()+ball2.getR()); 
+	private static double finalVX(TestBall ball1, TestBall ball2) {
+		return ((ball1.getR() - ball2.getR())*ball1.getVx() + ball2.getD()*ball2.getVx())/(ball1.getR()+ball2.getR()); 
 	}
 	
 	
@@ -63,13 +63,13 @@ public class Collisions2D {
 			b.x += b.vx;
 			if(b.x>WIDTH-b.getD() || b.x <=0) {
 				b.vx = -b.vx;
-				b.x += (int) b.vx;
+				b.x +=  b.vx;
 			}
 			
 			b.y += b.vy;
 			if(b.y>HEIGHT-b.getD() || b.y <=0) {
 				b.vy = -b.vy;
-				b.y += (int) b.vy;
+				b.y +=  b.vy;
 			}
 			
 		}
@@ -80,9 +80,9 @@ public class Collisions2D {
 		for(int i=0; i<balls_size-1; i++) {
 			for(int j=i+1; j<balls_size; j++) {
 				if(TestBall.ballsCollide(balls[i], balls[j])) {
-					balls[i].vx = finalVX(balls[i], balls[j]);
-					balls[j].vx = -finalVX(balls[j], balls[i]);
-					//computeNewVelocity(balls[i], balls[j]);
+					//balls[i].vx = finalVX(balls[i], balls[j]);
+					//balls[j].vx = -finalVX(balls[j], balls[i]);
+					computeNewVelocity(balls[i], balls[j]);
 				}
 			}
 		}
@@ -90,13 +90,13 @@ public class Collisions2D {
 	
 	protected static void computeNewVelocity(TestBall b1, TestBall b2) {
 		
-		double angle = Math.atan2((double) b1.getX()-b2.getX(), (double) b1.getY()-b2.getY());
+		double angle = Math.atan2(  b1.getY()-b2.getY(),   b1.getX()-b2.getX());
 		
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 		
-		double v1[] = { ((double) b1.getVx() * cos + (double) b1.getVy() * sin), ((double) -b1.getVx() * sin + (double) b1.getVy() * cos)};
+		double v1[] = { (  b1.getVx() * cos +   b1.getVy() * sin), (  -b1.getVx() * sin +   b1.getVy() * cos)};
 		
-		double v2[] = { ((double) b2.getVx() * cos + (double) b2.getVy() * sin),  ((double) -b2.getVx() * sin + (double) b2.getVy() * cos)};
+		double v2[] = { (  b2.getVx() * cos +   b2.getVy() * sin),  (  -b2.getVx() * sin +   b2.getVy() * cos)};
 		
 		b1.vx = v1[0];
 		b1.vy = v1[1];
@@ -108,12 +108,11 @@ public class Collisions2D {
 		
 		v2[0] = finalVX(b2, b1);
 		
-		b1.vx =  ((double) v1[0] * cos - (double) v1[1] * sin);
-		b1.vy =  ((double) v1[0] * sin + (double) v1[1] * cos);
+		b1.vx = ( v1[0] * cos -   v1[1] * sin);
+		b1.vy = ( v1[0] * sin +   v1[1] * cos);
 		
-		b2.vx =  ((double) v2[0] * cos - (double) v2[1] * sin);
-		b2.vy =  ((double) v2[0] * sin + (double) v2[1] * cos);
-		
+		b2.vx = ( v2[0] * cos -   v2[1] * sin);
+		b2.vy = ( v2[0] * sin +   v2[1] * cos);
 		
 	}
 }

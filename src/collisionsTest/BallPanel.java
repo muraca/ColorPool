@@ -26,7 +26,7 @@ public class BallPanel extends JPanel {
 		super.paintComponent(g);
 		for(TestBall b: balls) {
 			g.setColor(b.getColor());
-			g.fillOval(b.getX(), b.getY(), b.getD(), b.getD());
+			g.fillOval((int) b.getX(), (int) b.getY(), (int) b.getD(), (int) b.getD());
 		}
 	}
 	

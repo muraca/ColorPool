@@ -64,7 +64,8 @@ public class Game {
 	private void initialControl() {
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {
-				b = randomBall(b.getColor());
+				b.x += 40;
+				b.y += 40;
 			}
 		}
 		

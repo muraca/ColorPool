@@ -6,10 +6,10 @@ public class Movements {
 	
 	//Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
 	public static void shotWhiteBall(Game g, int x, int y) {
-		if(g.canShot()) {
+		/*if(g.canShot()) {
 			g.whiteball.vx = x;
 			g.whiteball.vy = y;
-		}
+		}*/
 	}
 	
 	//Gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
@@ -43,7 +43,9 @@ public class Movements {
 	}
 	
 	//Controlla se le palline sono andate in buca
-	private static void potting(Game g) { }
+	private static void potting(Game g) {
+		//TODO
+	}
 	
 	//Gestisce le collisioni tra tutte le palline
 	private static void collisions(Game g) {
