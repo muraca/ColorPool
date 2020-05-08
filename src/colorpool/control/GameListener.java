@@ -8,6 +8,7 @@ import colorpool.core.Movements;
 
 public class GameListener implements MouseListener {
 	
+	//TODO CONTROLLARE QUESTA COSA
 	Game game;
 	
 	GameListener(Game g){
@@ -19,7 +20,7 @@ public class GameListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) { 
-		Movements.moveWhiteBall(game.whiteball, e.getX(), e.getY(), game.canShot);
+		Movements.shotWhiteBall(game, e.getX(), e.getY());
 	}
 
 	@Override

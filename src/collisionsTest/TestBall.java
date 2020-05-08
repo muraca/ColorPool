@@ -12,8 +12,8 @@ public class TestBall {
 		protected int d;
 		
 		//Speed on both axises
-		int vx;
-		int vy;
+		double vx;
+		double vy;
 		
 		//Color of the ball
 		Color color;
@@ -30,19 +30,19 @@ public class TestBall {
 			this.vy = r.nextInt(9) + 1;
 		}
 
-		public int getVx() {
+		public double getVx() {
 			return vx;
 		}
 
-		public void setVx(int vx) {
+		public void setVx(double vx) {
 			this.vx = vx;
 		}
 
-		public int getVy() {
+		public double getVy() {
 			return vy;
 		}
 
-		public void setVy(int vy) {
+		public void setVy(double vy) {
 			this.vy = vy;
 		}
 
