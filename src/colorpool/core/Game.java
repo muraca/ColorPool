@@ -13,7 +13,7 @@ public class Game {
 	private static Game game = null;
 	
 	public Game(int p) {
-		points = p;
+		this.points = p;
 		generateBalls();
 	}
 	
@@ -39,10 +39,12 @@ public class Game {
 	
 	private void generateBalls() {
 		whiteball = randomWhiteBall();
+		
+		balls = new ArrayList<>();
 		balls.add(randomBall(Color.RED));
 		balls.add(randomBall(Color.ORANGE));
 		balls.add(randomBall(Color.YELLOW));
-		balls.add(randomBall(Color.GREEN));
+		balls.add(randomBall(Color.BLACK));
 		balls.add(randomBall(Color.BLUE));
 		balls.add(randomBall(Color.CYAN));
 		balls.add(randomBall(Color.MAGENTA));

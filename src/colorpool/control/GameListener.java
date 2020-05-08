@@ -3,24 +3,24 @@ package colorpool.control;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import colorpool.core.Game;
-import colorpool.core.Movements;
+import colorpool.core.*;
+import colorpool.view.*;
 
 public class GameListener implements MouseListener {
-	
-	//TODO CONTROLLARE QUESTA COSA
-	Game game;
-	
-	GameListener(Game g){
-		this.game = g;
-	}
 
+	private GamePanel panel;
+	
+	public GameListener(GamePanel panel) {
+		this.panel = panel;
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) { }
 
 	@Override
 	public void mousePressed(MouseEvent e) { 
-		Movements.shotWhiteBall(game, e.getX(), e.getY());
+		Movements.shotWhiteBall(e.getX(), e.getY());
+		panel.repaint();
 	}
 
 	@Override
