@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import colorpool.config.Settings;
 import colorpool.core.*;
 
 public class GamePanel extends JPanel {
@@ -42,8 +43,8 @@ public class GamePanel extends JPanel {
     private void drawPointer(Graphics g){
         if (p!=null) {
             g.setColor(Pointer.c);
-            g.drawLine((int)Game.getGame().whiteball.getX(),(int) Game.getGame().whiteball.getY(),(int)p.x,(int)p.y);
-            g.fillOval((int)p.x,(int)p.y, Pointer.dimension, Pointer.dimension);
+            g.drawLine((int)Game.getGame().whiteball.getX()+Settings.WHITEBALLDIMENSION/2,(int) Game.getGame().whiteball.getY()+Settings.WHITEBALLDIMENSION/2,(int)p.x,(int)p.y);
+            g.fillOval((int)p.x - Pointer.dimension/2, (int)p.y - Pointer.dimension/2, Pointer.dimension, Pointer.dimension);
         }
     }
 }

@@ -37,9 +37,11 @@ public class Movements {
 	public static void moveBalls() {
 		//muovo tutte le palle colorate
 		for(Ball b: Game.getGame().balls) {
+			friction(b);
 			moveBall(b);
 		}
 		
+		friction(Game.getGame().whiteball);
 		moveBall(Game.getGame().whiteball);
 		
 		potting();
@@ -80,7 +82,7 @@ public class Movements {
 		
 	}
 	
-	private void friction(Ball b) {
+	private static void friction(Ball b) {
 		if(b.vx>=friction)
 			b.vx -= friction;
 		else if(b.vx>0)
