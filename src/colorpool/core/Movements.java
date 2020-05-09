@@ -100,15 +100,14 @@ public class Movements {
 	private static void potting() {
         //Pallina bianca
 		if(potted(Game.getGame().whiteball)){
-			JOptionPane.showMessageDialog(null, "Palla bianca imbucata, meh");
-			Game.getGame().whiteball.x = 100;
-			Game.getGame().whiteball.y = 123;
+			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			stopBalls();
+			Game.getGame().restartGame();
 		}
         //Palline colorate
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
-				JOptionPane.showMessageDialog(null, "figo");
+				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				b.x = 100;
 				b.y = 123;
 				stopBalls();
@@ -208,7 +207,7 @@ public class Movements {
 		
 	}
 	
-	private static void stopBalls() {
+	public static void stopBalls() {
 		//Fermo la pallina bianca
 		Game.getGame().whiteball.vx = 0;
 		Game.getGame().whiteball.vy = 0;

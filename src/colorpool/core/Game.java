@@ -25,7 +25,7 @@ public class Game {
 		return game;
 	}
 	
-	public static void restartGame() {
+	public void restartGame() {
 		game = new Game(0);
 	}
 	

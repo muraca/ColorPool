@@ -25,7 +25,7 @@ public class GameListener implements MouseListener, MouseMotionListener {
     }
 
 	@Override
-	public void mousePressed(MouseEvent e) { 
+	public void mousePressed(MouseEvent e) {
 		if(Game.getGame().canShot()) {
 			panel.p = null;
 			Movements.shotWhiteBall(e.getX(), e.getY());

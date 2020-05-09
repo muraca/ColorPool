@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import colorpool.config.*;
 import colorpool.control.*;
+import colorpool.testbutton.*;
 import colorpool.view.*;
 
 public class Main {
@@ -14,6 +15,11 @@ public class Main {
         
         
         GamePanel panel = new GamePanel();
+        
+        TestButton testb = new TestButton();
+        testb.addActionListener(new TestButtonListener());
+        
+        panel.add(testb);
         
         GameListener gl=new GameListener(panel);
         panel.addMouseListener(gl);
