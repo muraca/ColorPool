@@ -2,21 +2,21 @@ package colorpool.core;
 
 public class Pot {
 	//Coordinates of top/left pixel
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
 	final static int d = 50;
 	
-	public Pot(int x, int y) {
+	public Pot(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
@@ -24,5 +24,7 @@ public class Pot {
 		return d;
 	}
 	
-	
+    public static double getR() {
+        return ((double) d) / 2.0;
+    }
 }

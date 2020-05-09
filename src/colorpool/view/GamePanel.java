@@ -10,21 +10,24 @@ import colorpool.core.*;
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+    
+    public Pointer p;
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		drawBalls(g);
 		drawPots(g);
+        drawPointer(g);
 	}
 	
 	private void drawBalls(Graphics g) {
+        this.setBackground(Color.GREEN);
 		g.setColor(Color.WHITE);
-		this.setBackground(Color.GREEN);
-		g.fillOval(Game.getGame().whiteball.getX(), Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
+		g.fillOval((int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
 		for(Ball b: Game.getGame().balls) {
 			g.setColor(b.getColor());
-			g.fillOval(b.getX(), b.getY(), b.getD(), b.getD());
+			g.fillOval((int) b.getX(), (int) b.getY(), b.getD(), b.getD());
 		}
 	}
 	
@@ -32,7 +35,15 @@ public class GamePanel extends JPanel {
 		this.setBackground(Color.GREEN);
 		g.setColor(Color.BLACK);
 		for(Pot p: Game.getGame().pots) {
-			g.fillOval(p.getX(), p.getY(), Pot.getDimension(), Pot.getDimension());
+			g.fillOval((int) p.getX(), (int) p.getY(), Pot.getDimension(), Pot.getDimension());
 		}
 	}
+    
+    private void drawPointer(Graphics g){
+        if (p!=null) {
+            g.setColor(Pointer.c);
+            g.drawLine((int)Game.getGame().whiteball.getX(),(int) Game.getGame().whiteball.getY(),(int)p.x,(int)p.y);
+            g.fillOval((int)p.x,(int)p.y, Pointer.dimension, Pointer.dimension);
+        }
+    }
 }

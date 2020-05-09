@@ -78,12 +78,31 @@ public class Game {
 	}
 	
 	private void initialControl() {
+        boolean recontrol = false;
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {
 				b.x += 40;
 				b.y += 40;
+                recontrol = true;
 			}
 		}
-		
+        
+        for(int i=0; i<balls.size() - 1; i++) {
+            for(int j=i+1; j<balls.size(); j++) {
+                if(Movements.ballsCollide(balls.get(i),balls.get(j))) {
+                    balls.get(j).x += 75;
+                    balls.get(j).y += 75;
+                    recontrol = true;
+                }
+            }
+        }
+        
+		if(recontrol)
+            initialControl();
 	}
+    
+    public void point(){
+        points++;
+        game = new Game(points);
+    }
 }
