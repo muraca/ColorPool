@@ -172,6 +172,8 @@ public class Movements {
 	}
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
+		b1.convertBoolVec();
+		b2.convertBoolVec();
         //Calcolo l'angolo tra l'asse x e l'asse dell'impatto
 		double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
 		//Seno e coseno dell'angolo sopra citato
@@ -195,6 +197,9 @@ public class Movements {
 		
 		b2.vx = (v2[0] * cos - v2[1] * sin);
 		b2.vy = (v2[0] * sin + v2[1] * cos);
+		
+		b1.convertVecBool();
+		b2.convertVecBool();
 		
 	}
 	

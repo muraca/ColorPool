@@ -111,4 +111,30 @@ public class Ball {
     	else
     		diry = true;
     }
+    
+    //converte da "bool per verso, double per direzione" a "double per direzione e verso"
+    public void convertBoolVec() {
+    	if(!dirx)
+    		vx = -vx;
+    	if(!diry)
+    		vy = -vy;
+    }
+    
+    //converte da "double per direzione e verso" a "bool per verso, double per direzione"
+    public void convertVecBool() {
+    	if(vx<0) {
+    		vx = -vx;
+    		dirx = false;
+    	}
+    	else
+    		dirx = true;
+    	
+    	if(vy<0) {
+    		vy = -vy;
+    		diry = false;
+    	}
+    	else
+    		diry = true;
+    }
+    
 }
