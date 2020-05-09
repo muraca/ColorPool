@@ -2,13 +2,11 @@ package colorpool.core;
 
 import javax.swing.JOptionPane;
 
-import colorpool.config.Settings;
-
 public class Movements {
 	
 	//Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
 	private static final double speed = 10.0;
-    //private static double friction=0.01;
+    private static double friction=0.01;
 	
 	public static void shotWhiteBall(int x, int y) {
 		
@@ -18,18 +16,21 @@ public class Movements {
 		double angle = Math.atan2(dy, dx);
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 			
-		double speedx = speed * cos;
-		double speedy =  speed * sin;
+		double speedx = Math.abs(speed * cos);
+		double speedy =  Math.abs(speed * sin);
 			
+		Game.getGame().whiteball.vx = speedx;
+		Game.getGame().whiteball.vy = speedy;
+		
 		if(x>Game.getGame().whiteball.x)
-			Game.getGame().whiteball.vx = speedx;
+			Game.getGame().whiteball.dirx = true;
 		else
-			Game.getGame().whiteball.vx = -speedx;
+			Game.getGame().whiteball.dirx = false;
 			
 		if(y>Game.getGame().whiteball.y)
-			Game.getGame().whiteball.vy = speedy;
+			Game.getGame().whiteball.diry = true;
 		else
-			Game.getGame().whiteball.vy = -speedy;
+			Game.getGame().whiteball.diry = false;
 	}
 	
 	//Gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
@@ -49,17 +50,46 @@ public class Movements {
 	//Muove la singola pallina in direzione e verso dipendenti dalla velocità
 	//Inoltre controlla le collisioni con il muro
 	private static void moveBall(Ball b) {
-		b.x += b.vx;	
-		if(b.x >= (double) Settings.WIDTH-b.getD() || b.x <= 0.0) {
-			b.vx = -b.vx;
+		
+		if(b.dirx)
 			b.x += b.vx;
+		else
+			b.x -= b.vx;	
+		
+		if(b.isOutX()) {
+			b.changeDirectionX();
+			if(b.dirx)
+				b.x += b.vx;
+			else
+				b.x -= b.vx;
 		}
 		
-		b.y += b.vy;
-		if(b.y >= (double) Settings.HEIGHT-b.getD() || b.y <= 0.0) {
-			b.vy = -b.vy;
+		
+		if(b.diry)
 			b.y += b.vy;
+		else
+			b.y -= b.vy;	
+		
+		if(b.isOutY()) {
+			b.changeDirectionY();
+			if(b.diry)
+				b.y += b.vy;
+			else
+				b.y -= b.vy;
 		}
+		
+	}
+	
+	private void friction(Ball b) {
+		if(b.vx>=friction)
+			b.vx -= friction;
+		else if(b.vx>0)
+			b.vx = 0;
+		
+		if(b.vy>=friction)
+			b.vy -=friction;
+		else if(b.vy>0)
+			b.vy = 0;
 	}
 	
 	//Controlla se le palline sono andate in buca
@@ -94,14 +124,14 @@ public class Movements {
 	//Confronto una pallina con una buca, simile al confronto di collisione
 	private static boolean potted(Ball b, Pot p) {
 		double x1 = b.x + b.getR();
-		double x2 = p.getX() + Pot.getR();
+		double x2 = p.getX() + p.getR();
 		
 		double y1 = b.y + b.getR();
-		double y2 = p.getY() + Pot.getR();
+		double y2 = p.getY() + p.getR();
 		
 		double distanceSquared = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 		
-		return distanceSquared <= (b.getR() + Pot.getR()) * (b.getR() + Pot.getR());
+		return distanceSquared <= (b.getR() + p.getR()) * (b.getR() + p.getR());
 		
 	}
 	

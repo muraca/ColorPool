@@ -43,11 +43,11 @@ public class Game {
 		pots = new ArrayList<>();
 		
 		pots.add(new Pot(0, 0));
-		pots.add(new Pot(0, Settings.HEIGHT-Pot.getDimension()));
-		pots.add(new Pot(Settings.WIDTH/2 - Pot.getDimension()/2, 0));
-		pots.add(new Pot(Settings.WIDTH/2 - Pot.getDimension()/2, Settings.HEIGHT-Pot.getDimension()));
-		pots.add(new Pot(Settings.WIDTH - Pot.getDimension(), 0));
-		pots.add(new Pot(Settings.WIDTH - Pot.getDimension(), Settings.HEIGHT-Pot.getDimension()));
+		pots.add(new Pot(0, Settings.HEIGHT - Settings.POTDIMENSION));
+		pots.add(new Pot(Settings.WIDTH/2 - Settings.POTDIMENSION/2, 0));
+		pots.add(new Pot(Settings.WIDTH/2 - Settings.POTDIMENSION/2, Settings.HEIGHT-Settings.POTDIMENSION));
+		pots.add(new Pot(Settings.WIDTH - Settings.POTDIMENSION, 0));
+		pots.add(new Pot(Settings.WIDTH - Settings.POTDIMENSION, Settings.HEIGHT-Settings.POTDIMENSION));
 	}
 	
 	
@@ -69,7 +69,7 @@ public class Game {
 	
 	private WhiteBall randomWhiteBall() {
 		Random r = new Random();
-		return new WhiteBall(r.nextInt(Settings.WIDTH), r.nextInt(Settings.HEIGHT));
+		return new WhiteBall(r.nextInt(Settings.WIDTH-Settings.WHITEBALLDIMENSION), r.nextInt(Settings.HEIGHT-Settings.WHITEBALLDIMENSION));
 	}
 	
 	private Ball randomBall(Color c) {
@@ -78,6 +78,8 @@ public class Game {
 	}
 	
 	private void initialControl() {
+		if(whiteball.isOutX()||whiteball.isOutY())
+			whiteball = randomWhiteBall();
         boolean recontrol = false;
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {

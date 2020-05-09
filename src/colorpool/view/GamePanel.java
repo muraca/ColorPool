@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
 		this.setBackground(Color.GREEN);
 		g.setColor(Color.BLACK);
 		for(Pot p: Game.getGame().pots) {
-			g.fillOval((int) p.getX(), (int) p.getY(), Pot.getDimension(), Pot.getDimension());
+			g.fillOval((int) p.getX(), (int) p.getY(), p.getDimension(), p.getDimension());
 		}
 	}
     

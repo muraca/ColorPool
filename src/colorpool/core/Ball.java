@@ -2,19 +2,25 @@ package colorpool.core;
 
 import java.awt.Color;
 
+import colorpool.config.Settings;
+
 public class Ball {
-    //Coordinates of top/left pixel
+    //Coordinate del pixel in alto a sinistra
     double x;
     double y;
     
-    //Dimension of the ball
+    //Dimensione della palla
     protected int d;
     
-    //Speed on both axises
+    //Modulo del vettore velocità
     double vx;
     double vy;
     
-    //Color of the ball
+    //Verso del vettore velocità (true=positiva, false=negativa)
+    boolean dirx;
+    boolean diry;
+    
+    //Colore della palla
     Color color;
     
     public Ball(int _x, int _y, Color _c) {
@@ -22,10 +28,18 @@ public class Ball {
         this.y = _y;
         
         this.color = _c;
-        this.d = 30;
+        this.d = Settings.BALLDIMENSION;
         
         this.vx = 0.0;
         this.vy = 0.0;
+    }
+    
+    public double getX() {
+        return x;
+    }
+    
+    public double getY() {
+        return y;
     }
     
     public double getVx() {
@@ -44,13 +58,21 @@ public class Ball {
         this.vy = vy;
     }
     
-    public double getX() {
-        return x;
-    }
-    
-    public double getY() {
-        return y;
-    }
+    public boolean getDirx() {
+		return dirx;
+	}
+
+	public void setDirx(boolean dirx) {
+		this.dirx = dirx;
+	}
+
+	public boolean getDiry() {
+		return diry;
+	}
+
+	public void setDiry(boolean diry) {
+		this.diry = diry;
+	}
     
     public Color getColor() {
         return color;
@@ -64,4 +86,29 @@ public class Ball {
         return d/2;
     }
 	
+    public boolean isOutX() {
+    	if(x >= (double) Settings.WIDTH-d || x <= 0.0)
+    		return true;
+    	return false;
+    }
+    
+    public boolean isOutY() {
+    	if(y >= (double) Settings.HEIGHT-d || y <= 0.0)
+    		return true;
+    	return false;
+    }
+    
+    public void changeDirectionX() {
+    	if(dirx)
+    		dirx = false;
+    	else
+    		dirx = true;
+    }
+    
+    public void changeDirectionY() {
+    	if(diry)
+    		diry = false;
+    	else
+    		diry = true;
+    }
 }
