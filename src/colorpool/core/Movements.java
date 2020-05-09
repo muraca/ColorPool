@@ -126,7 +126,7 @@ public class Movements {
 		return false;
 	}
 	//Confronto una pallina con una buca, simile al confronto di collisione
-	private static boolean potted(Ball b, Pot p) {
+	public static boolean potted(Ball b, Pot p) {
 		double x1 = b.x + b.getR();
 		double x2 = p.getX() + p.getR();
 		
@@ -176,6 +176,7 @@ public class Movements {
 	}
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
+		
 		b1.convertBoolVec();
 		b2.convertBoolVec();
         //Calcolo l'angolo tra l'asse x e l'asse dell'impatto

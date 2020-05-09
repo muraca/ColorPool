@@ -63,7 +63,7 @@ public class Game {
 		balls.add(randomBall(Color.CYAN));
 		balls.add(randomBall(Color.MAGENTA));
 		
-		initialControl();
+		initialControl(true);
 		
 	}
 	
@@ -74,33 +74,37 @@ public class Game {
 	
 	private Ball randomBall(Color c) {
 		Random r = new Random();
-		return new Ball(r.nextInt(Settings.WIDTH), r.nextInt(Settings.HEIGHT), c);
+		return new Ball(r.nextInt(Settings.WIDTH-Settings.BALLDIMENSION), r.nextInt(Settings.HEIGHT-Settings.BALLDIMENSION), c);
 	}
 	
-	private void initialControl() {
-		if(whiteball.isOutX()||whiteball.isOutY())
-			whiteball = randomWhiteBall();
-        boolean recontrol = false;
+	private void initialControl(boolean control) {
+		for(Pot p: pots) {
+			while(Movements.potted(whiteball, p))
+				whiteball = randomWhiteBall();
+			for(Ball b: balls) {
+				while(Movements.potted(b, p))
+					b = randomBall(b.color);
+			}
+		}
+        
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {
-				b.x += 40;
-				b.y += 40;
-                recontrol = true;
+				b.x += b.color.getRGB();
+				b.y += b.color.getRGB();
 			}
+			
 		}
         
         for(int i=0; i<balls.size() - 1; i++) {
             for(int j=i+1; j<balls.size(); j++) {
                 if(Movements.ballsCollide(balls.get(i),balls.get(j))) {
-                    balls.get(j).x += 75;
-                    balls.get(j).y += 75;
-                    recontrol = true;
+                    balls.get(j).x += balls.get(i).color.getRGB();
+                    balls.get(j).y += balls.get(i).color.getRGB();
                 }
             }
         }
-        
-		if(recontrol)
-            initialControl();
+        if(control)
+        	initialControl(false);
 	}
     
     public void point(){
