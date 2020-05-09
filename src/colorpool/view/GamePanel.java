@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void drawBalls(Graphics g) {
-        this.setBackground(Color.GREEN);
+        this.setBackground(Settings.POOLCOLOR);
 		g.setColor(Color.WHITE);
 		g.fillOval((int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
 		for(Ball b: Game.getGame().balls) {
@@ -33,7 +33,6 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void drawPots(Graphics g) {
-		this.setBackground(Color.GREEN);
 		g.setColor(Color.BLACK);
 		for(Pot p: Game.getGame().pots) {
 			g.fillOval((int) p.getX(), (int) p.getY(), p.getDimension(), p.getDimension());

@@ -33,15 +33,15 @@ public class Movements {
 			Game.getGame().whiteball.diry = false;
 	}
 	
-	//Gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
+	//Rallenta e gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
 	public static void moveBalls() {
 		//muovo tutte le palle colorate
 		for(Ball b: Game.getGame().balls) {
-			friction(b);
+			slowDown(b);
 			moveBall(b);
 		}
 		
-		friction(Game.getGame().whiteball);
+		slowDown(Game.getGame().whiteball);
 		moveBall(Game.getGame().whiteball);
 		
 		potting();
@@ -82,7 +82,9 @@ public class Movements {
 		
 	}
 	
-	private static void friction(Ball b) {
+	//Rallenta la pallina di una costante friction
+	private static void slowDown(Ball b) {
+		
 		if(b.vx>=friction)
 			b.vx -= friction;
 		else if(b.vx>0)
