@@ -2,6 +2,8 @@ package colorpool.core;
 
 import javax.swing.JOptionPane;
 
+import colorpool.Main;
+
 public class Movements {
 	
 	//Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
@@ -99,30 +101,40 @@ public class Movements {
 	//Controlla se le palline sono andate in buca
 	private static void potting() {
         //Pallina bianca
-		if(potted(Game.getGame().whiteball)){
-			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
+		Pot p = potted(Game.getGame().whiteball);
+		if(p != null){
 			stopBalls();
+			for(int i=0; i<5; i++) {
+				Main.t.panel.repaint();
+				moveBall(Game.getGame().whiteball);
+			}
+			Main.t.panel.repaint();
+			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().restartGame();
 		}
         //Palline colorate
 		for(Ball b: Game.getGame().balls) {
-			if(potted(b)) {
-				JOptionPane.showMessageDialog(null, "Palla imbucata!");
-				b.x = 100;
-				b.y = 123;
+			p = potted(b);
+			if(p!=null) {
 				stopBalls();
+				for(int i=0; i<5; i++) {
+					Main.t.panel.repaint();
+					moveBall(b);
+				}
+				Main.t.panel.repaint();
+				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				Game.getGame().point();
 			}
 		}
 	}
 	//Controlla se la palla è andata in buca, confrontando con tutte le buche
-	private static boolean potted(Ball b) {
+	private static Pot potted(Ball b) {
 		for(Pot p: Game.getGame().pots) {
 			if (potted(b, p))
-				return true;
+				return p;
 		}
 			
-		return false;
+		return null;
 	}
 	//Confronto una pallina con una buca, simile al confronto di collisione
 	public static boolean potted(Ball b, Pot p) {

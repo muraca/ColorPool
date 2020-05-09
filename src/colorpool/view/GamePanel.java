@@ -2,7 +2,11 @@ package colorpool.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import colorpool.config.Settings;
@@ -24,11 +28,45 @@ public class GamePanel extends JPanel {
 	
 	private void drawBalls(Graphics g) {
         this.setBackground(Settings.POOLCOLOR);
-		g.setColor(Color.WHITE);
-		g.fillOval((int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
+        
+        File imageFile = new File("resources/whiteball.png");
+        Image img = null;
+        try {
+			img = ImageIO.read(imageFile);
+			g.drawImage(img, (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
+		} catch (IOException e) {
+			// TODO Error stuffs
+			//System.out.println("Image not found");
+		}
+		//g.fillOval((int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
 		for(Ball b: Game.getGame().balls) {
-			g.setColor(b.getColor());
-			g.fillOval((int) b.getX(), (int) b.getY(), b.getD(), b.getD());
+			
+			if(b.getColor()==Color.RED) 
+				imageFile = new File("resources/redball.png");
+			else if(b.getColor() == Color.ORANGE)
+				imageFile = new File("resources/orangeball.png");
+			else if(b.getColor() == Color.YELLOW)
+				imageFile = new File("resources/yellowball.png");
+			else if(b.getColor() == Color.GREEN)
+				imageFile = new File("resources/greenball.png");
+			else if(b.getColor() == Color.CYAN)
+				imageFile = new File("resources/cyanball.png");
+			else if(b.getColor() == Color.BLUE)
+				imageFile = new File("resources/blueball.png");
+			else if(b.getColor() == Color.MAGENTA)
+				imageFile = new File("resources/purpleball.png");
+			
+			try {
+				img = ImageIO.read(imageFile);
+				g.drawImage(img, (int) b.getX(), (int) b.getY(), null);
+			} catch (IOException e) {
+				// TODO Error stuffs
+				//System.out.println("Image not found");
+			}	
+			/*else {
+				g.setColor(b.getColor());
+				g.fillOval((int) b.getX(), (int) b.getY(), b.getD(), b.getD());
+			}*/
 		}
 	}
 	

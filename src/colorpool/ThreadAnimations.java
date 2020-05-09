@@ -4,7 +4,7 @@ import colorpool.core.*;
 import colorpool.view.*;
 
 public class ThreadAnimations extends Thread {
-	private GamePanel panel;
+	public GamePanel panel;
 	
 	public ThreadAnimations(GamePanel panel) {
 		this.panel=panel;

@@ -58,7 +58,7 @@ public class Game {
 		balls.add(randomBall(Color.RED));
 		balls.add(randomBall(Color.ORANGE));
 		balls.add(randomBall(Color.YELLOW));
-		balls.add(randomBall(Color.BLACK));
+		balls.add(randomBall(Color.GREEN));
 		balls.add(randomBall(Color.BLUE));
 		balls.add(randomBall(Color.CYAN));
 		balls.add(randomBall(Color.MAGENTA));
