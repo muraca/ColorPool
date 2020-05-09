@@ -69,23 +69,17 @@ public class Game {
 	
 	private WhiteBall randomWhiteBall() {
 		Random r = new Random();
-		return new WhiteBall(r.nextInt(Settings.WIDTH-Settings.WHITEBALLDIMENSION), r.nextInt(Settings.HEIGHT-Settings.WHITEBALLDIMENSION));
+		int difference = Settings.WHITEBALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
+		return new WhiteBall(r.nextInt(Settings.WIDTH-difference)+Settings.POTDIMENSION, r.nextInt(Settings.HEIGHT-difference)+Settings.POTDIMENSION);
 	}
 	
 	private Ball randomBall(Color c) {
 		Random r = new Random();
-		return new Ball(r.nextInt(Settings.WIDTH-Settings.BALLDIMENSION), r.nextInt(Settings.HEIGHT-Settings.BALLDIMENSION), c);
+		int difference = Settings.BALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
+		return new Ball(r.nextInt(Settings.WIDTH-difference)+Settings.POTDIMENSION, r.nextInt(Settings.HEIGHT-difference)+Settings.POTDIMENSION, c);
 	}
 	
 	private void initialControl(boolean control) {
-		for(Pot p: pots) {
-			while(Movements.potted(whiteball, p))
-				whiteball = randomWhiteBall();
-			for(Ball b: balls) {
-				while(Movements.potted(b, p))
-					b = randomBall(b.color);
-			}
-		}
         
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {
