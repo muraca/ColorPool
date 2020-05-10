@@ -52,7 +52,6 @@ public class GamePanel extends JPanel {
 	
 	private void drawBalls(Graphics g) {
         
-		//PALLA BIANCA
         File imageFile = new File("resources/whiteball.png");
         Image img = null;
         try {
@@ -62,7 +61,6 @@ public class GamePanel extends JPanel {
 			// TODO Error stuff
 		}
         
-        //ALTRE PALLE
 		for(Ball b: Game.getGame().balls) {
 			
 			if(b.getColor()==Color.RED) 
@@ -82,7 +80,7 @@ public class GamePanel extends JPanel {
 			
 			try {
 				img = ImageIO.read(imageFile);
-				g.drawImage(img, (int) b.getX(), (int) b.getY(), null);
+				g.drawImage(img, (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
 			} catch (IOException e) {
 				// TODO Error stuff
 			}
