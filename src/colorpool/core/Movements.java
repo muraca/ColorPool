@@ -10,8 +10,7 @@ public class Movements {
 	private static final double speed = 10.0;
     private static double friction=0.01;
 	
-	public static void shotWhiteBall(int x, int y) 
-	{
+	public static void shotWhiteBall(int x, int y) {
 		
 		double dx = (double) Math.abs(Game.getGame().whiteball.x-x);
 		double dy = (double) Math.abs(Game.getGame().whiteball.y-y);
@@ -19,82 +18,79 @@ public class Movements {
 		double angle = Math.atan2(dy, dx);
 		double sin = Math.sin(angle), cos = Math.cos(angle);
 			
-		double speedx = Math.abs(speed * cos);
-		double speedy =  Math.abs(speed * sin);
-			
-		Game.getGame().whiteball.vx = speedx;
-		Game.getGame().whiteball.vy = speedy;
+		double speedx = speed * cos;
+		double speedy =  speed * sin;
 		
 		if(x>Game.getGame().whiteball.x)
-			Game.getGame().whiteball.dirx = true;
+			Game.getGame().whiteball.vx = speedx;
 		else
-			Game.getGame().whiteball.dirx = false;
+			Game.getGame().whiteball.vx = -speedx;
 			
 		if(y>Game.getGame().whiteball.y)
-			Game.getGame().whiteball.diry = true;
+			Game.getGame().whiteball.vy = speedy;
 		else
-			Game.getGame().whiteball.diry = false;
+			Game.getGame().whiteball.vy = -speedy;
 	}
 	
 	//Rallenta e gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
 	public static void moveBalls() {
-		//muovo tutte le palle colorate
+		//rallenta e muove la palla bianca
+		slowDown(Game.getGame().whiteball);
+		moveBall(Game.getGame().whiteball);
+		
+		//muove tutte le palle colorate
 		for(Ball b: Game.getGame().balls) {
 			slowDown(b);
 			moveBall(b);
 		}
-		
-		slowDown(Game.getGame().whiteball);
-		moveBall(Game.getGame().whiteball);
 		
 		potting();
 		
 		collisions();
 	}
 	
+	//Rallenta la pallina di una costante friction
+		private static void slowDown(Ball b) {
+			
+			if(b.vx>=friction)
+				b.vx -= friction;
+			else if(b.vx<=-friction)
+				b.vx += friction;
+			else
+				b.vx = 0.0;
+			
+			if(b.vy>=friction)
+				b.vy -= friction;
+			else if(b.vy<=-friction)
+				b.vy += friction;
+			else
+				b.vy = 0.0;
+		}
+	
 	//Muove la singola pallina in direzione e verso dipendenti dalla velocità
 	//Inoltre controlla le collisioni con il muro
 	private static void moveBall(Ball b) {
 		
-		if(b.dirx)
-			b.x += b.vx;
-		else
-			b.x -= b.vx;	
+		b.x += b.vx;	
 		
 		if(b.isOutX()) {
-			b.changeDirectionX();
-			if(b.dirx)
+			b.vx = -b.vx;
+			if(b.vx>=0)
 				b.x = Settings.POOLMINX;
 			else
 				b.x = Settings.POOLMAXX-b.getD();
 		}
 		
-		if(b.diry)
-			b.y += b.vy;
-		else
-			b.y -= b.vy;	
+			b.y += b.vy;	
 		
 		if(b.isOutY()) {
-			b.changeDirectionY();
-			if(b.diry)
+			b.vy = - b.vy;
+			if(b.vy>=0)
 				b.y = Settings.POOLMINY;
 			else
 				b.y = Settings.POOLMAXY-b.getD();
 		}
 		
-	}
-	
-	//Rallenta la pallina di una costante friction
-	private static void slowDown(Ball b) {
-		if(b.vx>=friction)
-			b.vx -= friction;
-		else if(b.vx>0)
-			b.vx = 0;
-		
-		if(b.vy>=friction)
-			b.vy -=friction;
-		else if(b.vy>0)
-			b.vy = 0;
 	}
 	
 	//Controlla tutte le palline per vedere se una è andata in buca
@@ -161,9 +157,6 @@ public class Movements {
 	}
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
-		
-		b1.convertBoolVec();
-		b2.convertBoolVec();
 		//Bugfixing per scambio palline
 		if((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0)) {
 			//TODO System.out.println("bug stuff here");
@@ -193,8 +186,6 @@ public class Movements {
 			b2.vx = (v2[0] * cos - v2[1] * sin);
 			b2.vy = (v2[0] * sin + v2[1] * cos);
 		}
-		b1.convertVecBool();
-		b2.convertVecBool();
 		
 	}
 	

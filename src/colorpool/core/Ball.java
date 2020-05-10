@@ -12,13 +12,9 @@ public class Ball {
     //Dimensione della palla
     protected int d;
     
-    //Modulo del vettore velocità
+    //Componenti del vettore velocità
     double vx;
     double vy;
-    
-    //Verso del vettore velocità (true=positiva, false=negativa)
-    boolean dirx;
-    boolean diry;
     
     //Colore della palla
     Color color;
@@ -58,22 +54,6 @@ public class Ball {
         this.vy = vy;
     }
     
-    public boolean getDirx() {
-		return dirx;
-	}
-
-	public void setDirx(boolean dirx) {
-		this.dirx = dirx;
-	}
-
-	public boolean getDiry() {
-		return diry;
-	}
-
-	public void setDiry(boolean diry) {
-		this.diry = diry;
-	}
-    
     public Color getColor() {
         return color;
     }
@@ -98,43 +78,5 @@ public class Ball {
     	return false;
     }
     
-    public void changeDirectionX() {
-    	if(dirx)
-    		dirx = false;
-    	else
-    		dirx = true;
-    }
-    
-    public void changeDirectionY() {
-    	if(diry)
-    		diry = false;
-    	else
-    		diry = true;
-    }
-    
-    //converte da "bool per verso, double per direzione" a "double per direzione e verso"
-    public void convertBoolVec() {
-    	if(!dirx)
-    		vx = -vx;
-    	if(!diry)
-    		vy = -vy;
-    }
-    
-    //converte da "double per direzione e verso" a "bool per verso, double per direzione"
-    public void convertVecBool() {
-    	if(vx<0) {
-    		vx = -vx;
-    		dirx = false;
-    	}
-    	else
-    		dirx = true;
-    	
-    	if(vy<0) {
-    		vy = -vy;
-    		diry = false;
-    	}
-    	else
-    		diry = true;
-    }
     
 }
