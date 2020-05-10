@@ -1,2 +1,2 @@
 # ColorPool
-IGPE Project by Matteo Muraca &amp; Mario Avolio
+IGPE Project by Matteo Muraca mat. 201074
