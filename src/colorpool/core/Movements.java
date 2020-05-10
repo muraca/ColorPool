@@ -190,30 +190,35 @@ public class Movements {
 		
 		b1.convertBoolVec();
 		b2.convertBoolVec();
-        //Calcolo l'angolo tra l'asse x e l'asse dell'impatto
-		double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
-		//Seno e coseno dell'angolo sopra citato
-		double sin = Math.sin(angle), cos = Math.cos(angle);
-		//Proiezione delle velocità sull'asse dell'urto tramite moltiplicazione con matrice
-		double v1[] = {(b1.getVx() * cos + b1.getVy() * sin), (-b1.getVx() * sin + b1.getVy() * cos)};
+		//Bugfixing per scambio palline
+		if((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0)) {
+			System.out.println("bug stuff here");
+		}
+		else {
+			//Calcolo l'angolo tra l'asse x e l'asse dell'impatto
+			double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
+			//Seno e coseno dell'angolo sopra citato
+			double sin = Math.sin(angle), cos = Math.cos(angle);
+			//Proiezione delle velocità sull'asse dell'urto tramite moltiplicazione con matrice
+			double v1[] = {(b1.getVx() * cos + b1.getVy() * sin), (-b1.getVx() * sin + b1.getVy() * cos)};
 		
-		double v2[] = {(b2.getVx() * cos + b2.getVy() * sin), (-b2.getVx() * sin + b2.getVy() * cos)};
-		//Assegnamento delle nuove velocità relative all'asse dell'urto
-		b1.vx = v1[0];
-		b1.vy = v1[1];
+			double v2[] = {(b2.getVx() * cos + b2.getVy() * sin), (-b2.getVx() * sin + b2.getVy() * cos)};
+			//Assegnamento delle nuove velocità relative all'asse dell'urto
+			b1.vx = v1[0];
+			b1.vy = v1[1];
 		
-		b2.vx = v2[0];
-		b2.vy = v2[1];
-		//Calcolo delle nuove velocità finali
-		v1[0] = finalVX(b1, b2);
-		v2[0] = finalVX(b2, b1);
-		//Proiezione delle velocità di nuovo sugli assi principali
-		b1.vx = (v1[0] * cos - v1[1] * sin);
-		b1.vy = (v1[0] * sin + v1[1] * cos);
+			b2.vx = v2[0];
+			b2.vy = v2[1];
+			//Calcolo delle nuove velocità finali
+			v1[0] = finalVX(b1, b2);
+			v2[0] = finalVX(b2, b1);
+			//Proiezione delle velocità di nuovo sugli assi principali
+			b1.vx = (v1[0] * cos - v1[1] * sin);
+			b1.vy = (v1[0] * sin + v1[1] * cos);
 		
-		b2.vx = (v2[0] * cos - v2[1] * sin);
-		b2.vy = (v2[0] * sin + v2[1] * cos);
-		
+			b2.vx = (v2[0] * cos - v2[1] * sin);
+			b2.vy = (v2[0] * sin + v2[1] * cos);
+		}
 		b1.convertVecBool();
 		b2.convertVecBool();
 		
