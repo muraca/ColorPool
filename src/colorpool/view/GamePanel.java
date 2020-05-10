@@ -43,25 +43,25 @@ public class GamePanel extends JPanel {
 	
 	private void drawBalls(Graphics g) {
         
-		Image img = Toolkit.getDefaultToolkit().getImage("resources/whiteball.png");
+		Image img = Toolkit.getDefaultToolkit().getImage("src/resources/whiteball.png");
 			g.drawImage(img, (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
         
 		for(Ball b: Game.getGame().balls) {
 			
 			if(b.getColor()==Color.RED) 
-				img = Toolkit.getDefaultToolkit().getImage("resources/redball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/redball.png");
 			else if(b.getColor() == Color.ORANGE)
-				img = Toolkit.getDefaultToolkit().getImage("resources/orangeball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/orangeball.png");
 			else if(b.getColor() == Color.YELLOW)
-				img = Toolkit.getDefaultToolkit().getImage("resources/yellowball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/yellowball.png");
 			else if(b.getColor() == Color.GREEN)
-				img = Toolkit.getDefaultToolkit().getImage("resources/greenball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/greenball.png");
 			else if(b.getColor() == Color.CYAN)
-				img = Toolkit.getDefaultToolkit().getImage("resources/cyanball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/cyanball.png");
 			else if(b.getColor() == Color.BLUE)
-				img = Toolkit.getDefaultToolkit().getImage("resources/blueball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/blueball.png");
 			else if(b.getColor() == Color.MAGENTA)
-				img = Toolkit.getDefaultToolkit().getImage("resources/purpleball.png");
+				img = Toolkit.getDefaultToolkit().getImage("src/resources/purpleball.png");
 			
 			g.drawImage(img, (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
 			

@@ -16,7 +16,7 @@ public class Main {
 	
 	public static void main(String[] args) {
         JFrame f = new JFrame();
-        f.setSize(Settings.WIDTH, Settings.HEIGHT);
+        f.setSize(Settings.WIDTH, Settings.HEIGHT+20);
         
         GamePanel panel = new GamePanel();
         
@@ -36,7 +36,6 @@ public class Main {
         f.setLocation(dim.width/2-f.getSize().width/2, dim.height/2-f.getSize().height/2);
             
         f.add(panel);
-        f.setUndecorated(true); // Remove title bar
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
