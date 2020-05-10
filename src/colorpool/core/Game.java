@@ -70,13 +70,13 @@ public class Game {
 	private WhiteBall randomWhiteBall() {
 		Random r = new Random();
 		int difference = Settings.WHITEBALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
-		return new WhiteBall(r.nextInt(Settings.WIDTH-difference)+Settings.POTDIMENSION, r.nextInt(Settings.HEIGHT-difference)+Settings.POTDIMENSION);
+		return new WhiteBall(r.nextInt(Settings.WIDTH-difference)+Settings.POOLMINX, r.nextInt(Settings.HEIGHT-difference)+Settings.POOLMINY);
 	}
 	
 	private Ball randomBall(Color c) {
 		Random r = new Random();
 		int difference = Settings.BALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
-		return new Ball(r.nextInt(Settings.WIDTH-difference)+Settings.POTDIMENSION, r.nextInt(Settings.HEIGHT-difference)+Settings.POTDIMENSION, c);
+		return new Ball(r.nextInt(Settings.WIDTH-difference)+Settings.POOLMINX, r.nextInt(Settings.HEIGHT-difference)+Settings.POOLMINY, c);
 	}
 	
 	private void initialControl(boolean control) {

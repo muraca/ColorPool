@@ -68,7 +68,6 @@ public class Movements {
 				b.x -= b.vx;
 		}
 		
-		
 		if(b.diry)
 			b.y += b.vy;
 		else
@@ -86,7 +85,6 @@ public class Movements {
 	
 	//Rallenta la pallina di una costante friction
 	private static void slowDown(Ball b) {
-		
 		if(b.vx>=friction)
 			b.vx -= friction;
 		else if(b.vx>0)

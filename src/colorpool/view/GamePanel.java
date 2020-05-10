@@ -19,10 +19,13 @@ public class GamePanel extends JPanel {
     
     public Pointer p;
     private JTextField text;
+    private Image backgroundImg;
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.drawImage(backgroundImg, 0, 0, null);
+		
 		drawBalls(g);
 		drawPots(g);
         drawPointer(g);
@@ -31,8 +34,16 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel() {
 		super();
+		
+		File backgroundFile = new File("resources/pool.png");
+		try {
+			backgroundImg = ImageIO.read(backgroundFile);
+		} catch (IOException e) {
+			// TODO Error stuff
+		}
+		
     	text = new JTextField(Integer.toString(Game.getGame().points));
-    	text.setBounds(45, 0, 30, 30);
+    	text.setBounds(50, 0, 30, 30);
     	text.setForeground(Color.WHITE);
     	text.setOpaque(false);
     	text.setBorder(null);
@@ -41,7 +52,6 @@ public class GamePanel extends JPanel {
 	}
 	
 	private void drawBalls(Graphics g) {
-        this.setBackground(Settings.POOLCOLOR);
         
         File imageFile = new File("resources/whiteball.png");
         Image img = null;
