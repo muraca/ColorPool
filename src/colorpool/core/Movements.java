@@ -2,7 +2,7 @@ package colorpool.core;
 
 import javax.swing.JOptionPane;
 
-import colorpool.Main;
+import colorpool.config.Settings;
 
 public class Movements {
 	
@@ -64,9 +64,9 @@ public class Movements {
 		if(b.isOutX()) {
 			b.changeDirectionX();
 			if(b.dirx)
-				b.x += b.vx;
+				b.x = Settings.POOLMINX;
 			else
-				b.x -= b.vx;
+				b.x = Settings.POOLMAXX-b.getD();
 		}
 		
 		if(b.diry)
@@ -77,9 +77,9 @@ public class Movements {
 		if(b.isOutY()) {
 			b.changeDirectionY();
 			if(b.diry)
-				b.y += b.vy;
+				b.y = Settings.POOLMINY;
 			else
-				b.y -= b.vy;
+				b.y = Settings.POOLMAXY-b.getD();
 		}
 		
 	}
@@ -97,56 +97,31 @@ public class Movements {
 			b.vy = 0;
 	}
 	
-	//Controlla se le palline sono andate in buca
+	//Controlla tutte le palline per vedere se una è andata in buca
 	private static void potting() {
-        //Pallina bianca
-		Pot p = potted(Game.getGame().whiteball);
-		if(p != null){
-			stopBalls();
-			for(int i=0; i<5; i++) {
-				Main.t.panel.repaint();
-				moveBall(Game.getGame().whiteball);
-			}
-			Main.t.panel.repaint();
+		if(potted(Game.getGame().whiteball)) {
 			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().restartGame();
 		}
-        //Palline colorate
 		for(Ball b: Game.getGame().balls) {
-			p = potted(b);
-			if(p!=null) {
-				stopBalls();
-				for(int i=0; i<5; i++) {
-					Main.t.panel.repaint();
-					moveBall(b);
-				}
-				Main.t.panel.repaint();
+			if(potted(b)) {
 				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				Game.getGame().point();
 			}
 		}
 	}
-	//Controlla se la palla è andata in buca, confrontando con tutte le buche
-	private static Pot potted(Ball b) {
-		for(Pot p: Game.getGame().pots) {
-			if (potted(b, p))
-				return p;
+	
+	//Controlla se la singola pallina è andata in buca
+	private static boolean potted(Ball b) {
+		int x = (int) b.x, y = (int) b.y;
+		if((x>=668 - b.getR() && x<=733) && b.isOutY()) {
+			return true;
+		}
+		else if(b.isOutX() && (y>=695 || y<=104)) {
+			return true;
 		}
 			
-		return null;
-	}
-	//Confronto una pallina con una buca, simile al confronto di collisione
-	public static boolean potted(Ball b, Pot p) {
-		double x1 = b.x + b.getR();
-		double x2 = p.getX() + p.getR();
-		
-		double y1 = b.y + b.getR();
-		double y2 = p.getY() + p.getR();
-		
-		double distanceSquared = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-		
-		return distanceSquared <= (b.getR() + p.getR()) * (b.getR() + p.getR());
-		
+		return false;
 	}
 	
 	//Gestisce le collisioni tra tutte le palline
@@ -191,7 +166,7 @@ public class Movements {
 		b2.convertBoolVec();
 		//Bugfixing per scambio palline
 		if((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0)) {
-			System.out.println("bug stuff here");
+			//TODO System.out.println("bug stuff here");
 		}
 		else {
 			//Calcolo l'angolo tra l'asse x e l'asse dell'impatto

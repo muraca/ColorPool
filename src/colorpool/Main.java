@@ -23,7 +23,7 @@ public class Main {
         
         TestButton testb = new TestButton();
         testb.addActionListener(new TestButtonListener());
-        testb.setBounds(Settings.WIDTH-110, 0, 70, 30);
+        testb.setBounds(Settings.WIDTH-250, 0, 100, 30);
         
         panel.setLayout(null);
         panel.add(testb);

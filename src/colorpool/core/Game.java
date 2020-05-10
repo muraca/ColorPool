@@ -9,13 +9,12 @@ import colorpool.config.Settings;
 public class Game {
 	public WhiteBall whiteball;
 	public ArrayList<Ball> balls;
-	public ArrayList<Pot> pots;
+	//public ArrayList<Pot> pots;
 	public int points;
 	private static Game game = null;
 	
 	public Game(int p) {
 		this.points = p;
-		generatePots();
 		generateBalls();
 	}
 	
@@ -39,18 +38,6 @@ public class Game {
 		return true;
 	}
 	
-	private void generatePots() {
-		pots = new ArrayList<>();
-		
-		pots.add(new Pot(0, 0));
-		pots.add(new Pot(0, Settings.HEIGHT - Settings.POTDIMENSION));
-		pots.add(new Pot(Settings.WIDTH/2 - Settings.POTDIMENSION/2, 0));
-		pots.add(new Pot(Settings.WIDTH/2 - Settings.POTDIMENSION/2, Settings.HEIGHT-Settings.POTDIMENSION));
-		pots.add(new Pot(Settings.WIDTH - Settings.POTDIMENSION, 0));
-		pots.add(new Pot(Settings.WIDTH - Settings.POTDIMENSION, Settings.HEIGHT-Settings.POTDIMENSION));
-	}
-	
-	
 	private void generateBalls() {
 		whiteball = randomWhiteBall();
 		
@@ -69,22 +56,22 @@ public class Game {
 	
 	private WhiteBall randomWhiteBall() {
 		Random r = new Random();
-		int difference = Settings.WHITEBALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
-		return new WhiteBall(r.nextInt(Settings.WIDTH-difference)+Settings.POOLMINX, r.nextInt(Settings.HEIGHT-difference)+Settings.POOLMINY);
+		int difference = Settings.WHITEBALLDIMENSION*4 + Settings.POOLMINX;
+		return new WhiteBall(r.nextInt(Settings.POOLMAXX-difference)+2*Settings.POOLMINX, r.nextInt(Settings.POOLMAXY-difference)+2*Settings.POOLMINY);
 	}
 	
 	private Ball randomBall(Color c) {
 		Random r = new Random();
-		int difference = Settings.BALLDIMENSION+Settings.POTDIMENSION+Settings.POTDIMENSION;
-		return new Ball(r.nextInt(Settings.WIDTH-difference)+Settings.POOLMINX, r.nextInt(Settings.HEIGHT-difference)+Settings.POOLMINY, c);
+		int difference = Settings.BALLDIMENSION*4 + Settings.POOLMINX;
+		return new Ball(r.nextInt(Settings.POOLMAXX-difference)+2*Settings.POOLMINX, r.nextInt(Settings.POOLMAXY-difference)+2*Settings.POOLMINY, c);
 	}
 	
 	private void initialControl(boolean control) {
         
 		for(Ball b: balls) {
 			if(Movements.ballsCollide(whiteball, b)) {
-				b.x += b.color.getRGB();
-				b.y += b.color.getRGB();
+				b.x += b.getD();
+				b.y += b.getD();
 			}
 			
 		}
@@ -92,8 +79,8 @@ public class Game {
         for(int i=0; i<balls.size() - 1; i++) {
             for(int j=i+1; j<balls.size(); j++) {
                 if(Movements.ballsCollide(balls.get(i),balls.get(j))) {
-                    balls.get(j).x += balls.get(i).color.getRGB();
-                    balls.get(j).y += balls.get(i).color.getRGB();
+                   balls.get(j).x += balls.get(i).getD()*j;
+                   balls.get(j).y += balls.get(i).getD()*j;
                 }
             }
         }

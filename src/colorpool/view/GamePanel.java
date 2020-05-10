@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 		g.drawImage(backgroundImg, 0, 0, null);
 		
 		drawBalls(g);
-		drawPots(g);
+		//drawPots(g);
         drawPointer(g);
         write(g);
 	}
@@ -42,8 +42,8 @@ public class GamePanel extends JPanel {
 			// TODO Error stuff
 		}
 		
-    	text = new JTextField(Integer.toString(Game.getGame().points));
-    	text.setBounds(50, 0, 30, 30);
+    	text = new JTextField(Integer.toString(Game.getGame().points) + " points");
+    	text.setBounds(150, 0, 100, 30);
     	text.setForeground(Color.WHITE);
     	text.setOpaque(false);
     	text.setBorder(null);
@@ -90,14 +90,14 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
-	private void drawPots(Graphics g) 
+	/*private void drawPots(Graphics g) 
 	{
 		//DISEGNO BUCHE
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		for(Pot p: Game.getGame().pots) {
 			g.fillOval((int) p.getX(), (int) p.getY(), p.getDimension(), p.getDimension());
 		}
-	}
+	}*/
     
     private void drawPointer(Graphics g){
         if (p!=null) {
@@ -108,6 +108,6 @@ public class GamePanel extends JPanel {
     }
     
     private void write(Graphics g) {
-    	text.setText(Integer.toString(Game.getGame().points));
+    	text.setText(Integer.toString(Game.getGame().points) + " points");
     }
 }
