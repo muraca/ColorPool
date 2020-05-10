@@ -87,13 +87,13 @@ public class Ball {
     }
 	
     public boolean isOutX() {
-    	if(x >= (double) Settings.WIDTH-d || x <= 0.0)
+    	if(x >= Settings.POOLMAXX-d|| x <= Settings.POOLMINX)
     		return true;
     	return false;
     }
     
     public boolean isOutY() {
-    	if(y >= (double) Settings.HEIGHT-d || y <= 0.0)
+    	if(y >= Settings.POOLMAXY-d || y <= Settings.POOLMINY)
     		return true;
     	return false;
     }

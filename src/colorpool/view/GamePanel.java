@@ -53,6 +53,7 @@ public class GamePanel extends JPanel {
 	
 	private void drawBalls(Graphics g) {
         
+		//PALLA BIANCA
         File imageFile = new File("resources/whiteball.png");
         Image img = null;
         try {
@@ -61,6 +62,8 @@ public class GamePanel extends JPanel {
 		} catch (IOException e) {
 			// TODO Error stuff
 		}
+        
+        //ALTRE PALLE
 		for(Ball b: Game.getGame().balls) {
 			
 			if(b.getColor()==Color.RED) 
@@ -87,7 +90,9 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
-	private void drawPots(Graphics g) {
+	private void drawPots(Graphics g) 
+	{
+		//DISEGNO BUCHE
 		g.setColor(Color.BLACK);
 		for(Pot p: Game.getGame().pots) {
 			g.fillOval((int) p.getX(), (int) p.getY(), p.getDimension(), p.getDimension());

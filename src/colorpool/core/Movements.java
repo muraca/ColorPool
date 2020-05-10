@@ -10,7 +10,8 @@ public class Movements {
 	private static final double speed = 10.0;
     private static double friction=0.01;
 	
-	public static void shotWhiteBall(int x, int y) {
+	public static void shotWhiteBall(int x, int y) 
+	{
 		
 		double dx = (double) Math.abs(Game.getGame().whiteball.x-x);
 		double dy = (double) Math.abs(Game.getGame().whiteball.y-y);
