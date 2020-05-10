@@ -3,10 +3,7 @@ package colorpool.view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -33,13 +30,7 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel() {
 		super();
-		
-		File backgroundFile = new File("resources/pool.png");
-		try {
-			backgroundImg = ImageIO.read(backgroundFile);
-		} catch (IOException e) {
-			// TODO Error stuff
-		}
+		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/pool.png");
 		
     	text = new JTextField(Integer.toString(Game.getGame().points) + " points");
     	text.setBounds(150, 0, 100, 30);
@@ -52,38 +43,28 @@ public class GamePanel extends JPanel {
 	
 	private void drawBalls(Graphics g) {
         
-        File imageFile = new File("resources/whiteball.png");
-        Image img = null;
-        try {
-			img = ImageIO.read(imageFile);
+		Image img = Toolkit.getDefaultToolkit().getImage("resources/whiteball.png");
 			g.drawImage(img, (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
-		} catch (IOException e) {
-			// TODO Error stuff
-		}
         
 		for(Ball b: Game.getGame().balls) {
 			
 			if(b.getColor()==Color.RED) 
-				imageFile = new File("resources/redball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/redball.png");
 			else if(b.getColor() == Color.ORANGE)
-				imageFile = new File("resources/orangeball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/orangeball.png");
 			else if(b.getColor() == Color.YELLOW)
-				imageFile = new File("resources/yellowball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/yellowball.png");
 			else if(b.getColor() == Color.GREEN)
-				imageFile = new File("resources/greenball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/greenball.png");
 			else if(b.getColor() == Color.CYAN)
-				imageFile = new File("resources/cyanball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/cyanball.png");
 			else if(b.getColor() == Color.BLUE)
-				imageFile = new File("resources/blueball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/blueball.png");
 			else if(b.getColor() == Color.MAGENTA)
-				imageFile = new File("resources/purpleball.png");
+				img = Toolkit.getDefaultToolkit().getImage("resources/purpleball.png");
 			
-			try {
-				img = ImageIO.read(imageFile);
-				g.drawImage(img, (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
-			} catch (IOException e) {
-				// TODO Error stuff
-			}
+			g.drawImage(img, (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
+			
 		}
 	}
     
