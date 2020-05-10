@@ -18,7 +18,6 @@ public class Main {
         JFrame f = new JFrame();
         f.setSize(Settings.WIDTH, Settings.HEIGHT);
         
-        
         GamePanel panel = new GamePanel();
         
         TestButton testb = new TestButton();
@@ -35,14 +34,13 @@ public class Main {
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         f.setLocation(dim.width/2-f.getSize().width/2, dim.height/2-f.getSize().height/2);
-        
-        
+            
         f.add(panel);
         f.setUndecorated(true); // Remove title bar
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        t =  new ThreadAnimations(panel);
+        t = new ThreadAnimations(panel);
         t.run();
 	}
     

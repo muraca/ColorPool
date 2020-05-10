@@ -32,16 +32,17 @@ public class Movements {
 			Game.getGame().whiteball.vy = -speedy;
 	}
 	
-	//Rallenta e gestisce il movimento di tutte le palle, richiama poi i metodi di controllo buche e collisioni
+	//Muove e rallenta tutte le palle, richiama poi i metodi di controllo buche e collisioni
 	public static void moveBalls() {
-		//rallenta e muove la palla bianca
-		slowDown(Game.getGame().whiteball);
-		moveBall(Game.getGame().whiteball);
+		//muove e poi rallenta la palla bianca
 		
-		//muove tutte le palle colorate
+		moveBall(Game.getGame().whiteball);
+		slowDown(Game.getGame().whiteball);
+		
+		//muove e poi rallenta ogni palla colorata
 		for(Ball b: Game.getGame().balls) {
-			slowDown(b);
 			moveBall(b);
+			slowDown(b);
 		}
 		
 		potting();
@@ -49,29 +50,10 @@ public class Movements {
 		collisions();
 	}
 	
-	//Rallenta la pallina di una costante friction
-		private static void slowDown(Ball b) {
-			
-			if(b.vx>=friction)
-				b.vx -= friction;
-			else if(b.vx<=-friction)
-				b.vx += friction;
-			else
-				b.vx = 0.0;
-			
-			if(b.vy>=friction)
-				b.vy -= friction;
-			else if(b.vy<=-friction)
-				b.vy += friction;
-			else
-				b.vy = 0.0;
-		}
-	
 	//Muove la singola pallina in direzione e verso dipendenti dalla velocità
 	//Inoltre controlla le collisioni con il muro
 	private static void moveBall(Ball b) {
-		
-		b.x += b.vx;	
+		b.x += b.vx;
 		
 		if(b.isOutX()) {
 			b.vx = -b.vx;
@@ -81,7 +63,7 @@ public class Movements {
 				b.x = Settings.POOLMAXX-b.getD();
 		}
 		
-			b.y += b.vy;	
+		b.y += b.vy;
 		
 		if(b.isOutY()) {
 			b.vy = - b.vy;
@@ -91,6 +73,24 @@ public class Movements {
 				b.y = Settings.POOLMAXY-b.getD();
 		}
 		
+	}
+	
+	//Rallenta la pallina di una costante friction
+	private static void slowDown(Ball b) {
+			
+		if(b.vx>=friction)
+			b.vx -= friction;
+		else if(b.vx<=-friction)
+			b.vx += friction;
+		else
+			b.vx = 0.0;
+				
+		if(b.vy>=friction)
+			b.vy -= friction;
+		else if(b.vy<=-friction)
+			b.vy += friction;
+		else
+			b.vy = 0.0;
 	}
 	
 	//Controlla tutte le palline per vedere se una è andata in buca
@@ -112,10 +112,11 @@ public class Movements {
 	//Controlla se la singola pallina è andata in buca
 	private static boolean potted(Ball b) {
 		int x = (int) b.x, y = (int) b.y;
-		
+		//controllo con le buche centrali
 		if((x>=668 - b.getR() && x<=733) && b.isOutY()) {
 			return true;
 		}
+		//controllo con le buche agli angoli
 		else if(b.isOutX() && (y>=695 || y<=104)) {
 			return true;
 		}
@@ -161,10 +162,7 @@ public class Movements {
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
 		//Bugfixing per scambio palline
-		if((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0)) {
-			//TODO System.out.println("bug stuff here");
-		}
-		else {
+		if(!((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0))) {
 			//Calcolo l'angolo tra l'asse x e l'asse dell'impatto
 			double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
 			//Seno e coseno dell'angolo sopra citato

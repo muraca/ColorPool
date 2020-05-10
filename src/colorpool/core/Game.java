@@ -9,7 +9,6 @@ import colorpool.config.Settings;
 public class Game {
 	public WhiteBall whiteball;
 	public ArrayList<Ball> balls;
-	//public ArrayList<Pot> pots;
 	public int points;
 	private static Game game = null;
 	
@@ -73,7 +72,6 @@ public class Game {
 				b.x += b.getD();
 				b.y += b.getD();
 			}
-			
 		}
         
         for(int i=0; i<balls.size() - 1; i++) {

@@ -27,7 +27,6 @@ public class GamePanel extends JPanel {
 		g.drawImage(backgroundImg, 0, 0, null);
 		
 		drawBalls(g);
-		//drawPots(g);
         drawPointer(g);
         write(g);
 	}
@@ -89,15 +88,6 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
-	
-	/*private void drawPots(Graphics g) 
-	{
-		//DISEGNO BUCHE
-		g.setColor(Color.WHITE);
-		for(Pot p: Game.getGame().pots) {
-			g.fillOval((int) p.getX(), (int) p.getY(), p.getDimension(), p.getDimension());
-		}
-	}*/
     
     private void drawPointer(Graphics g){
         if (p!=null) {
