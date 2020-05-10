@@ -95,10 +95,12 @@ public class Movements {
 	
 	//Controlla tutte le palline per vedere se una è andata in buca
 	private static void potting() {
+		
 		if(potted(Game.getGame().whiteball)) {
 			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().restartGame();
 		}
+		
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
 				JOptionPane.showMessageDialog(null, "Palla imbucata!");
@@ -110,6 +112,7 @@ public class Movements {
 	//Controlla se la singola pallina è andata in buca
 	private static boolean potted(Ball b) {
 		int x = (int) b.x, y = (int) b.y;
+		
 		if((x>=668 - b.getR() && x<=733) && b.isOutY()) {
 			return true;
 		}
