@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import colorpool.config.Settings;
 import colorpool.core.*;
@@ -17,6 +18,7 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
     
     public Pointer p;
+    private JTextField text;
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -24,6 +26,18 @@ public class GamePanel extends JPanel {
 		drawBalls(g);
 		drawPots(g);
         drawPointer(g);
+        write(g);
+	}
+	
+	public GamePanel() {
+		super();
+    	text = new JTextField(Integer.toString(Game.getGame().points));
+    	text.setBounds(45, 0, 30, 30);
+    	text.setForeground(Color.WHITE);
+    	text.setOpaque(false);
+    	text.setBorder(null);
+    	text.setEditable(false);
+    	this.add(text);
 	}
 	
 	private void drawBalls(Graphics g) {
@@ -35,10 +49,8 @@ public class GamePanel extends JPanel {
 			img = ImageIO.read(imageFile);
 			g.drawImage(img, (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
 		} catch (IOException e) {
-			// TODO Error stuffs
-			//System.out.println("Image not found");
+			// TODO Error stuff
 		}
-		//g.fillOval((int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), Game.getGame().whiteball.getD(), Game.getGame().whiteball.getD());
 		for(Ball b: Game.getGame().balls) {
 			
 			if(b.getColor()==Color.RED) 
@@ -60,13 +72,8 @@ public class GamePanel extends JPanel {
 				img = ImageIO.read(imageFile);
 				g.drawImage(img, (int) b.getX(), (int) b.getY(), null);
 			} catch (IOException e) {
-				// TODO Error stuffs
-				//System.out.println("Image not found");
-			}	
-			/*else {
-				g.setColor(b.getColor());
-				g.fillOval((int) b.getX(), (int) b.getY(), b.getD(), b.getD());
-			}*/
+				// TODO Error stuff
+			}
 		}
 	}
 	
@@ -83,5 +90,9 @@ public class GamePanel extends JPanel {
             g.drawLine((int)Game.getGame().whiteball.getX()+Settings.WHITEBALLDIMENSION/2,(int) Game.getGame().whiteball.getY()+Settings.WHITEBALLDIMENSION/2,(int)p.x,(int)p.y);
             g.fillOval((int)p.x - Pointer.dimension/2, (int)p.y - Pointer.dimension/2, Pointer.dimension, Pointer.dimension);
         }
+    }
+    
+    private void write(Graphics g) {
+    	text.setText(Integer.toString(Game.getGame().points));
     }
 }

@@ -23,7 +23,9 @@ public class Main {
         
         TestButton testb = new TestButton();
         testb.addActionListener(new TestButtonListener());
+        testb.setBounds(Settings.WIDTH-110, 0, 70, 30);
         
+        panel.setLayout(null);
         panel.add(testb);
         
         GameListener gl=new GameListener(panel);
