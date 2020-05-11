@@ -2,13 +2,10 @@ package colorpool.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -38,7 +35,6 @@ public class GamePanel extends JPanel {
 		super();
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/pool.png");
 		
-		
 		text = new JTextField(Integer.toString(Game.getGame().points) + " points");
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
@@ -54,7 +50,6 @@ public class GamePanel extends JPanel {
     	text.setBorder(null);
     	text.setEditable(false);
     	this.add(text);
-    	
     	
 	}
 	

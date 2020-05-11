@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-import colorpool.config.Settings;
+import colorpool.config.Settings; 
 
 public class Game {
 	public WhiteBall whiteball;
@@ -12,8 +12,8 @@ public class Game {
 	public int points;
 	private static Game game = null;
 	
-	public Game(int p) {
-		this.points = p;
+	public Game(int _points) {
+		this.points = _points;
 		generateBalls();
 	}
 	
@@ -90,4 +90,5 @@ public class Game {
         points++;
         game = new Game(points);
     }
+
 }
