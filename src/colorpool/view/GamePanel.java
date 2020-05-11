@@ -34,7 +34,6 @@ public class GamePanel extends JPanel {
 	public GamePanel() {
 		super();
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/pool.png");
-		
 		text = new JTextField(Integer.toString(Game.getGame().points) + " points");
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);

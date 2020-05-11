@@ -12,7 +12,7 @@ public class Game {
 	public int points;
 	private static Game game = null;
 	
-	public Game(int _points) {
+	private Game(int _points) {
 		this.points = _points;
 		generateBalls();
 	}
@@ -87,7 +87,8 @@ public class Game {
 	}
     
     public void point(){
-        points++;
+    	if(game!=null) //TODO Lo tengo?
+    		points++;
         game = new Game(points);
     }
 
