@@ -5,11 +5,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import colorpool.ColorPool;
-import colorpool.view.ColorPoolFrame;
+import colorpool.threads.MenuLoop;
+import colorpool.view.ColorPoolPanel;
 
 public class StartListener implements MouseListener, KeyListener {
-
+	ColorPoolPanel panel;
+	
+	public StartListener(ColorPoolPanel panel) {
+		this.panel = panel;
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) { }
 
@@ -39,7 +44,10 @@ public class StartListener implements MouseListener, KeyListener {
 	public void mouseExited(MouseEvent e) { }
 	
 	private void action() {
-		ColorPool.frame.menuScreen();
+		panel.getLayout().show(panel, "menu");
+		panel.thread = new Thread(new MenuLoop(panel.getMenu()));
+		panel.run();
+		
 	}
 
 }

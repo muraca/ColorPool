@@ -1,4 +1,4 @@
-package colorpool;
+package colorpool.threads;
 
 import colorpool.core.Movements;
 import colorpool.view.GamePanel;

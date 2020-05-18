@@ -5,35 +5,21 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import colorpool.GameLoop;
 import colorpool.config.Settings;
 import colorpool.control.*;
 import colorpool.testbutton.*;
+import colorpool.threads.GameLoop;
 
 public class ColorPoolFrame extends JFrame {
-	private Dimension dim;
 	public ColorPoolFrame() {
 		super();
 		
-		setSize(Settings.WIDTH, Settings.HEIGHT+20);
-		dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
-        
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        startScreen();
+		
 		
 	}
 	
-	public void startScreen() {
-		System.out.println("StartScreen");
-		this.getContentPane().removeAll();
-		StartPanel panel = new StartPanel();
-		panel.addStartListener(new StartListener());
-		this.add(panel);
-		System.out.println("Added");
-	} 
+	
+	
 	
 	public void menuScreen() {
 		this.getContentPane().removeAll();
