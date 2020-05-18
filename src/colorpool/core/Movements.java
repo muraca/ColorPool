@@ -2,6 +2,7 @@ package colorpool.core;
 
 import javax.swing.JOptionPane;
 
+import colorpool.Main;
 import colorpool.config.Settings;
 
 public class Movements {
@@ -97,12 +98,18 @@ public class Movements {
 	private static void potting() {
 		
 		if(potted(Game.getGame().whiteball)) {
+			Main.t.panel.repaint();
+			moveBall(Game.getGame().whiteball);
+			Main.t.panel.repaint();
 			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().restartGame();
 		}
 		
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
+				Main.t.panel.repaint();
+				moveBall(b);
+				Main.t.panel.repaint();
 				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				Game.getGame().point();
 			}
@@ -113,7 +120,7 @@ public class Movements {
 	private static boolean potted(Ball b) {
 		int x = (int) b.x, y = (int) b.y;
 		//controllo con le buche centrali
-		if(((x>=668 && x<=733)||x<=116||x>=1285) && b.isOutY()) {
+		if(((x>=668 && x<=733)||x<=110||x>=1290) && b.isOutY()) {
 			return true;
 		}
 		//controllo con le buche agli angoli
@@ -162,7 +169,7 @@ public class Movements {
 	
 	private static void computeNewVelocity(Ball b1, Ball b2) {
 		//Bugfixing per scambio palline
-		if(!((b1.vx>0&&b2.vx<0||b1.vx<0&&b2.vx>0)^(b1.vy>0&&b2.vy<0||b1.vy<0&&b2.vy>0))) {
+		if(!((b1.vx>=0&&b2.vx<=0||b1.vx<=0&&b2.vx>=0)^(b1.vy>=0&&b2.vy<=0||b1.vy<=0&&b2.vy>=0))) {
 			//Calcolo l'angolo tra l'asse x e l'asse dell'impatto
 			double angle = Math.atan2(b1.getY()-b2.getY(), b1.getX()-b2.getX());
 			//Seno e coseno dell'angolo sopra citato
