@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import colorpool.config.Settings;
 import colorpool.control.*;
 
 public class ColorPoolPanel extends JPanel{
@@ -11,7 +12,7 @@ public class ColorPoolPanel extends JPanel{
 	private StartPanel start;
 	private MenuPanel menu;
 	
-	public Thread thread;
+	public volatile Thread thread;
 	
 	public ColorPoolPanel () {
 		
@@ -21,10 +22,11 @@ public class ColorPoolPanel extends JPanel{
 		start.addStartListener(new StartListener(this));
 		
 		menu = new MenuPanel();
+		menu.addMenuListener(new MenuListener(this));
 		
 		this.setLayout(layout);
-		this.add(start, "start");
-		this.add(menu, "menu");
+		this.add(start, Settings.START);
+		this.add(menu, Settings.MENU);
 		
 	}
 	
@@ -42,5 +44,10 @@ public class ColorPoolPanel extends JPanel{
 			thread.run();
 	}
 	
+	public void stop() {
+		thread = null;
+	}
+	
 	private static final long serialVersionUID = -3857772597064017950L;
+
 }

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import colorpool.control.MenuListener;
 
 public class MenuPanel extends JPanel{
-	private Button playBut;
+	//private Button playBut;
 	private Image backgroundImg;
 	
 	public MenuPanel() {
@@ -18,11 +18,12 @@ public class MenuPanel extends JPanel{
 	}
 	
 	public void addMenuListener(MenuListener listener) {
-		playBut.addActionListener(listener);
+		//playBut.addActionListener(listener);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		System.out.println("Painting");
 		super.paintComponent(g);
 		g.drawImage(backgroundImg, 0, 0, null);
 	}

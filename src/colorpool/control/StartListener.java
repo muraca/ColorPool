@@ -1,5 +1,6 @@
 package colorpool.control;
 
+import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -44,7 +45,9 @@ public class StartListener implements MouseListener, KeyListener {
 	public void mouseExited(MouseEvent e) { }
 	
 	private void action() {
-		panel.layout.show(panel, "menu");
+		panel.stop();
+		CardLayout cl = panel.layout;
+		cl.next(panel);
 		panel.thread = new Thread(new MenuLoop(panel.getMenu()));
 		panel.run();
 		

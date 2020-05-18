@@ -12,14 +12,13 @@ public class MenuLoop implements Runnable {
 	}
 		
 	public void run() {
+		
 		while(true) {
 			panel.revalidate();
 			panel.repaint();
 			try {
 				Thread.sleep(150);
-			} catch (InterruptedException e) {
-				break;
-			}
+			} catch (InterruptedException e) { }
 		}
 			
 	}

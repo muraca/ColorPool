@@ -78,5 +78,11 @@ public class Ball {
     	return false;
     }
     
+    public boolean equalsTo(Ball b) {
+		if(this.color==b.color)
+			return true;
+		return false;
+
+	}
     
 }

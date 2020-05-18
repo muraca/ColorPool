@@ -1,7 +1,5 @@
 package colorpool.view;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -14,17 +12,12 @@ public class ColorPoolFrame extends JFrame {
 	public ColorPoolFrame() {
 		super();
 		
-		
-		
 	}
-	
-	
-	
 	
 	public void menuScreen() {
 		this.getContentPane().removeAll();
 		MenuPanel panel = new MenuPanel();
-		panel.addMenuListener(new MenuListener());
+		
 		this.add(panel);
 	}
 	
@@ -51,7 +44,6 @@ public class ColorPoolFrame extends JFrame {
 		Thread t = new Thread(gameLoop);
 		t.start();
 	}
-	
 	
 	
 	

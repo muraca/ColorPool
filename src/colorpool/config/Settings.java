@@ -1,6 +1,5 @@
 package colorpool.config;
 
-import java.awt.Color;
 
 public class Settings {
 	public static final int HEIGHT = 800;//800;
@@ -14,7 +13,9 @@ public class Settings {
 	public static final int BALLDIMENSION = 30;
 	public static final int WHITEBALLDIMENSION = 25;
 	
-	public static final Color POOLCOLOR = new Color(23, 127, 26);
+	public static final String START = "start";
+	public static final String MENU = "menu";
+	
 	//abilita il tutorial all'inizio
 	public static boolean fistTime = true;
 }
