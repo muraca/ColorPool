@@ -98,18 +98,12 @@ public class Movements {
 	private static void potting() {
 		
 		if(potted(Game.getGame().whiteball)) {
-			Main.t.panel.repaint();
-			moveBall(Game.getGame().whiteball);
-			Main.t.panel.repaint();
 			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().restartGame();
 		}
 		
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
-				Main.t.panel.repaint();
-				moveBall(b);
-				Main.t.panel.repaint();
 				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				Game.getGame().point();
 			}

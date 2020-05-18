@@ -12,8 +12,6 @@ import colorpool.view.*;
 
 public class Main {
 	
-	public static ThreadAnimations t;
-	
 	public static void main(String[] args) {
         JFrame f = new JFrame();
         f.setSize(Settings.WIDTH, Settings.HEIGHT+20);
@@ -39,8 +37,9 @@ public class Main {
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        t = new ThreadAnimations(panel);
-        t.run();
+        GameLoop gameLoop = new GameLoop(panel);
+		Thread t = new Thread(gameLoop);
+		t.start();
 	}
     
 }
