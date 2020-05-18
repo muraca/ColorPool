@@ -2,7 +2,6 @@ package colorpool.core;
 
 import javax.swing.JOptionPane;
 
-import colorpool.Main;
 import colorpool.config.Settings;
 
 public class Movements {

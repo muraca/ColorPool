@@ -5,13 +5,14 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import colorpool.config.*;
-import colorpool.control.*;
-import colorpool.testbutton.*;
-import colorpool.view.*;
+import colorpool.config.Settings;
+import colorpool.control.GameListener;
+import colorpool.testbutton.TestButton;
+import colorpool.testbutton.TestButtonListener;
+import colorpool.view.GamePanel;
 
-public class Main {
-	
+public class ColorPool {
+
 	public static void main(String[] args) {
         JFrame f = new JFrame();
         f.setSize(Settings.WIDTH, Settings.HEIGHT+20);
@@ -41,5 +42,5 @@ public class Main {
 		Thread t = new Thread(gameLoop);
 		t.start();
 	}
-    
+	
 }
