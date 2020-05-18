@@ -16,12 +16,12 @@ public class StartListener implements MouseListener, KeyListener {
 	}
 	
 	@Override
-	public void keyTyped(KeyEvent e) { }
-
-	@Override
-	public void keyPressed(KeyEvent e) { 
+	public void keyTyped(KeyEvent e) {
 		action();
 	}
+
+	@Override
+	public void keyPressed(KeyEvent e) { }
 
 	@Override
 	public void keyReleased(KeyEvent e) { }
@@ -44,7 +44,7 @@ public class StartListener implements MouseListener, KeyListener {
 	public void mouseExited(MouseEvent e) { }
 	
 	private void action() {
-		panel.getLayout().show(panel, "menu");
+		panel.layout.show(panel, "menu");
 		panel.thread = new Thread(new MenuLoop(panel.getMenu()));
 		panel.run();
 		

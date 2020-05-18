@@ -21,7 +21,7 @@ public class ColorPool {
         ColorPoolPanel colorP = new ColorPoolPanel();
         f.add(colorP);
         
-        colorP.getLayout().show(colorP, "start");
+        colorP.layout.show(colorP, "start");
         colorP.thread = new Thread(new StartLoop(colorP.getStart()));
         colorP.run(); 
 	}

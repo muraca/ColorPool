@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import colorpool.control.*;
 
 public class ColorPoolPanel extends JPanel{
-	private CardLayout layout;
+	public CardLayout layout;
 	private StartPanel start;
 	private MenuPanel menu;
 	
@@ -26,10 +26,6 @@ public class ColorPoolPanel extends JPanel{
 		this.add(start, "start");
 		this.add(menu, "menu");
 		
-	}
-	
-	public CardLayout getLayout() {
-		return layout;
 	}
 	
 	public StartPanel getStart() {
