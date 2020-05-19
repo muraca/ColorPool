@@ -1,7 +1,5 @@
 package colorpool.core;
 
-import javax.swing.JOptionPane;
-
 import colorpool.config.Settings;
 
 public class Movements {
@@ -97,13 +95,11 @@ public class Movements {
 	private static void potting() {
 		
 		if(potted(Game.getGame().whiteball)) {
-			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
 			Game.getGame().pot(Game.getGame().whiteball);
 		}
 		
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
-				JOptionPane.showMessageDialog(null, "Palla imbucata!");
 				Game.getGame().pot(b);
 			}
 		}

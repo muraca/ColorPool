@@ -19,6 +19,7 @@ public class Game {
 	private Game(int _points) {
 		this.points = _points;
 		generateBalls();
+		pottedBalls = new ArrayList<>();
 	}
 	
 	private Game(int _points, ArrayList<Ball> pottedBalls) {
@@ -56,8 +57,6 @@ public class Game {
 		balls.add(randomBall(Color.MAGENTA));
 		
 		initialControl(true);
-		
-		pottedBalls = new ArrayList<>();
 		
 	}
 	
@@ -97,16 +96,19 @@ public class Game {
     public void pot(Ball pottedBall){
     	if(game!=null) { //TODO Lo tengo?
     		if(pottedBall.equalsTo(whiteball)) {
+    			JOptionPane.showMessageDialog(null, "White ball potted!");
     			lose();
     			return;
     		}
     		for(Ball b: pottedBalls) {
     			if(b.equalsTo(pottedBall)) {
+    				JOptionPane.showMessageDialog(null, "Wrong ball potted!");
     				lose();
     				return;
     			}
     		}
     		points++;
+    		JOptionPane.showMessageDialog(null, "Good shot!");
     		pottedBalls.add(pottedBall);
     		if(pottedBalls.size()<balls.size())
     			game = new Game(points, pottedBalls);

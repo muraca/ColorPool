@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
 		
 		drawBalls(g);
         drawPointer(g);
-        write(g);
+        points(g);
 	}
 	
 	//inizializzazione dei vari componenti sfondo e testo
@@ -36,13 +36,11 @@ public class GamePanel extends JPanel {
 		super();
 		this.setLayout(null);  //indispensabile per il posizionamento corretto di bottoni, label, ecc
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
-		text = new JTextField(Integer.toString(Game.getGame().points) + " points");
+		text = new JTextField(Integer.toString(Game.getGame().points));
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
-    	
 		
-		text.setFont(Settings.bitbold.deriveFont(Font.BOLD, 18f));
-		
+		text.setFont(Settings.bitbold.deriveFont(Font.BOLD, 25f));
 		
     	text.setOpaque(false);
     	text.setBorder(null);
@@ -74,7 +72,12 @@ public class GamePanel extends JPanel {
     }
     
     //scrittura punteggio
-    private void write(Graphics g) {
-    	text.setText(Integer.toString(Game.getGame().points) + " points");
+    private void points(Graphics g) {
+    	text.setText(Integer.toString(Game.getGame().points));
+    	int startx = text.getX() + 50;
+    	for(Ball pottedBall: Game.getGame().pottedBalls) {
+    		g.drawImage(BallsImages.getInstance().getBall(pottedBall.getColor()), startx, text.getY(), null);
+    		startx += Settings.BALLDIMENSION + 5;
+    	}
     }
 }
