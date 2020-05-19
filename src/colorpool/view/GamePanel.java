@@ -38,12 +38,9 @@ public class GamePanel extends JPanel {
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
     	
-		try {
-			Font bitbold = Font.createFont(Font.TRUETYPE_FONT,new File("src/resources/fonts/bitbold.ttf"));
-			text.setFont(bitbold.deriveFont(Font.BOLD, 18f));
-		} catch (Exception e) {
-			// TODO 
-		} 
+		
+		text.setFont(Settings.bitbold.deriveFont(Font.BOLD, 18f));
+		 
 		
     	text.setOpaque(false);
     	text.setBorder(null);

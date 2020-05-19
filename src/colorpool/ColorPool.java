@@ -11,6 +11,7 @@ import colorpool.view.*;
 public class ColorPool {
 
 	public static void main(String[] args) {
+		Settings.initFont();
 		ColorPoolFrame colorF = new ColorPoolFrame();
 		colorF.setSize(Settings.WIDTH, Settings.HEIGHT+20);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

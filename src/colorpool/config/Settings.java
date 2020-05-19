@@ -1,5 +1,7 @@
 package colorpool.config;
 
+import java.awt.Font;
+import java.io.File;
 
 public class Settings {
 	public static final int HEIGHT = 800;//800;
@@ -15,7 +17,16 @@ public class Settings {
 	
 	public static final String START = "start";
 	public static final String MENU = "menu";
+	public static Font bitbold;
+	
 	
 	//abilita il tutorial all'inizio
 	public static boolean fistTime = true;
+	
+	public static void initFont() {
+		try {
+			bitbold = Font.createFont(Font.TRUETYPE_FONT,new File("src/resources/fonts/bitbold.ttf"));
+			
+		} catch (Exception e) { } 
+	}
 }
