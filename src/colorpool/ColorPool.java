@@ -11,7 +11,7 @@ import colorpool.view.*;
 public class ColorPool {
 
 	public static void main(String[] args) {
-		ColorPoolPanel colorF = new ColorPoolPanel();
+		ColorPoolFrame colorF = new ColorPoolFrame();
 		colorF.setSize(Settings.WIDTH, Settings.HEIGHT+20);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		colorF.setLocation(dim.width/2-colorF.getSize().width/2, dim.height/2-colorF.getSize().height/2);

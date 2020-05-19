@@ -33,13 +33,13 @@ public class GamePanel extends JPanel {
 	
 	public GamePanel() {
 		super();
-		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/pool.png");
+		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
 		text = new JTextField(Integer.toString(Game.getGame().points) + " points");
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
     	
 		try {
-			Font bitbold = Font.createFont(Font.TRUETYPE_FONT,new File("src/resources/bitbold.ttf"));
+			Font bitbold = Font.createFont(Font.TRUETYPE_FONT,new File("src/resources/fonts/bitbold.ttf"));
 			text.setFont(bitbold.deriveFont(Font.BOLD, 18f));
 		} catch (Exception e) {
 			// TODO 

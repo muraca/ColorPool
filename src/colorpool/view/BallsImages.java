@@ -11,14 +11,14 @@ public class BallsImages {
 	
 	public BallsImages() {
 		images = new ArrayList<>();
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/whiteball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/redball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/orangeball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/yellowball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/greenball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/cyanball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/blueball.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/purpleball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/whiteball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/redball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/orangeball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/yellowball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/greenball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/cyanball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/blueball.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/balls/purpleball.png"));
 	}
 	
 	public static BallsImages getInstance() {

@@ -15,10 +15,10 @@ public class StartPanel extends JPanel {
 	
 	private void initImages() {
 		images = new ArrayList<>();
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start1.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start2.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start3.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start4.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/1.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/2.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/3.png"));
+		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/4.png"));
 	}
 	public StartPanel() {
 		super();

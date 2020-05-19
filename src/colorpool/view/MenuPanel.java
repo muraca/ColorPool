@@ -12,7 +12,7 @@ public class MenuPanel extends JPanel{
 	private Image backgroundImg;
 	
 	public MenuPanel() {
-		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/pool.png");
+		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
 	}
 	
 	public void addMenuListener(MenuListener listener) {

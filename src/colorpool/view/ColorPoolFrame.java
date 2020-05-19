@@ -1,27 +1,73 @@
 package colorpool.view;
 
 
+import java.awt.CardLayout;
+import java.awt.Container;
+
 import javax.swing.JFrame;
 
 import colorpool.config.Settings;
 import colorpool.control.*;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
+import colorpool.threads.Loop;
 
 public class ColorPoolFrame extends JFrame {
+	private CardLayout layout;
+	private Container container;
+	private StartPanel startP;
+	private MenuPanel menuP;
+	
+	public volatile Thread thread;
+	
 	public ColorPoolFrame() {
 		super();
+		container = getContentPane();
+		layout = new CardLayout();
+		container.setLayout(layout);
 		
 	}
 	
-	public void menuScreen() {
-		this.getContentPane().removeAll();
-		MenuPanel panel = new MenuPanel();
-		
-		this.add(panel);
+	public StartPanel getStart() {
+		return startP;
 	}
 	
-	public void training() {
+	public MenuPanel getMenu() {
+		return menuP;
+	}
+	
+	
+	public void run() {
+		if(thread != null) {
+			thread.start();
+		}
+	}
+	
+	public void stop() {
+		thread = null;
+	}
+	
+	public void start() {
+		startP = new StartPanel();
+		startP.setFocusable(true);
+		StartListener sl = new StartListener(this);
+		startP.addStartListener(sl);
+		container.add("start", startP);
+		layout.show(container, "start");
+		thread = new Thread(new Loop(startP));
+		run(); 
+	}
+	
+	public void menu() {
+		menuP = new MenuPanel();
+		menuP.addMenuListener(new MenuListener(this));
+		container.add("menu", menuP);
+		layout.show(container, "menu");
+		thread = new Thread(new Loop(menuP));
+		run();
+	}
+	
+	/*public void training() {
 		getContentPane().removeAll();
 		
 		GamePanel panel = new GamePanel();
@@ -44,7 +90,7 @@ public class ColorPoolFrame extends JFrame {
 		Thread t = new Thread(gameLoop);
 		t.start();
 	}
-	
+	*/
 	
 	
 	private static final long serialVersionUID = 588260456005796541L;

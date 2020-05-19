@@ -3,14 +3,14 @@ package colorpool.control;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import colorpool.view.ColorPoolPanel;
+import colorpool.view.ColorPoolFrame;
 
 public class MenuListener implements MouseListener{
 
-	ColorPoolPanel panel;
+	ColorPoolFrame frame;
 	
-	public MenuListener(ColorPoolPanel panel) {
-		this.panel = panel;
+	public MenuListener(ColorPoolFrame frame) {
+		this.frame = frame;
 	}
 
 	
