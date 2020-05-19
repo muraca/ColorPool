@@ -5,12 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import colorpool.config.Settings;
+import colorpool.control.GameListener;
 import colorpool.core.*;
 
 public class GamePanel extends JPanel {
@@ -34,6 +34,7 @@ public class GamePanel extends JPanel {
 	//inizializzazione dei vari componenti sfondo e testo
 	public GamePanel() {
 		super();
+		this.setLayout(null);  //indispensabile per il posizionamento corretto di bottoni, label, ecc
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
 		text = new JTextField(Integer.toString(Game.getGame().points) + " points");
     	text.setBounds(135, 17, 150, 30);
@@ -41,12 +42,16 @@ public class GamePanel extends JPanel {
     	
 		
 		text.setFont(Settings.bitbold.deriveFont(Font.BOLD, 18f));
-		 
+		
 		
     	text.setOpaque(false);
     	text.setBorder(null);
     	text.setEditable(false);
     	this.add(text);
+    	
+    	GameListener gl = new GameListener(this);
+    	this.addMouseListener(gl);
+        this.addMouseMotionListener(gl);
     	
 	}
 	

@@ -6,23 +6,34 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import colorpool.control.MenuListener;
 
 public class MenuPanel extends JPanel{
 	private Image backgroundImg;
 	private Image foregroundImg;
+	
 	private JButton trainingButton;
 	
-	public MenuPanel() {
-
+	private JButton settingsButton;
+	private JButton infoButton;
+	
+	public MenuPanel(ColorPoolFrame frame) {
         //inizializzo le immagini
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
 		foregroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/menu/text.png");
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		
-		trainingButton = MenuButton.trainingButton((ColorPoolFrame) this.getParent(), 525, 402); //spazio 100 tra i bottoni
+		trainingButton = MenuButton.trainingButton(frame, 525, 402); //spazio 100 tra i bottoni
 		this.add(trainingButton);
+		
+		
+		settingsButton = MenuButton.settingsButton(frame, 120, 650);
+		this.add(settingsButton);
+		
+		infoButton = MenuButton.infoButton(1238, 650);
+		this.add(infoButton);
+		
+		
 	}
 	
 	@Override

@@ -14,13 +14,15 @@ import javax.swing.JButton;
 import colorpool.config.Settings;
 
 public class MenuButton {
-	private static Image buttonBkg = null;
-	
+	private static Image buttonIcon = null;
+	private static Image settingsIcon = null;
+	private static Image infoIcon = null;
+	//private static Image langIcon = null;
 	private static JButton menuButton(String text) {
-		if(buttonBkg == null)
-			buttonBkg = Toolkit.getDefaultToolkit().getImage("src/resources/menu/button.png");
+		if(buttonIcon == null)
+			buttonIcon = Toolkit.getDefaultToolkit().getImage("src/resources/menu/button.png");
 		
-		JButton menuButton = new JButton(text, new ImageIcon(buttonBkg));
+		JButton menuButton = new JButton(text, new ImageIcon(buttonIcon));
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
 		menuButton.setForeground(Color.WHITE);
@@ -39,9 +41,43 @@ public class MenuButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.training();
-				
 			}
 		});
 		return trainingButton;
+	}
+	
+	
+	
+	public static JButton settingsButton(ColorPoolFrame frame, int x, int y) {
+		if(settingsIcon == null)
+			settingsIcon = Toolkit.getDefaultToolkit().getImage("src/resources/menu/settings.png");
+		JButton settingsButton = new JButton(new ImageIcon(settingsIcon));
+		settingsButton.setBounds(x, y, 42, 42);
+		settingsButton.setOpaque(false);
+		settingsButton.setBorder(BorderFactory.createEmptyBorder());
+		settingsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.settings();
+			}
+		});
+		return settingsButton;
+	}
+	
+	public static JButton infoButton(int x, int y) {
+		if(infoIcon == null)
+			infoIcon = Toolkit.getDefaultToolkit().getImage("src/resources/menu/info.png");
+		JButton infoButton = new JButton(new ImageIcon(infoIcon));
+		infoButton.setBounds(x, y, 42, 42);
+		infoButton.setOpaque(false);
+		infoButton.setBorder(BorderFactory.createEmptyBorder());
+		infoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		return infoButton;
+		
 	}
 }

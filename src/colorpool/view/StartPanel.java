@@ -20,13 +20,11 @@ public class StartPanel extends JPanel {
 		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/3.png"));
 		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/4.png"));
 	}
-	public StartPanel() {
+	public StartPanel(ColorPoolFrame frame) {
 		super();
 		initImages();
 		now = 0;
-	}
-	
-	public void addStartListener(StartListener listener) {
+		StartListener listener = new StartListener(frame);
 		addKeyListener(listener);
 		addMouseListener(listener);
 	}
