@@ -1,16 +1,17 @@
 package colorpool.threads;
 
-import colorpool.view.StartPanel;
+import javax.swing.JPanel;
 
-public class StartLoop implements Runnable {
+public class Loop implements Runnable {
 	
-	public StartPanel panel;
+	public JPanel panel;
 	
-	public StartLoop(StartPanel panel) {
+	public Loop(JPanel panel) {
 		this.panel = panel;
 		
 	}
-	
+
+	@Override
 	public void run() {
 		while(true) {
 			panel.revalidate();
@@ -23,4 +24,5 @@ public class StartLoop implements Runnable {
 		}
 		
 	}
+
 }

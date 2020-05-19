@@ -26,8 +26,6 @@ public class StartPanel extends JPanel {
 		now = 0;
 	}
 	
-	
-	
 	public void addStartListener(StartListener listener) {
 		addKeyListener(listener);
 		addMouseListener(listener);
