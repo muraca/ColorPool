@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import colorpool.config.Settings;
 
@@ -74,7 +75,8 @@ public class MenuButton {
 		infoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String infoMessage = "Color Pool ©2020 Matteo Muraca, made for IGPE Course";
+				JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(infoIcon));
 			}
 		});
 		return infoButton;

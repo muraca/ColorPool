@@ -20,7 +20,7 @@ public class ColorPoolFrame extends JFrame {
 	
 	//inizializzazione, assegna il layout al container
 	public ColorPoolFrame() {
-		super();
+		super("ColorPool");
 		container = getContentPane();
 		layout = new CardLayout();
 		container.setLayout(layout);

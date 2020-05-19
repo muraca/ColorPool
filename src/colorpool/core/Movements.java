@@ -113,11 +113,11 @@ public class Movements {
 	private static boolean potted(Ball b) {
 		int x = (int) b.x, y = (int) b.y;
 		//controllo con le buche centrali
-		if(((x>=668 && x<=733)||x<=110||x>=1290) && b.isOutY()) {
+		if(((x>=668 && x<=713)||x<=110||x>=1290) && b.isOutY()) {
 			return true;
 		}
 		//controllo con le buche agli angoli
-		else if(b.isOutX() && (y>=695 || y<=104)) {
+		else if(b.isOutX() && (y>=700 || y<=100)) {
 			return true;
 		}
 			
