@@ -28,17 +28,16 @@ public class MenuButton {
 		menuButton.setHorizontalTextPosition(JButton.CENTER);
 		menuButton.setVerticalTextPosition(JButton.CENTER);
 		
-		
 		return menuButton;
 	}
 	
 	
-	public static JButton trainingButton(ColorPoolFrame frame) {
+	public static JButton trainingButton(ColorPoolFrame frame, int x, int y) {
 		JButton trainingButton = menuButton("Training");
+		trainingButton.setBounds(x, y, 350, 62);
 		trainingButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.stop();
 				frame.training();
 				
 			}

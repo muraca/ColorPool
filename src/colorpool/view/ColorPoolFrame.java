@@ -70,6 +70,7 @@ public class ColorPoolFrame extends JFrame {
 	
 	public void training() {
 		//getContentPane().removeAll();
+		stop();
 		
 		GamePanel panel = new GamePanel();
         
