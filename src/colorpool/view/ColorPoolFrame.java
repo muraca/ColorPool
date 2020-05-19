@@ -60,6 +60,7 @@ public class ColorPoolFrame extends JFrame {
 	
 	public void menu() {
 		menuP = new MenuPanel();
+		startP.setFocusable(true);
 		menuP.addMenuListener(new MenuListener(this));
 		container.add("menu", menuP);
 		layout.show(container, "menu");
@@ -67,8 +68,8 @@ public class ColorPoolFrame extends JFrame {
 		run();
 	}
 	
-	/*public void training() {
-		getContentPane().removeAll();
+	public void training() {
+		//getContentPane().removeAll();
 		
 		GamePanel panel = new GamePanel();
         
@@ -84,13 +85,12 @@ public class ColorPoolFrame extends JFrame {
         panel.addMouseMotionListener(gl);
         panel.setFocusable(true);//attivo il focus
             
-        add(panel);
-        
-        GameLoop gameLoop = new GameLoop(panel);
-		Thread t = new Thread(gameLoop);
-		t.start();
+        container.add("game", panel);
+        layout.show(container, "game");
+		thread = new Thread(new GameLoop(panel));
+		run();
 	}
-	*/
+	
 	
 	
 	private static final long serialVersionUID = 588260456005796541L;
