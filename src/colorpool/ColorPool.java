@@ -1,10 +1,5 @@
 package colorpool;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-
 import colorpool.config.Settings;
 import colorpool.view.*;
 
@@ -15,18 +10,7 @@ public class ColorPool {
 		Settings.initFont();
 		
 		//JFrame personalizzato, per utilizzare al meglio il CardLayout
-		ColorPoolFrame colorF = new ColorPoolFrame();
-		
-		
-		colorF.setSize(Settings.WIDTH, Settings.HEIGHT+20);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		colorF.setLocation(dim.width/2-colorF.getSize().width/2, dim.height/2-colorF.getSize().height/2);
-		
-		
-		colorF.setVisible(true);
-		colorF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		colorF.start();
+		ColorPoolFrame.getFrame().start();
 		
 	}
 	

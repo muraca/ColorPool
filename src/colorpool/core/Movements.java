@@ -98,13 +98,13 @@ public class Movements {
 		
 		if(potted(Game.getGame().whiteball)) {
 			JOptionPane.showMessageDialog(null, "Palla bianca imbucata");
-			Game.getGame().restartGame();
+			Game.getGame().pot(Game.getGame().whiteball);
 		}
 		
 		for(Ball b: Game.getGame().balls) {
 			if(potted(b)) {
 				JOptionPane.showMessageDialog(null, "Palla imbucata!");
-				Game.getGame().point();
+				Game.getGame().pot(b);
 			}
 		}
 	}

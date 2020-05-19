@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.io.File;
 
 public class Settings {
-	public static final int HEIGHT = 800;//800;
+	public static final int HEIGHT = 820;
 	public static final int WIDTH = 1400;
 	
 	public static final int POOLMINX = 78;

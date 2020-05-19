@@ -3,12 +3,15 @@ package colorpool.view;
 
 import java.awt.CardLayout;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import colorpool.config.Settings;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
 import colorpool.threads.Loop;
-
+//JFrame personalizzato, per utilizzare al meglio il CardLayout
 public class ColorPoolFrame extends JFrame {
 	private CardLayout layout;
 	private Container container;
@@ -16,15 +19,31 @@ public class ColorPoolFrame extends JFrame {
 	private MenuPanel menuP;
 	private SettingsPanel settingsP;
 	
+	public static ColorPoolFrame frame=null;
+	
 	public volatile Thread thread;
 	
-	//inizializzazione, assegna il layout al container
+	
 	public ColorPoolFrame() {
+		//inizializzazione, assegna il layout al container
 		super("ColorPool");
 		container = getContentPane();
 		layout = new CardLayout();
 		container.setLayout(layout);
+		//imposto la dimensione e la posizione
+		this.setSize(Settings.WIDTH, Settings.HEIGHT);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-Settings.WIDTH/2, dim.height/2-Settings.HEIGHT/2);
 		
+		
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public static ColorPoolFrame getFrame() {
+		if(frame==null)
+			frame = new ColorPoolFrame();
+		return frame;
 	}
 	
 	public StartPanel getStart() {

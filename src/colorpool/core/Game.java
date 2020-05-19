@@ -4,11 +4,15 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-import colorpool.config.Settings; 
+import javax.swing.JOptionPane;
+
+import colorpool.config.Settings;
+import colorpool.view.ColorPoolFrame; 
 
 public class Game {
 	public WhiteBall whiteball;
 	public ArrayList<Ball> balls;
+	public ArrayList<Ball> pottedBalls;
 	public int points;
 	private static Game game = null;
 	
@@ -17,14 +21,16 @@ public class Game {
 		generateBalls();
 	}
 	
+	private Game(int _points, ArrayList<Ball> pottedBalls) {
+		this.points = _points;
+		this.pottedBalls = pottedBalls;
+		generateBalls();
+	}
+	
 	public static Game getGame() {
 		if(game == null)
 			game = new Game(0);
 		return game;
-	}
-	
-	public void restartGame() {
-		game = new Game(0);
 	}
 	
 	public boolean canShot() {
@@ -50,6 +56,8 @@ public class Game {
 		balls.add(randomBall(Color.MAGENTA));
 		
 		initialControl(true);
+		
+		pottedBalls = new ArrayList<>();
 		
 	}
 	
@@ -86,10 +94,40 @@ public class Game {
         	initialControl(false);
 	}
     
-    public void point(){
-    	if(game!=null) //TODO Lo tengo?
+    public void pot(Ball pottedBall){
+    	if(game!=null) { //TODO Lo tengo?
+    		if(pottedBall.equalsTo(whiteball)) {
+    			lose();
+    			return;
+    		}
+    		for(Ball b: pottedBalls) {
+    			if(b.equalsTo(pottedBall)) {
+    				lose();
+    				return;
+    			}
+    		}
     		points++;
-        game = new Game(points);
+    		pottedBalls.add(pottedBall);
+    		if(pottedBalls.size()<balls.size())
+    			game = new Game(points, pottedBalls);
+    		else
+    			game = new Game(points);
+        }
+    }
+    
+    private void lose() {
+    	String[] options = {"Quit", "Play"};
+    	int chosen = JOptionPane.showOptionDialog(null, "Do you want to play again?", "Game Over!",
+    			JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
+    	if(chosen==0) {
+    		game = null;
+    		ColorPoolFrame.getFrame().menu();
+    	}
+    	else {
+    		game = new Game(0);
+    	}
+    	
+    	
     }
 
 }
