@@ -20,6 +20,7 @@ public class ColorPoolFrame extends JFrame {
 	
 	public volatile Thread thread;
 	
+	//inizializzazione, assegna il layout al container
 	public ColorPoolFrame() {
 		super();
 		container = getContentPane();
@@ -36,9 +37,9 @@ public class ColorPoolFrame extends JFrame {
 		return menuP;
 	}
 	
-	
+	//metodi per il thread
 	public void run() {
-		if(thread != null) {
+		if(thread != null) { //per evitare errori logici e nullpointer exceptions
 			thread.start();
 		}
 	}
@@ -47,6 +48,7 @@ public class ColorPoolFrame extends JFrame {
 		thread = null;
 	}
 	
+	//mostra la schermata di inizio, gestendo anche il thread
 	public void start() {
 		startP = new StartPanel();
 		startP.setFocusable(true);
@@ -58,25 +60,27 @@ public class ColorPoolFrame extends JFrame {
 		run(); 
 	}
 	
+	//passaggio al pannello menu
 	public void menu() {
 		menuP = new MenuPanel();
 		startP.setFocusable(true);
-		menuP.addMenuListener(new MenuListener(this));
 		container.add("menu", menuP);
 		layout.show(container, "menu");
 		thread = new Thread(new Loop(menuP));
 		run();
 	}
 	
+	//avvia la modalità di gioco di allenamento
 	public void training() {
-		//getContentPane().removeAll();
 		stop();
 		
 		GamePanel panel = new GamePanel();
         
+		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
         TestButton testb = new TestButton();
         testb.addActionListener(new TestButtonListener());
         testb.setBounds(Settings.WIDTH-250, 0, 100, 30);
+        
         
         panel.setLayout(null);
         panel.add(testb);

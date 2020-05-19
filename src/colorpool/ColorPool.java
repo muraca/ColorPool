@@ -11,13 +11,21 @@ import colorpool.view.*;
 public class ColorPool {
 
 	public static void main(String[] args) {
+		//inizializzazione del font, accessibile a tutte le classi
 		Settings.initFont();
+		
+		//JFrame personalizzato, per utilizzare al meglio il CardLayout
 		ColorPoolFrame colorF = new ColorPoolFrame();
+		
+		
 		colorF.setSize(Settings.WIDTH, Settings.HEIGHT+20);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		colorF.setLocation(dim.width/2-colorF.getSize().width/2, dim.height/2-colorF.getSize().height/2);
+		
+		
 		colorF.setVisible(true);
 		colorF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		colorF.start();
 		
 	}

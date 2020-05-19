@@ -31,6 +31,7 @@ public class GamePanel extends JPanel {
         write(g);
 	}
 	
+	//inizializzazione dei vari componenti sfondo e testo
 	public GamePanel() {
 		super();
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
@@ -49,6 +50,7 @@ public class GamePanel extends JPanel {
     	
 	}
 	
+	//disegna le palline all'interno del campo
 	private void drawBalls(Graphics g) {
 		g.drawImage(BallsImages.getInstance().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
         
@@ -57,6 +59,7 @@ public class GamePanel extends JPanel {
 		}
 	}
     
+	//disegna il puntatore
     private void drawPointer(Graphics g){
         if (p!=null) {
             g.setColor(Pointer.c);
@@ -65,6 +68,7 @@ public class GamePanel extends JPanel {
         }
     }
     
+    //scrittura punteggio
     private void write(Graphics g) {
     	text.setText(Integer.toString(Game.getGame().points) + " points");
     }

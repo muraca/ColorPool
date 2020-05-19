@@ -14,15 +14,15 @@ public class MenuPanel extends JPanel{
 	private JButton trainingButton;
 	
 	public MenuPanel() {
+
+        //inizializzo le immagini
 		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
 		foregroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/menu/text.png");
-		trainingButton = MenuButton.trainingButton((ColorPoolFrame) this.getParent(), 525, 502);
-		this.add(trainingButton);
 		
-	}
-	
-	public void addMenuListener(MenuListener listener) {
-		trainingButton.addActionListener(listener);
+		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
+		
+		trainingButton = MenuButton.trainingButton((ColorPoolFrame) this.getParent(), 525, 402); //spazio 100 tra i bottoni
+		this.add(trainingButton);
 	}
 	
 	@Override
