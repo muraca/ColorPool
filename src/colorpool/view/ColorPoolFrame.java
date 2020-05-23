@@ -87,12 +87,13 @@ public class ColorPoolFrame extends JFrame {
 	public void menu() {
 		menuP = new MenuPanel(this);
 		startP.setFocusable(true);
-		//aggiunta al container, visualizzazione del pannello
-		container.add("menu", menuP);
-		layout.show(container, "menu");
 		//avvio delle animazioni
 		thread = new Thread(new Loop(menuP));
 		run();
+		//aggiunta al container, visualizzazione del pannello
+		container.add("menu", menuP);
+		layout.show(container, "menu");
+		
 		
 	}
 	//passaggio al pannello impostazioni

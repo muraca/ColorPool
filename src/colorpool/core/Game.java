@@ -97,7 +97,7 @@ public class Game {
     	if(game!=null) { //TODO Lo tengo?
     		if(pottedBall.equalsTo(whiteball)) {
     			try {
-					Thread.sleep(50);
+					Thread.sleep(150);
 				} catch (InterruptedException e) { }
     			game = new Game(points, pottedBalls);
     		}
