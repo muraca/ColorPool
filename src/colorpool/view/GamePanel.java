@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,7 +34,7 @@ public class GamePanel extends JPanel {
 	public GamePanel() {
 		super();
 		this.setLayout(null);  //indispensabile per il posizionamento corretto di bottoni, label, ecc
-		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
+		backgroundImg = ColorPoolFrame.getFrame().getPictures().getBackground();
 		text = new JTextField(Integer.toString(Game.getGame().points));
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
@@ -55,10 +54,10 @@ public class GamePanel extends JPanel {
 	
 	//disegna le palline all'interno del campo
 	private void drawBalls(Graphics g) {
-		g.drawImage(Pictures.getInstance().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
+		g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
         
 		for(Ball b: Game.getGame().balls) {
-			g.drawImage(Pictures.getInstance().getBall(b.getColor()), (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
+			g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(b.getColor()), (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
 		}
 	}
     
@@ -76,7 +75,7 @@ public class GamePanel extends JPanel {
     	text.setText(Integer.toString(Game.getGame().points));
     	int startx = text.getX() + 50;
     	for(Ball pottedBall: Game.getGame().pottedBalls) {
-    		g.drawImage(Pictures.getInstance().getBall(pottedBall.getColor()), startx, text.getY(), null);
+    		g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(pottedBall.getColor()), startx, text.getY(), null);
     		startx += Settings.BALLDIMENSION + 5;
     	}
     }

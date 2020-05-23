@@ -19,6 +19,8 @@ public class ColorPoolFrame extends JFrame {
 	private MenuPanel menuP;
 	private SettingsPanel settingsP;
 	
+	private Pictures pictures;
+	
 	public static ColorPoolFrame frame=null;
 	
 	public volatile Thread thread;
@@ -38,6 +40,8 @@ public class ColorPoolFrame extends JFrame {
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		pictures = new Pictures();
 	}
 	
 	public static ColorPoolFrame getFrame() {
@@ -72,8 +76,7 @@ public class ColorPoolFrame extends JFrame {
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
 		layout.show(container, "start");
-		Pictures.getInstance().initPictures();
-		stop();
+		pictures.initPictures();
 		//avvio delle animazioni
 		thread = new Thread(new Loop(startP));
 		run(); 
@@ -119,6 +122,9 @@ public class ColorPoolFrame extends JFrame {
 		run();
 	}
 	
+	public Pictures getPictures() {
+		return this.pictures;
+	}
 	
 	
 	private static final long serialVersionUID = 588260456005796541L;

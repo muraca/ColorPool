@@ -10,24 +10,33 @@ import javax.imageio.ImageIO;
 import colorpool.config.Settings;
 
 public class Pictures {
+	//balls
 	private ArrayList<Image> balls;
+	//pool background
+	private Image background = null;
+	//start menu
+	
 	
 	//menu icons
 	private Image buttonIcon = null;
 	private Image settingsIcon = null;
 	private Image infoIcon = null;
 	
- 	public static Pictures instance = null;
  	
  	public Pictures() {
- 		initPictures();
+ 		balls = new ArrayList<>();
  	}
 	
 	public void initPictures() {
-		balls = new ArrayList<>();
+		
 		
 		
 		try {
+			background = ImageIO.read(getClass().getClassLoader().getResource("resources/background/pool.png"));
+			ColorPoolFrame.getFrame().getStart().setBackground(background);
+			
+			
+			
 			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/whiteball.png"))); 
 			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/redball.png"))); 
 			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/orangeball.png"))); 
@@ -74,6 +83,10 @@ public class Pictures {
 		return null;
 	}
 	
+	public Image getBackground() {
+		return background;
+	}
+	
 	public Image getButtonIcon() {
 		return buttonIcon;
 	}
@@ -86,9 +99,4 @@ public class Pictures {
 		return infoIcon;
 	}
 
-	public static Pictures getInstance() {
-		if(instance==null)
-			instance = new Pictures();
-		return instance;
-	}
 }

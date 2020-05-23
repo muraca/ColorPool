@@ -14,7 +14,7 @@ public class MenuButton {
 	//private static Image langIcon = null;
 	private static JButton menuButton(String text) {
 		
-		JButton menuButton = new JButton(text, new ImageIcon(Pictures.getInstance().getButtonIcon()));
+		JButton menuButton = new JButton(text, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getButtonIcon()));
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
 		menuButton.setForeground(Color.WHITE);
@@ -41,7 +41,7 @@ public class MenuButton {
 	
 	
 	public static JButton settingsButton(ColorPoolFrame frame, int x, int y) {
-		JButton settingsButton = new JButton(new ImageIcon(Pictures.getInstance().getSettingsIcon()));
+		JButton settingsButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getSettingsIcon()));
 		settingsButton.setBounds(x, y, 42, 42);
 		settingsButton.setOpaque(false);
 		settingsButton.setBorder(BorderFactory.createEmptyBorder());
@@ -55,7 +55,7 @@ public class MenuButton {
 	}
 	
 	public static JButton infoButton(int x, int y) {
-		JButton infoButton = new JButton(new ImageIcon(Pictures.getInstance().getInfoIcon()));
+		JButton infoButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
 		infoButton.setBounds(x, y, 42, 42);
 		infoButton.setOpaque(false);
 		infoButton.setBorder(BorderFactory.createEmptyBorder());
@@ -63,7 +63,7 @@ public class MenuButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
-				JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getInstance().getInfoIcon()));
+				JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
 			}
 		});
 		return infoButton;

@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 
 import colorpool.config.Settings;
 import colorpool.view.ColorPoolFrame;
-import colorpool.view.Pictures; 
-
 public class Game {
 	public WhiteBall whiteball;
 	public ArrayList<Ball> balls;
@@ -111,7 +109,7 @@ public class Game {
     				}
     			}
     			Movements.stopBalls();
-    			JOptionPane.showMessageDialog(null, "Good shot!", "New point!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getInstance().getBall(pottedBall.getColor())));
+    			JOptionPane.showMessageDialog(null, "Good shot!", "New point!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getBall(pottedBall.getColor())));
     			pottedBalls.add(pottedBall);
     			points++;
     			if(pottedBalls.size()<balls.size())
@@ -124,7 +122,7 @@ public class Game {
     
     private void lose(Ball b) {
     	Movements.stopBalls();
-    	JOptionPane.showMessageDialog(null, "Wrong ball potted!", "Oh, no!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getInstance().getBall(b.getColor())));
+    	JOptionPane.showMessageDialog(null, "Wrong ball potted!", "Oh, no!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getBall(b.getColor())));
     	String[] options = {"Quit", "Play"};
     	int chosen = JOptionPane.showOptionDialog(null, "Do you want to play again?", "Game Over!",
     			JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
