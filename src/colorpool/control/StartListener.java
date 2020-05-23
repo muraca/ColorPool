@@ -55,7 +55,6 @@ public class StartListener implements MouseListener, KeyListener {
 		
 	}
 	private void action() {
-		frame.stop();
 		frame.menu();
 	}
 

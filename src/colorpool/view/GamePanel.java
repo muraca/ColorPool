@@ -55,10 +55,10 @@ public class GamePanel extends JPanel {
 	
 	//disegna le palline all'interno del campo
 	private void drawBalls(Graphics g) {
-		g.drawImage(BallsImages.getInstance().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
+		g.drawImage(Pictures.getInstance().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
         
 		for(Ball b: Game.getGame().balls) {
-			g.drawImage(BallsImages.getInstance().getBall(b.getColor()), (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
+			g.drawImage(Pictures.getInstance().getBall(b.getColor()), (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
 		}
 	}
     
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel {
     	text.setText(Integer.toString(Game.getGame().points));
     	int startx = text.getX() + 50;
     	for(Ball pottedBall: Game.getGame().pottedBalls) {
-    		g.drawImage(BallsImages.getInstance().getBall(pottedBall.getColor()), startx, text.getY(), null);
+    		g.drawImage(Pictures.getInstance().getBall(pottedBall.getColor()), startx, text.getY(), null);
     		startx += Settings.BALLDIMENSION + 5;
     	}
     }

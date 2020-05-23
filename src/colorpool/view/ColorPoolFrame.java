@@ -72,6 +72,8 @@ public class ColorPoolFrame extends JFrame {
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
 		layout.show(container, "start");
+		Pictures.getInstance().initPictures();
+		stop();
 		//avvio delle animazioni
 		thread = new Thread(new Loop(startP));
 		run(); 
@@ -98,7 +100,6 @@ public class ColorPoolFrame extends JFrame {
 	
 	//avvia la modalità di gioco di allenamento
 	public void training() {
-		stop();
 		
 		GamePanel panel = new GamePanel();
 		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
@@ -111,6 +112,8 @@ public class ColorPoolFrame extends JFrame {
         //aggiunta al container, visualizzazione del pannello
         container.add("game", panel);
         layout.show(container, "game");
+        
+        stop();
         //avvio del gioco
 		thread = new Thread(new GameLoop(panel));
 		run();
