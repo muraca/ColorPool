@@ -76,10 +76,11 @@ public class ColorPoolFrame extends JFrame {
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
 		layout.show(container, "start");
-		pictures.initPictures();
+
 		//avvio delle animazioni
 		thread = new Thread(new Loop(startP));
 		run(); 
+		pictures.initPictures();
 	}
 	
 	//passaggio al pannello menu
