@@ -10,8 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import colorpool.config.Settings;
-
 public class MenuButton {
 	//private static Image langIcon = null;
 	private static JButton menuButton(String text) {
@@ -20,7 +18,7 @@ public class MenuButton {
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
 		menuButton.setForeground(Color.WHITE);
-		menuButton.setFont(Settings.bitbold.deriveFont(Font.BOLD, 40f));
+		menuButton.setFont(BitBold.getFont().deriveFont(Font.BOLD, 40f));
 		menuButton.setHorizontalTextPosition(JButton.CENTER);
 		menuButton.setVerticalTextPosition(JButton.CENTER);
 		

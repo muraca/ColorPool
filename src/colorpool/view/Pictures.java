@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import colorpool.config.Settings;
+
 public class Pictures {
 	private ArrayList<Image> balls;
 	
@@ -40,7 +42,7 @@ public class Pictures {
 			infoIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/info.png"));
 			}
 			catch (IOException e) {
-				System.out.println("can't find pics");
+				Settings.throwError(4);
 			}
 	}
 	

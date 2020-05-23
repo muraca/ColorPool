@@ -40,7 +40,7 @@ public class GamePanel extends JPanel {
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
 		
-		text.setFont(Settings.bitbold.deriveFont(Font.BOLD, 25f));
+		text.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
 		
     	text.setOpaque(false);
     	text.setBorder(null);

@@ -2,28 +2,29 @@ package colorpool.view;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.util.ArrayList;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import colorpool.config.Settings;
 import colorpool.control.StartListener;
 
 public class StartPanel extends JPanel {
-	private int now;
-	private ArrayList<Image> images;
+	private Image background;
 	
 	private void initImages() {
-		images = new ArrayList<>();
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/1.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/2.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/3.png"));
-		images.add(Toolkit.getDefaultToolkit().getImage("src/resources/start/4.png"));
+		
+		
+		try {
+			background = ImageIO.read(getClass().getClassLoader().getResource("resources/start/1.png"));
+		} catch (IOException e) {
+			Settings.throwError(4);
+		}
 	}
 	public StartPanel(ColorPoolFrame frame) {
 		super();
 		initImages();
-		now = 0;
 		StartListener listener = new StartListener(frame);
 		addKeyListener(listener);
 		addMouseListener(listener);
@@ -32,10 +33,7 @@ public class StartPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(images.get(now), 0, 0, null);
-		now++;
-		if(now == images.size())
-			now = 0;
+		g.drawImage(background, 0, 0, null);
 	}
 	
 	private static final long serialVersionUID = 5913352926465412444L;
