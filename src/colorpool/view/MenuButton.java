@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 public class MenuButton {
 	//private static Image langIcon = null;
@@ -54,7 +53,7 @@ public class MenuButton {
 		return settingsButton;
 	}
 	
-	public static JButton infoButton(int x, int y) {
+	public static JButton infoButton(ColorPoolFrame frame, int x, int y) {
 		JButton infoButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
 		infoButton.setBounds(x, y, 42, 42);
 		infoButton.setOpaque(false);
@@ -62,11 +61,25 @@ public class MenuButton {
 		infoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
-				JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
+				frame.info();
 			}
 		});
 		return infoButton;
 		
+	}
+
+
+	public static JButton recordButton(ColorPoolFrame frame, int x, int y) {
+		JButton recordButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getRecordIcon()));
+		recordButton.setBounds(x, y, 42, 42);
+		recordButton.setOpaque(false);
+		recordButton.setBorder(BorderFactory.createEmptyBorder());
+		recordButton.addActionListener(new ActionListener() { 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.record();
+			}
+		});
+		return recordButton;
 	}
 }

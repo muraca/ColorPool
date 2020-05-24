@@ -22,9 +22,11 @@ public class Pictures {
 	private Image buttonIcon;
 	private Image settingsIcon;
 	private Image infoIcon;
+	private Image recordIcon;
+	private Image homeIcon;
 	
- 	
- 	public Pictures() {
+
+	public Pictures() {
  		balls = new ArrayList<>();
  	}
 	
@@ -57,8 +59,8 @@ public class Pictures {
 			
 			
 			buttonIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/button.png"));
-			settingsIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/settings.png"));
-			infoIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/info.png"));
+			settingsIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/settings.png"));
+			infoIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/info.png"));
 			
 			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load2.png"));
 			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
@@ -66,6 +68,8 @@ public class Pictures {
 			Thread.sleep(500);
 			
 			//other stuff
+			recordIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/record.png"));
+			homeIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/home.png"));
 			
 			
 			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load3.png"));
@@ -83,10 +87,7 @@ public class Pictures {
 			}
 		catch (IOException e) {
 			Settings.throwError(4);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (InterruptedException e) { }
 		
 		ColorPoolFrame.getFrame().getStart().completed();
 	}
@@ -135,4 +136,11 @@ public class Pictures {
 		return infoIcon;
 	}
 
+	public Image getRecordIcon() {
+		return recordIcon;
+	}
+
+	public Image getHomeIcon() {
+		return homeIcon;
+	}
 }

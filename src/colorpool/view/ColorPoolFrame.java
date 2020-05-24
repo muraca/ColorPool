@@ -6,7 +6,10 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import colorpool.config.Settings;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
@@ -122,6 +125,15 @@ public class ColorPoolFrame extends JFrame {
         //avvio del gioco
 		thread = new Thread(new GameLoop(panel));
 		run();
+	}
+	
+	public void info() {
+		String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
+		JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
+	}
+	
+	public void record() {
+		
 	}
 	
 	public Pictures getPictures() {

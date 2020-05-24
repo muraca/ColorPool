@@ -1,23 +1,34 @@
 package colorpool.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import colorpool.control.StartListener;
 
 public class StartPanel extends JPanel {
 	private Image foreground = null;
 	private Image background = null;
 	private Image loadingImg = null;
+	private JTextField text;
 	
 	private boolean loading;
+	private boolean toWrite;
 	
 	public StartPanel(ColorPoolFrame frame) {
 		super();
+		setLayout(null);
+		
 		loading = true;
+		toWrite = true;
+		
 		StartListener listener = new StartListener(frame);
 		addKeyListener(listener);
 		addMouseListener(listener);
+		
 	}
 	
 	@Override
@@ -29,8 +40,8 @@ public class StartPanel extends JPanel {
 			g.drawImage(foreground, 0, 0, null);
 		if(loadingImg!=null)
 			g.drawImage(loadingImg, 0, 0, null);
-		else if(!loading)
-			writePress(g);
+		else if(!loading&&toWrite)
+			writePress();
 	}	
 	
 	public void setBackground(Image bg) {
@@ -48,11 +59,21 @@ public class StartPanel extends JPanel {
 	public void completed() {
 		loadingImg = null;
 		loading = false;
+		repaint();
 	}
 	
-	private void writePress(Graphics g) { 
-		//TODO 
-		
+	private void writePress() { 
+		toWrite = false;
+		text = new JTextField();
+		text.setBounds(300, 580, 800, 64);
+		text.setForeground(Color.WHITE);
+		text.setFont(BitBold.getFont().deriveFont(Font.BOLD, 40f));
+		text.setOpaque(false);
+    	text.setBorder(null);
+    	text.setEditable(false);
+		text.setText("PRESS ANY KEY TO START");
+		text.setHorizontalAlignment(JTextField.CENTER);
+		this.add(text);
 	}
 	
 	private static final long serialVersionUID = 5913352926465412444L;

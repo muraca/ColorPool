@@ -15,6 +15,7 @@ public class MenuPanel extends JPanel{
 	
 	private JButton settingsButton;
 	private JButton infoButton;
+	private JButton recordButton;
 	
 	public MenuPanel(ColorPoolFrame frame) {
         //inizializzo le immagini
@@ -30,8 +31,11 @@ public class MenuPanel extends JPanel{
 		settingsButton = MenuButton.settingsButton(frame, 120, 650);
 		this.add(settingsButton);
 		
-		infoButton = MenuButton.infoButton(1238, 650);
+		infoButton = MenuButton.infoButton(frame, 1238, 650);
 		this.add(infoButton);
+		
+		recordButton = MenuButton.recordButton(frame, 120, 100);
+		this.add(recordButton);
 		
 		
 	}
