@@ -136,5 +136,21 @@ public class Game {
     	
     	
     }
+    
+    public static void home() {
+    	String[] options = {"Quit", "Play"};
+    	int chosen = JOptionPane.showOptionDialog(null, "Do you really want to quit?", "Quit game",
+    			JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
+    	if(chosen==0) {
+    		game = null;
+    		ColorPoolFrame.getFrame().menu();
+    	}
+    	
+    }
+
+	public static void deleteGame() {
+		game = null;
+		
+	}
 
 }

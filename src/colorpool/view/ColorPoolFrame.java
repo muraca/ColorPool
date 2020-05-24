@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import colorpool.config.Pictures;
 import colorpool.config.Settings;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
@@ -113,7 +114,7 @@ public class ColorPoolFrame extends JFrame {
 		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
         TestButton testb = new TestButton();
         testb.addActionListener(new TestButtonListener());
-        testb.setBounds(Settings.WIDTH-250, 0, 100, 30);
+        testb.setBounds(Settings.WIDTH-250, Settings.HEIGHT-60, 100, 30);
         panel.add(testb);
         
         panel.setFocusable(true);//focus per movimenti mouse

@@ -7,6 +7,7 @@ import java.awt.Image;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import colorpool.config.BitBold;
 import colorpool.control.StartListener;
 
 public class StartPanel extends JPanel {

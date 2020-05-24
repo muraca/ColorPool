@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import colorpool.buttons.MenuButtons;
+
 
 public class MenuPanel extends JPanel{
 	private Image backgroundImg;
@@ -24,17 +26,17 @@ public class MenuPanel extends JPanel{
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		
-		trainingButton = MenuButton.trainingButton(frame, 525, 402); //spazio 100 tra i bottoni
+		trainingButton = MenuButtons.trainingButton(frame, 525, 402); //spazio 100 tra i bottoni
 		this.add(trainingButton);
 		
 		
-		settingsButton = MenuButton.settingsButton(frame, 120, 650);
+		settingsButton = MenuButtons.settingsButton(frame, 120, 650);
 		this.add(settingsButton);
 		
-		infoButton = MenuButton.infoButton(frame, 1238, 650);
+		infoButton = MenuButtons.infoButton(frame, 1238, 650);
 		this.add(infoButton);
 		
-		recordButton = MenuButton.recordButton(frame, 120, 100);
+		recordButton = MenuButtons.recordButton(frame, 120, 100);
 		this.add(recordButton);
 		
 		

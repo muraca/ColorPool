@@ -1,9 +1,7 @@
-package colorpool.view;
+package colorpool.config;
 
 import java.awt.Font;
 import java.io.File;
-
-import colorpool.config.Settings;
 
 public class BitBold {
 

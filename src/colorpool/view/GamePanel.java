@@ -8,6 +8,8 @@ import java.awt.Image;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import colorpool.buttons.GameButtons;
+import colorpool.config.BitBold;
 import colorpool.config.Settings;
 import colorpool.control.GameListener;
 import colorpool.core.*;
@@ -35,6 +37,18 @@ public class GamePanel extends JPanel {
 		super();
 		this.setLayout(null);  //indispensabile per il posizionamento corretto di bottoni, label, ecc
 		backgroundImg = ColorPoolFrame.getFrame().getPictures().getBackground();
+		
+		initText();
+    	
+		this.add(GameButtons.homeButton(ColorPoolFrame.getFrame(), Settings.WIDTH-180, 10));
+		
+    	GameListener gl = new GameListener(this);
+    	this.addMouseListener(gl);
+        this.addMouseMotionListener(gl);
+    	
+	}
+	
+	private void initText() {
 		text = new JTextField(Integer.toString(Game.getGame().points));
     	text.setBounds(135, 17, 150, 30);
     	text.setForeground(Color.BLUE);
@@ -45,11 +59,6 @@ public class GamePanel extends JPanel {
     	text.setBorder(null);
     	text.setEditable(false);
     	this.add(text);
-    	
-    	GameListener gl = new GameListener(this);
-    	this.addMouseListener(gl);
-        this.addMouseMotionListener(gl);
-    	
 	}
 	
 	//disegna le palline all'interno del campo

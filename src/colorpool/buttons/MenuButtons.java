@@ -1,4 +1,4 @@
-package colorpool.view;
+package colorpool.buttons;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,8 +9,11 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class MenuButton {
-	//private static Image langIcon = null;
+import colorpool.config.BitBold;
+import colorpool.view.ColorPoolFrame;
+
+public class MenuButtons {
+	
 	private static JButton menuButton(String text) {
 		
 		JButton menuButton = new JButton(text, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getButtonIcon()));

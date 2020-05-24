@@ -1,4 +1,4 @@
-package colorpool.view;
+package colorpool.config;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import colorpool.config.Settings;
+import colorpool.view.ColorPoolFrame;
 
 public class Pictures {
 	//balls
