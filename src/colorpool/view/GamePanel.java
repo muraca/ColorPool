@@ -19,7 +19,6 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
     
     private Path p;
-    private Stick stick;
     private JTextField text;
     private Image backgroundImg;
 	
@@ -30,7 +29,6 @@ public class GamePanel extends JPanel {
 		
 		drawBalls(g);
 		drawPath(g);
-		drawStick(g);
         points(g);
 	}
 	
@@ -80,10 +78,6 @@ public class GamePanel extends JPanel {
         }
     }
     
-    private void drawStick(Graphics g) {
-    	g.drawImage(stick.getRotatedImage(), stick.getX(), stick.getY(), null);
-    }
-    
     //scrittura punteggio
     private void points(Graphics g) {
     	text.setText(Integer.toString(Game.getGame().points));
@@ -97,4 +91,5 @@ public class GamePanel extends JPanel {
     public void setPath(Path p) {
     	this.p = p;
     }
+    
 }
