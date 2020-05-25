@@ -10,7 +10,7 @@ public class TestButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Movements.stopBalls();
-		Game.getGame().pot(Game.getGame().whiteball);
+		Game.getGame().pot(Game.getGame().getWhiteBall());
 		
 	}
 

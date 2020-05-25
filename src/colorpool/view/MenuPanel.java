@@ -2,7 +2,6 @@ package colorpool.view;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -21,8 +20,8 @@ public class MenuPanel extends JPanel{
 	
 	public MenuPanel(ColorPoolFrame frame) {
         //inizializzo le immagini
-		backgroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/background/pool.png");
-		foregroundImg = Toolkit.getDefaultToolkit().getImage("src/resources/menu/text.png");
+		backgroundImg = frame.getPictures().getBackground();
+		foregroundImg = frame.getPictures().getMenuText();
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		

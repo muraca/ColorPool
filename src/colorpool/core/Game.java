@@ -3,16 +3,17 @@ package colorpool.core;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import colorpool.config.Settings;
 import colorpool.view.ColorPoolFrame;
 public class Game {
-	public WhiteBall whiteball;
-	public ArrayList<Ball> balls;
-	public ArrayList<Ball> pottedBalls;
+	private WhiteBall whiteball;
+	private ArrayList<Ball> balls;
+	private ArrayList<Ball> pottedBalls;
+	
+
 	public int points;
 	private static Game game = null;
 	
@@ -42,6 +43,17 @@ public class Game {
 				return false;
 		}
 		return true;
+	}
+
+	public WhiteBall getWhiteBall() {
+		return whiteball;
+	}
+	public ArrayList<Ball> getBalls() {
+		return balls;
+	}
+
+	public ArrayList<Ball> getPottedBalls() {
+		return pottedBalls;
 	}
 	
 	private void generateBalls() {
@@ -152,5 +164,9 @@ public class Game {
 		game = null;
 		
 	}
+
+	
+
+	
 
 }

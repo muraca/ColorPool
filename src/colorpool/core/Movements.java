@@ -10,8 +10,8 @@ public class Movements {
 	
 	public static void shotWhiteBall(int x, int y) {
 		
-		double dx = (double) Math.abs(Game.getGame().whiteball.x-x);
-		double dy = (double) Math.abs(Game.getGame().whiteball.y-y);
+		double dx = (double) Math.abs(Game.getGame().getWhiteBall().x-x);
+		double dy = (double) Math.abs(Game.getGame().getWhiteBall().y-y);
 			
 		double angle = Math.atan2(dy, dx);
 		double sin = Math.sin(angle), cos = Math.cos(angle);
@@ -19,26 +19,26 @@ public class Movements {
 		double speedx = speed * cos;
 		double speedy =  speed * sin;
 		
-		if(x>Game.getGame().whiteball.x)
-			Game.getGame().whiteball.vx = speedx;
+		if(x>Game.getGame().getWhiteBall().x)
+			Game.getGame().getWhiteBall().vx = speedx;
 		else
-			Game.getGame().whiteball.vx = -speedx;
+			Game.getGame().getWhiteBall().vx = -speedx;
 			
-		if(y>Game.getGame().whiteball.y)
-			Game.getGame().whiteball.vy = speedy;
+		if(y>Game.getGame().getWhiteBall().y)
+			Game.getGame().getWhiteBall().vy = speedy;
 		else
-			Game.getGame().whiteball.vy = -speedy;
+			Game.getGame().getWhiteBall().vy = -speedy;
 	}
 	
 	//Muove e rallenta tutte le palle, richiama poi i metodi di controllo buche e collisioni
 	public static void moveBalls() {
 		//muove e poi rallenta la palla bianca
 		
-		moveBall(Game.getGame().whiteball);
-		slowDown(Game.getGame().whiteball);
+		moveBall(Game.getGame().getWhiteBall());
+		slowDown(Game.getGame().getWhiteBall());
 		
 		//muove e poi rallenta ogni palla colorata
-		for(Ball b: Game.getGame().balls) {
+		for(Ball b: Game.getGame().getBalls()) {
 			moveBall(b);
 			slowDown(b);
 		}
@@ -94,11 +94,11 @@ public class Movements {
 	//Controlla tutte le palline per vedere se una è andata in buca
 	private static void potting() {
 		
-		if(potted(Game.getGame().whiteball)) {
-			Game.getGame().pot(Game.getGame().whiteball);
+		if(potted(Game.getGame().getWhiteBall())) {
+			Game.getGame().pot(Game.getGame().getWhiteBall());
 		}
 		
-		for(Ball b: Game.getGame().balls) {
+		for(Ball b: Game.getGame().getBalls()) {
 			if(potted(b)) {
 				Game.getGame().pot(b);
 			}
@@ -123,16 +123,16 @@ public class Movements {
 	//Gestisce le collisioni tra tutte le palline
 	private static void collisions() {
 		//Prima la pallina bianca con ogni singola colorata
-		for(Ball b: Game.getGame().balls) {
-			if(ballsCollide(Game.getGame().whiteball, b)) {
-				computeNewVelocity(Game.getGame().whiteball, b);
+		for(Ball b: Game.getGame().getBalls()) {
+			if(ballsCollide(Game.getGame().getWhiteBall(), b)) {
+				computeNewVelocity(Game.getGame().getWhiteBall(), b);
 			}
 		}
 		//Poi le colorate tra di loro, evitando di fare ripetizioni
-		for(int i=0; i<Game.getGame().balls.size()-1; i++) {
-			for(int j=i+1; j<Game.getGame().balls.size(); j++) {
-				if(ballsCollide(Game.getGame().balls.get(i), Game.getGame().balls.get(j))) {
-					computeNewVelocity(Game.getGame().balls.get(i), Game.getGame().balls.get(j));
+		for(int i=0; i<Game.getGame().getBalls().size()-1; i++) {
+			for(int j=i+1; j<Game.getGame().getBalls().size(); j++) {
+				if(ballsCollide(Game.getGame().getBalls().get(i), Game.getGame().getBalls().get(j))) {
+					computeNewVelocity(Game.getGame().getBalls().get(i), Game.getGame().getBalls().get(j));
 				}
 			}
 		}
@@ -188,10 +188,10 @@ public class Movements {
 	
 	public static void stopBalls() {
 		//Fermo la pallina bianca
-		Game.getGame().whiteball.vx = 0;
-		Game.getGame().whiteball.vy = 0;
+		Game.getGame().getWhiteBall().vx = 0;
+		Game.getGame().getWhiteBall().vy = 0;
 		//Fermo tutte le altre palline
-		for(Ball b: Game.getGame().balls) {
+		for(Ball b: Game.getGame().getBalls()) {
 			b.vx = 0;
 			b.vy = 0;
 		}

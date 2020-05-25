@@ -18,7 +18,8 @@ public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
     
-    public Pointer p;
+    private Path p;
+    private Stick stick;
     private JTextField text;
     private Image backgroundImg;
 	
@@ -28,7 +29,8 @@ public class GamePanel extends JPanel {
 		g.drawImage(backgroundImg, 0, 0, null);
 		
 		drawBalls(g);
-        drawPointer(g);
+		drawPath(g);
+		drawStick(g);
         points(g);
 	}
 	
@@ -63,29 +65,36 @@ public class GamePanel extends JPanel {
 	
 	//disegna le palline all'interno del campo
 	private void drawBalls(Graphics g) {
-		g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(Color.WHITE), (int) Game.getGame().whiteball.getX(), (int) Game.getGame().whiteball.getY(), null);
+		g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(Color.WHITE), (int) Game.getGame().getWhiteBall().getX(), (int) Game.getGame().getWhiteBall().getY(), null);
         
-		for(Ball b: Game.getGame().balls) {
+		for(Ball b: Game.getGame().getBalls()) {
 			g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(b.getColor()), (int) Math.round(b.getX()), (int) Math.round(b.getY()), null);
 		}
 	}
     
 	//disegna il puntatore
-    private void drawPointer(Graphics g){
+    private void drawPath(Graphics g){
         if (p!=null) {
-            g.setColor(Pointer.c);
-            g.drawLine((int)Game.getGame().whiteball.getX()+Settings.WHITEBALLDIMENSION/2,(int) Game.getGame().whiteball.getY()+Settings.WHITEBALLDIMENSION/2,(int)p.x,(int)p.y);
-            g.fillOval((int)p.x - Pointer.dimension/2, (int)p.y - Pointer.dimension/2, Pointer.dimension, Pointer.dimension);
+            g.setColor(p.getColor());
+            g.drawLine((int)Game.getGame().getWhiteBall().getX()+Settings.WHITEBALLDIMENSION/2,(int) Game.getGame().getWhiteBall().getY()+Settings.WHITEBALLDIMENSION/2,(int)p.getX(),(int)p.getY());
         }
+    }
+    
+    private void drawStick(Graphics g) {
+    	g.drawImage(stick.getRotatedImage(), stick.getX(), stick.getY(), null);
     }
     
     //scrittura punteggio
     private void points(Graphics g) {
     	text.setText(Integer.toString(Game.getGame().points));
     	int startx = text.getX() + 50;
-    	for(Ball pottedBall: Game.getGame().pottedBalls) {
+    	for(Ball pottedBall: Game.getGame().getPottedBalls()) {
     		g.drawImage(ColorPoolFrame.getFrame().getPictures().getBall(pottedBall.getColor()), startx, text.getY(), null);
     		startx += Settings.BALLDIMENSION + 5;
     	}
+    }
+    
+    public void setPath(Path p) {
+    	this.p = p;
     }
 }

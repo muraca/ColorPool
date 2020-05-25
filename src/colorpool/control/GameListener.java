@@ -19,15 +19,15 @@ public class GameListener implements MouseListener, MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent e) {
         if (e.getX()<=Settings.WIDTH && e.getY()<=Settings.HEIGHT && Game.getGame().canShot())
-            panel.p = new Pointer(e.getX(), e.getY());
+            panel.setPath(new Path(e.getX(), e.getY()));
         else
-            panel.p = null;
+            panel.setPath(null);
     }
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(Game.getGame().canShot()) {
-			panel.p = null;
+			panel.setPath(null);
 			Movements.shotWhiteBall(e.getX(), e.getY());
 		}
 		panel.repaint();
