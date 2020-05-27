@@ -64,7 +64,6 @@ public class Pictures {
 			
 			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load2.png"));
 			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			//ColorPoolFrame.getFrame().getStart().repaint();
 			Thread.sleep(500);
 			
 			//other stuff
@@ -76,7 +75,6 @@ public class Pictures {
 			
 			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load3.png"));
 			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			//ColorPoolFrame.getFrame().getStart().repaint();
 			Thread.sleep(800);
 			
 			//maybe other stuff
@@ -92,12 +90,11 @@ public class Pictures {
 			
 			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load4.png"));
 			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			//ColorPoolFrame.getFrame().getStart().repaint();
 			Thread.sleep(500);
 		
 			}
 		catch (IOException e) {
-			Settings.throwError(4);
+			Settings.throwError(2);
 		} catch (InterruptedException e) { }
 		
 		ColorPoolFrame.getFrame().getStart().completed();

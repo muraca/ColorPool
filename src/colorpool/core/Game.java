@@ -108,10 +108,7 @@ public class Game {
     public void pot(Ball pottedBall){
     	if(game!=null) { //TODO Lo tengo?
     		if(pottedBall.equalsTo(whiteball)) {
-    			try {
-					Thread.sleep(150);
-				} catch (InterruptedException e) { }
-    			game = new Game(points, pottedBalls);
+    			lose(whiteball);
     		}
     		else {
     			for(Ball b: pottedBalls) {

@@ -15,17 +15,28 @@ public class Settings {
 	public static final String START = "start";
 	public static final String MENU = "menu";
 	
+	static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+    static final String DB_URL = "jdbc:mariadb://mooraca.dlinkddns.com/phpmyadmin/index.php";
 	
-	//abilita il tutorial all'inizio
-	public static boolean fistTime = true;
-	
-	public static void initFont() {
-		
-	}
+    static final String DB_USER = "colorpooluser";
+    static final String DB_PASS = "colorpoolpass";
 
 	public static void throwError(int code) {
 		//TODO
-		System.out.println("Error " + code);
-		
+		System.out.println("Error " + code + ": ");
+		switch (code) {
+		case 2:
+			System.out.println("Can't find some pictures. Please download again the game or contact the developer.");
+			break;
+		case 3:
+			System.out.println("Can't find bitbold.ttf. Please download again the game or contact the developer.");
+			break;
+		case 7:
+			System.out.println("Can't connect to MariaDB's website. Please check your internet connection and try again.");
+			break;
+		case 8:
+			System.out.println("Can't connect to the records' database. Host may be down. Please check your internet connection and try again.");
+			break;
+		}
 	}
 }

@@ -113,7 +113,7 @@ public class Movements {
 			return true;
 		}
 		//controllo con le buche agli angoli
-		else if(b.isOutX() && (y>=700 || y<=100)) {
+		else if(b.isOutX() && (y>=705 || y<=95)) {
 			return true;
 		}
 			

@@ -14,17 +14,14 @@ public class BitBold {
 			bitbold = Font.createFont(Font.TRUETYPE_FONT, new File(getClass().getClassLoader().getResource("resources/fonts/bitbold.ttf").toURI()));
 			
 		} catch (Exception e) {
-			Settings.throwError(4);
+			Settings.throwError(3);
 		} 
 	}
 	
-	public static void initFont() {
-		if(instance == null)
-			instance = new BitBold();
-	}
 	
 	public static Font getFont() {
-		initFont();
+		if(instance == null)
+			instance = new BitBold();
 		return instance.bitbold;
 	}
 }
