@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import colorpool.view.ColorPoolFrame;
 
 public class Pictures {
 	
@@ -29,76 +28,18 @@ public class Pictures {
 	private Image stick;
 	private ArrayList<Image> balls;
 	
+	private static Pictures instance = null;
 	
 	public Pictures() {
  		balls = new ArrayList<>();
  	}
 	
-	public void initPictures() {
-		try {
-			background = ImageIO.read(getClass().getClassLoader().getResource("resources/game/pool.png"));
-			ColorPoolFrame.getFrame().getStart().setBackground(background);
-			
-			start = ImageIO.read(getClass().getClassLoader().getResource("resources/start/start.png"));
-			ColorPoolFrame.getFrame().getStart().setForeground(start);
-			
-			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load0.png"));
-			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			//ColorPoolFrame.getFrame().getStart().repaint();
-			Thread.sleep(500);
-			
-			buttonIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/button.png"));
-			settingsIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/settings.png"));
-			infoIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/info.png"));
-			
-			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load1.png"));
-			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			ColorPoolFrame.getFrame().getStart().repaint();
-			Thread.sleep(500);
-			
-			recordIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/record.png"));
-			homeIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/home.png"));
-			
-			
-			
-			
-			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load2.png"));
-			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			Thread.sleep(500);
-			
-			//other stuff
-
-			menuText = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/text.png"));
-			stick = ImageIO.read(getClass().getClassLoader().getResource("resources/game/stick.png"));
-			
-			
-			
-			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load3.png"));
-			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			Thread.sleep(800);
-			
-			//maybe other stuff
-
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/whiteball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/redball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/orangeball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/yellowball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/greenball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/cyanball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/blueball.png"))); 
-			balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/purpleball.png"))); 
-			
-			loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load4.png"));
-			ColorPoolFrame.getFrame().getStart().setLoadingImg(loading);
-			Thread.sleep(500);
-		
-			}
-		catch (IOException e) {
-			Settings.throwError(2);
-		} catch (InterruptedException e) { }
-		
-		ColorPoolFrame.getFrame().getStart().completed();
+	public static Pictures getPictures() {
+		if(instance == null)
+			instance = new Pictures();
+		return instance;
 	}
+	
 	
 	public Image getBall(Color c) {
 		if(c==Color.WHITE) {
@@ -132,6 +73,14 @@ public class Pictures {
 		return background;
 	}
 	
+	public Image getStart() {
+		return start;
+	}
+	
+	public Image getLoading() {
+		return loading;
+	}
+	
 	public Image getButtonIcon() {
 		return buttonIcon;
 	}
@@ -159,4 +108,58 @@ public class Pictures {
 	public Image getStick() {
 		return stick;
 	}
+	
+	void loadBackground() throws IOException {
+		background = ImageIO.read(getClass().getClassLoader().getResource("resources/game/pool.png"));
+	}
+	
+	void loadStart() throws IOException {
+		start = ImageIO.read(getClass().getClassLoader().getResource("resources/start/start.png"));
+	}
+	
+	void loadLoading(int state) throws IOException {
+		loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load"+state+".png"));
+	}
+	
+	void loadButtonIcon() throws IOException {
+		buttonIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/button.png"));
+	}
+	
+	void loadSettingsIcon() throws IOException {
+		settingsIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/settings.png"));
+	}
+	
+	void loadInfoIcon() throws IOException {
+		infoIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/info.png"));
+	}
+	
+	void loadRecordIcon() throws IOException {
+		recordIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/record.png"));
+	}
+	
+	void loadHomeIcon() throws IOException {
+		homeIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/home.png"));
+	}
+	
+	void loadMenuText() throws IOException {
+		menuText = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/text.png"));
+	}
+	
+	void loadStick() throws IOException {
+		stick = ImageIO.read(getClass().getClassLoader().getResource("resources/game/stick.png"));
+	}
+
+	public void loadBalls() throws IOException{
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/whiteball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/redball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/orangeball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/yellowball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/greenball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/cyanball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/blueball.png"))); 
+		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/purpleball.png"))); 
+	}
+	
+	
+	
 }

@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import colorpool.buttons.MenuButtons;
+import colorpool.config.Pictures;
 
 
 public class MenuPanel extends JPanel{
@@ -20,8 +21,8 @@ public class MenuPanel extends JPanel{
 	
 	public MenuPanel(ColorPoolFrame frame) {
         //inizializzo le immagini
-		backgroundImg = frame.getPictures().getBackground();
-		foregroundImg = frame.getPictures().getMenuText();
+		backgroundImg = Pictures.getPictures().getBackground();
+		foregroundImg = Pictures.getPictures().getMenuText();
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		

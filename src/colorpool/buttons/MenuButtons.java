@@ -10,13 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import colorpool.config.BitBold;
+import colorpool.config.Pictures;
 import colorpool.view.ColorPoolFrame;
 
 public class MenuButtons {
 	
 	private static JButton menuButton(String text) {
 		
-		JButton menuButton = new JButton(text, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getButtonIcon()));
+		JButton menuButton = new JButton(text, new ImageIcon(Pictures.getPictures().getButtonIcon()));
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
 		menuButton.setForeground(Color.WHITE);
@@ -43,7 +44,7 @@ public class MenuButtons {
 	
 	
 	public static JButton settingsButton(ColorPoolFrame frame, int x, int y) {
-		JButton settingsButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getSettingsIcon()));
+		JButton settingsButton = new JButton(new ImageIcon(Pictures.getPictures().getSettingsIcon()));
 		settingsButton.setBounds(x, y, 42, 42);
 		settingsButton.setOpaque(false);
 		settingsButton.setBorder(BorderFactory.createEmptyBorder());
@@ -57,7 +58,7 @@ public class MenuButtons {
 	}
 	
 	public static JButton infoButton(ColorPoolFrame frame, int x, int y) {
-		JButton infoButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
+		JButton infoButton = new JButton(new ImageIcon(Pictures.getPictures().getInfoIcon()));
 		infoButton.setBounds(x, y, 42, 42);
 		infoButton.setOpaque(false);
 		infoButton.setBorder(BorderFactory.createEmptyBorder());
@@ -73,7 +74,7 @@ public class MenuButtons {
 
 
 	public static JButton recordButton(ColorPoolFrame frame, int x, int y) {
-		JButton recordButton = new JButton(new ImageIcon(ColorPoolFrame.getFrame().getPictures().getRecordIcon()));
+		JButton recordButton = new JButton(new ImageIcon(Pictures.getPictures().getRecordIcon()));
 		recordButton.setBounds(x, y, 42, 42);
 		recordButton.setOpaque(false);
 		recordButton.setBorder(BorderFactory.createEmptyBorder());

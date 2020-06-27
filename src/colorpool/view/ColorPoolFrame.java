@@ -23,7 +23,6 @@ public class ColorPoolFrame extends JFrame {
 	private MenuPanel menuP;
 	private SettingsPanel settingsP;
 	
-	private Pictures pictures;
 	
 	public static ColorPoolFrame frame=null;
 	
@@ -45,7 +44,6 @@ public class ColorPoolFrame extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		pictures = new Pictures();
 	}
 	
 	public static ColorPoolFrame getFrame() {
@@ -84,7 +82,9 @@ public class ColorPoolFrame extends JFrame {
 		//avvio delle animazioni
 		thread = new Thread(new Loop(startP));
 		run(); 
-		pictures.initPictures();
+		try {
+			Settings.init();
+		} catch (InterruptedException e) { }
 	}
 	
 	//passaggio al pannello menu
@@ -130,15 +130,11 @@ public class ColorPoolFrame extends JFrame {
 	
 	public void info() {
 		String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
-		JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(ColorPoolFrame.getFrame().getPictures().getInfoIcon()));
+		JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getPictures().getInfoIcon()));
 	}
 	
 	public void record() {
 		
-	}
-	
-	public Pictures getPictures() {
-		return this.pictures;
 	}
 	
 	

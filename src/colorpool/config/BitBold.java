@@ -18,6 +18,9 @@ public class BitBold {
 		} 
 	}
 	
+	static void initFont() {
+		instance = new BitBold();
+	}
 	
 	public static Font getFont() {
 		if(instance == null)
