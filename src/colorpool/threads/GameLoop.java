@@ -2,7 +2,7 @@ package colorpool.threads;
 
 import colorpool.core.Movements;
 import colorpool.view.GamePanel;
-
+//runnable utilizzato durante una partita
 public class GameLoop implements Runnable {
 
 	public GamePanel panel;

@@ -2,11 +2,12 @@ package colorpool.threads;
 
 import javax.swing.JPanel;
 
-public class Loop implements Runnable {
+//runnable utilizzato nei vari pannelli
+public class PanelLoop implements Runnable {
 	
 	public JPanel panel;
 	
-	public Loop(JPanel panel) {
+	public PanelLoop(JPanel panel) {
 		this.panel = panel;
 		
 	}

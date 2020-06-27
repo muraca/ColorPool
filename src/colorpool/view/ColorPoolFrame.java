@@ -14,7 +14,7 @@ import colorpool.config.Pictures;
 import colorpool.config.Settings;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
-import colorpool.threads.Loop;
+import colorpool.threads.PanelLoop;
 //JFrame personalizzato, per utilizzare al meglio il CardLayout
 public class ColorPoolFrame extends JFrame {
 	private CardLayout layout;
@@ -77,7 +77,7 @@ public class ColorPoolFrame extends JFrame {
 		layout.show(container, "start");
 
 		//avvio delle animazioni
-		thread = new Thread(new Loop(startP));
+		thread = new Thread(new PanelLoop(startP));
 		run(); 
 		try {
 			Settings.init();
@@ -89,7 +89,7 @@ public class ColorPoolFrame extends JFrame {
 		menuP = new MenuPanel(this);
 		startP.setFocusable(true);
 		//avvio delle animazioni
-		thread = new Thread(new Loop(menuP));
+		thread = new Thread(new PanelLoop(menuP));
 		run();
 		//aggiunta al container, visualizzazione del pannello
 		container.add("menu", menuP);
