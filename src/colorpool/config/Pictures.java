@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-
+//classe per la gestione delle immagini
 public class Pictures {
 	
-	//pool background
+	//sfondo del biliardo
 	private Image background;
-	//start menu
+	//schermata di caricamento
 	private Image start;
 	private Image loading;
 	
-	//menu icons
+	//bottoni del menu
 	private Image buttonIcon;
 	private Image settingsIcon;
 	private Image infoIcon;
@@ -24,7 +24,7 @@ public class Pictures {
 	private Image homeIcon;
 	private Image menuText;
 	
-	//game icons
+	//immagini del gioco
 	private Image stick;
 	private ArrayList<Image> balls;
 	

@@ -65,13 +65,15 @@ public class Ball {
     public int getR() {
         return d/2;
     }
-	
+    
+	//controllo se la palla è fuori dal campo sull'asse delle ascisse
     public boolean isOutX() {
     	if(x >= Settings.POOLMAXX-d|| x <= Settings.POOLMINX)
     		return true;
     	return false;
     }
-    
+
+	//controllo se la palla è fuori dal campo sull'asse delle ordinate
     public boolean isOutY() {
     	if(y >= Settings.POOLMAXY-d || y <= Settings.POOLMINY)
     		return true;

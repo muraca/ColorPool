@@ -11,8 +11,10 @@ import colorpool.config.Pictures;
 import colorpool.core.Game;
 import colorpool.view.ColorPoolFrame;
 
+//bottoni per la classe Game
 public class GameButtons {
-
+	
+	//uscire dalla partita
 	public static JButton homeButton(ColorPoolFrame frame, int x, int y) {
 		JButton homeButton = new JButton(new ImageIcon(Pictures.getPictures().getHomeIcon()));
 		homeButton.setBounds(x, y, 42, 42);

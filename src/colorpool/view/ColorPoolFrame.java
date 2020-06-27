@@ -21,8 +21,6 @@ public class ColorPoolFrame extends JFrame {
 	private Container container;
 	private StartPanel startP;
 	private MenuPanel menuP;
-	private SettingsPanel settingsP;
-	
 	
 	public static ColorPoolFrame frame=null;
 	
@@ -39,7 +37,6 @@ public class ColorPoolFrame extends JFrame {
 		this.setSize(Settings.WIDTH, Settings.HEIGHT);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-Settings.WIDTH/2, dim.height/2-Settings.HEIGHT/2);
-		
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,8 +99,7 @@ public class ColorPoolFrame extends JFrame {
 	}
 	//passaggio al pannello impostazioni
 	public void settings() {
-		settingsP = new SettingsPanel();
-		settingsP.setFocusable(true);
+		Settings.throwError(1);
 		
 	}
 	
@@ -127,14 +123,14 @@ public class ColorPoolFrame extends JFrame {
 		thread = new Thread(new GameLoop(panel));
 		run();
 	}
-	
+	//informazioni sul gioco
 	public void info() {
 		String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
 		JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getPictures().getInfoIcon()));
 	}
-	
+	//per visualizzare i record dei vari giocatori
 	public void record() {
-		
+		Settings.throwError(1);
 	}
 	
 	

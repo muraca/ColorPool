@@ -1,13 +1,15 @@
 package colorpool.core;
 
 import colorpool.config.Settings;
-
+//controllo di tutti i movimenti delle palline
 public class Movements {
 	
-	//Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
+	//velocità di partenza della pallina bianca
 	private static final double speed = 10.0;
+	//rallentamento delle palline
     private static double friction=0.01;
-	
+    
+    //Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
 	public static void shotWhiteBall(int x, int y) {
 		
 		double dx = (double) Math.abs(Game.getGame().getWhiteBall().x-x);

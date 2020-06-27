@@ -7,7 +7,7 @@ import java.awt.event.MouseMotionListener;
 import colorpool.config.*;
 import colorpool.core.*;
 import colorpool.view.*;
-
+//visualizza i movimenti e i click del mouse durante una partita
 public class GameListener implements MouseListener, MouseMotionListener {
 
 	private GamePanel panel;
@@ -16,6 +16,7 @@ public class GameListener implements MouseListener, MouseMotionListener {
 		this.panel = panel;
 	}
 	
+	//al movimento del mouse, disegna il percorso della pallina
     @Override
     public void mouseMoved(MouseEvent e) {
         if (e.getX()<=Settings.WIDTH && e.getY()<=Settings.HEIGHT && Game.getGame().canShot()) {
@@ -26,13 +27,13 @@ public class GameListener implements MouseListener, MouseMotionListener {
         }
     }
 
+    //alla pressione del mouse, se è possibile effettua il colpo
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(Game.getGame().canShot()) {
 			panel.setPath(null);
 			Movements.shotWhiteBall(e.getX(), e.getY());
 		}
-		panel.repaint();
 	}
     
     @Override

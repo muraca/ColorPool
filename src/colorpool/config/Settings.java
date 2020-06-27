@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import colorpool.view.ColorPoolFrame;
 
+//impostazioni generali del gioco, inizializzazione, gestione delle eccezioni
 public class Settings {
 	public static final int HEIGHT = 820;
 	public static final int WIDTH = 1400;
@@ -62,7 +63,7 @@ public class Settings {
     			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
     			Thread.sleep(500);
     			
-    			}
+    		}
     		catch (IOException e) {
     			Settings.throwError(2);
     		} catch (InterruptedException e) { }
@@ -76,11 +77,15 @@ public class Settings {
 		//TODO
 		System.out.println("Error " + code + ": ");
 		switch (code) {
+		case 1:
+			System.out.println("Work in progress...");
+			break;
 		case 2:
 			System.out.println("Can't find some pictures. Please download again the game or contact the developer.");
 			break;
 		case 3:
 			System.out.println("Can't find bitbold.ttf. Please download again the game or contact the developer.");
+			break;
 		}
 	}
 }

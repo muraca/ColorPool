@@ -2,8 +2,8 @@ package colorpool.core;
 
 import java.awt.Color;
 
-public class Path 
-{
+//indicatore della traiettoria della pallina bianca
+public class Path {
 	double x;
 	double y;
 	static final int dimension=10;
