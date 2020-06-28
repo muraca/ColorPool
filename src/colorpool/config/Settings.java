@@ -1,8 +1,7 @@
 package colorpool.config;
 
-import java.io.IOException;
-
 import colorpool.view.ColorPoolFrame;
+import colorpool.view.MyOptionPane;
 
 //impostazioni generali del gioco, inizializzazione, gestione delle eccezioni
 public class Settings {
@@ -21,71 +20,72 @@ public class Settings {
 	public static final String MENU = "menu";
 	
 
-    public static void init() throws InterruptedException {
+    public static void init(){
     	
-    		try {
-    			Pictures.getPictures().loadBackground();
-    			ColorPoolFrame.getFrame().getStart().setBackground(Pictures.getPictures().getBackground());
-    			
-    			Pictures.getPictures().loadStart();
-    			ColorPoolFrame.getFrame().getStart().setForeground(Pictures.getPictures().getStart());
-    			
-    			Pictures.getPictures().loadLoading(0);
-    			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
-    			
-    			Pictures.getPictures().loadButtonIcon();
-    			Pictures.getPictures().loadSettingsIcon(); 
-    			Pictures.getPictures().loadInfoIcon(); 
-    			
-    			Pictures.getPictures().loadLoading(1);
-    			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
-    			ColorPoolFrame.getFrame().getStart().repaint();
-    			Thread.sleep(500);
-    			
-    			Pictures.getPictures().loadRecordIcon(); 
-    			Pictures.getPictures().loadHomeIcon(); 
-    			
-    			Pictures.getPictures().loadLoading(2);
-    			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
-    			Thread.sleep(500);		
+    	try {
+			Pictures.getPictures().loadBackground();
+			ColorPoolFrame.getFrame().getStartPanel().setBackground(Pictures.getPictures().getBackground());
+			
+			Pictures.getPictures().loadStart();
+			ColorPoolFrame.getFrame().getStartPanel().setForeground(Pictures.getPictures().getStart());
+			
+			Pictures.getPictures().loadLoading(0);
+			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
+			
+			Pictures.getPictures().loadButtonIcon();
+			Pictures.getPictures().loadSettingsIcon(); 
+			Pictures.getPictures().loadInfoIcon(); 
+			
+			Pictures.getPictures().loadLoading(1);
+			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
+			Thread.sleep(500);
+			
+			Pictures.getPictures().loadRecordIcon(); 
+			Pictures.getPictures().loadHomeIcon(); 
+			
+			Pictures.getPictures().loadLoading(2);
+			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
+			Thread.sleep(500);		
 
-    			Pictures.getPictures().loadMenuText(); 
-    			Pictures.getPictures().loadStick(); 
-
-    			Pictures.getPictures().loadLoading(3);
-    			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
-    			Thread.sleep(800);
-    			
-    			Pictures.getPictures().loadBalls();
-    			BitBold.initFont();
-    			
-    			Pictures.getPictures().loadLoading(4);
-    			ColorPoolFrame.getFrame().getStart().setLoadingImg(Pictures.getPictures().getLoading());
-    			Thread.sleep(500);
-    			
-    		}
-    		catch (IOException e) {
-    			Settings.throwError(2);
-    		} catch (InterruptedException e) { }
-    		
-    	Thread.sleep(500);
+			Pictures.getPictures().loadMenuText(); 
+			Pictures.getPictures().loadStick(); 
+			
+			Pictures.getPictures().loadLoading(3);
+			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
+			Thread.sleep(800);
+			
+			Pictures.getPictures().loadBalls();
+			BitBold.initFont();
+			
+			Pictures.getPictures().loadLoading(4);
+			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
+			Thread.sleep(500);
+			
+		}
+		catch (Exception e) {
+			Settings.throwError(2);
+		}	
     	
-    	ColorPoolFrame.getFrame().getStart().completed();
+    	ColorPoolFrame.getFrame().getStartPanel().completed();
     }
     
 	public static void throwError(int code) {
-		//TODO
-		System.out.println("Error " + code + ": ");
+		String text;
 		switch (code) {
 		case 1:
-			System.out.println("Work in progress...");
+			text = "Work in progress...";
 			break;
 		case 2:
-			System.out.println("Can't find some pictures. Please download again the game or contact the developer.");
+			text = "Can't find some pictures. Please download again the game or contact the developer.";
 			break;
 		case 3:
-			System.out.println("Can't find bitbold.ttf. Please download again the game or contact the developer.");
+			text = "Can't find bitbold.ttf. Please download again the game or contact the developer.";
+			break;
+		default:
+			text = "Undefined error. Please try again.";
 			break;
 		}
+		MyOptionPane.errorPane(code, text);
+		
 	}
 }

@@ -109,6 +109,7 @@ public class Pictures {
 		return stick;
 	}
 	
+	//caricamento delle immagini
 	void loadBackground() throws IOException {
 		background = ImageIO.read(getClass().getClassLoader().getResource("resources/game/pool.png"));
 	}

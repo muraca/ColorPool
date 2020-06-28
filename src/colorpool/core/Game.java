@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import colorpool.config.Pictures;
 import colorpool.config.Settings;
 import colorpool.view.ColorPoolFrame;
+import colorpool.view.MyOptionPane;
 public class Game {
 	private WhiteBall whiteball;
 	private ArrayList<Ball> balls;
@@ -107,7 +107,7 @@ public class Game {
 	}
     
     public void pot(Ball pottedBall){
-    	if(game!=null) { //TODO Lo tengo?
+    	if(game!=null) { 
     		if(pottedBall.equalsTo(whiteball)) {
     			lose(whiteball);
     		}
@@ -119,7 +119,7 @@ public class Game {
     				}
     			}
     			Movements.stopBalls();
-    			JOptionPane.showMessageDialog(null, "Good shot!", "New point!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())));
+    			MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), true);
     			pottedBalls.add(pottedBall);
     			points++;
     			if(pottedBalls.size()<balls.size())
@@ -130,12 +130,10 @@ public class Game {
     	}
     }
     
-    private void lose(Ball b) {
+    private void lose(Ball pottedBall) {
     	Movements.stopBalls();
-    	JOptionPane.showMessageDialog(null, "Wrong ball potted!", "Oh, no!", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getPictures().getBall(b.getColor())));
-    	String[] options = {"Quit", "Play"};
-    	int chosen = JOptionPane.showOptionDialog(null, "Do you want to play again?", "Game Over!",
-    			JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
+		MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), false);
+    	int chosen = MyOptionPane.gameOverPane();
     	if(chosen==0) {
     		game = null;
     		ColorPoolFrame.getFrame().menu();
@@ -148,9 +146,7 @@ public class Game {
     }
     
     public static void home() {
-    	String[] options = {"Quit", "Play"};
-    	int chosen = JOptionPane.showOptionDialog(null, "Do you really want to quit?", "Quit game",
-    			JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
+    	int chosen = MyOptionPane.homebuttonPane();
     	if(chosen==0) {
     		game = null;
     		ColorPoolFrame.getFrame().menu();
@@ -162,9 +158,5 @@ public class Game {
 		game = null;
 		
 	}
-
-	
-
-	
 
 }

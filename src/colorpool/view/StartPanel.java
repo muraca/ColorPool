@@ -16,12 +16,12 @@ public class StartPanel extends JPanel {
 	private Image loadingImg = null;
 	private JTextField text;
 	
-	private boolean loading;
-	private boolean toWrite;
+	private boolean loading; //se il caricamento è in corso, allora la pressione di un tasto non porta al 
+	private boolean toWrite; 
 	
 	public StartPanel(ColorPoolFrame frame) {
 		super();
-		setLayout(null);
+		setLayout(null); //per il corretto posizionamento delle immagini
 		
 		loading = true;
 		toWrite = true;
@@ -41,7 +41,8 @@ public class StartPanel extends JPanel {
 			g.drawImage(foreground, 0, 0, null);
 		if(loadingImg!=null)
 			g.drawImage(loadingImg, 0, 0, null);
-		else if(!loading&&toWrite)
+		//se il caricamento è stato completato allora l'immagine di caricamento non esiste
+		else if(!loading&&toWrite) //il testo viene scritto solo se non è già stato scritto
 			writePress();
 	}	
 	
@@ -57,12 +58,18 @@ public class StartPanel extends JPanel {
 		this.loadingImg = l;
 	}
 	
+	public boolean isLoading() {
+		return loading;
+	}
+	
+	//a caricamento completato, l'immagine di caricamento scompare
 	public void completed() {
 		loadingImg = null;
 		loading = false;
 		repaint();
 	}
 	
+	//inizializza la JTextField e fa in modo che il testo venga scritto una volta sola
 	private void writePress() { 
 		toWrite = false;
 		text = new JTextField();
@@ -78,5 +85,7 @@ public class StartPanel extends JPanel {
 	}
 	
 	private static final long serialVersionUID = 5913352926465412444L;
+
+	
 
 }

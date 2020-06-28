@@ -49,6 +49,7 @@ public class GamePanel extends JPanel {
     	
 	}
 	
+	//inizializzazione del testo del punteggio
 	private void initText() {
 		text = new JTextField(Integer.toString(Game.getGame().points));
     	text.setBounds(135, 17, 150, 30);

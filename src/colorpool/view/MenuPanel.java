@@ -26,7 +26,7 @@ public class MenuPanel extends JPanel{
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		
-		trainingButton = MenuButtons.trainingButton(frame, 525, 402); //spazio 100 tra i bottoni
+		trainingButton = MenuButtons.trainingButton(frame, 525, 402); //TODO spazio 100 tra i bottoni
 		this.add(trainingButton);
 		
 		

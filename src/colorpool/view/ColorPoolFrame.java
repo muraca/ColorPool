@@ -5,12 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import colorpool.config.Pictures;
 import colorpool.config.Settings;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
@@ -49,11 +44,11 @@ public class ColorPoolFrame extends JFrame {
 		return frame;
 	}
 	
-	public StartPanel getStart() {
+	public StartPanel getStartPanel() {
 		return startP;
 	}
 	
-	public MenuPanel getMenu() {
+	public MenuPanel getMenuPanel() {
 		return menuP;
 	}
 	
@@ -79,9 +74,8 @@ public class ColorPoolFrame extends JFrame {
 		//avvio delle animazioni
 		thread = new Thread(new PanelLoop(startP));
 		run(); 
-		try {
-			Settings.init();
-		} catch (InterruptedException e) { }
+		
+		Settings.init();
 	}
 	
 	//passaggio al pannello menu
@@ -125,8 +119,7 @@ public class ColorPoolFrame extends JFrame {
 	}
 	//informazioni sul gioco
 	public void info() {
-		String infoMessage = "©2020 Matteo Muraca, made for IGPE Course";
-		JOptionPane.showMessageDialog(null, infoMessage, "Info", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(Pictures.getPictures().getInfoIcon()));
+		MyOptionPane.infoPane();
 	}
 	//per visualizzare i record dei vari giocatori
 	public void record() {

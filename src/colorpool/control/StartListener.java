@@ -18,7 +18,8 @@ public class StartListener implements MouseListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		frame.menu();
+		if(!frame.getStartPanel().isLoading())
+			frame.menu();
 		
 	}
 
@@ -27,7 +28,8 @@ public class StartListener implements MouseListener, KeyListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		frame.menu();
+		if(!frame.getStartPanel().isLoading())
+			frame.menu();
 		
 	}
 
