@@ -1,7 +1,6 @@
 package colorpool.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
@@ -75,7 +74,7 @@ public class StartPanel extends JPanel {
 		text = new JTextField();
 		text.setBounds(300, 580, 800, 64);
 		text.setForeground(Color.WHITE);
-		text.setFont(BitBold.getFont().deriveFont(Font.BOLD, 40f));
+		text.setFont(BitBold.getFont().deriveFont(40f));
 		text.setOpaque(false);
     	text.setBorder(null);
     	text.setEditable(false);

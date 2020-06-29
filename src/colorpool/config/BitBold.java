@@ -5,7 +5,7 @@ import java.io.File;
 
 public class BitBold {
 
-	public static BitBold instance;
+	public static BitBold instance = null;
 
 	private Font bitbold;
 	
@@ -15,11 +15,16 @@ public class BitBold {
 			
 		} catch (Exception e) {
 			Settings.throwError(3);
+			substituteFont();
 		} 
 	}
 	
 	static void initFont() {
 		instance = new BitBold();
+	}
+	
+	private void substituteFont() {
+		bitbold = Font.getFont("Arial");
 	}
 	
 	public static Font getFont() {

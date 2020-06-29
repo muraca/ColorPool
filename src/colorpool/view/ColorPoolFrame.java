@@ -111,7 +111,7 @@ public class ColorPoolFrame extends JFrame {
 	}
 	//passaggio al pannello impostazioni
 	public void settings() {
-		Settings.throwError(1);
+		SettingsDialog.showSettings();
 	}
 	
 	//avvia la modalità di gioco di allenamento
