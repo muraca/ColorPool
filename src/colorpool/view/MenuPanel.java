@@ -1,7 +1,6 @@
 package colorpool.view;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -10,9 +9,6 @@ import colorpool.config.Pictures;
 
 
 public class MenuPanel extends JPanel{
-	private Image backgroundImg;
-	private Image foregroundImg;
-	
 	private JButton trainingButton;
 	
 	private JButton settingsButton;
@@ -20,9 +16,6 @@ public class MenuPanel extends JPanel{
 	private JButton recordButton;
 	
 	public MenuPanel(ColorPoolFrame frame) {
-        //inizializzo le immagini
-		backgroundImg = Pictures.getPictures().getBackground();
-		foregroundImg = Pictures.getPictures().getMenuText();
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		
@@ -45,8 +38,8 @@ public class MenuPanel extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(backgroundImg, 0, 0, null);
-		g.drawImage(foregroundImg, 0, 0, null);
+		g.drawImage(Pictures.getPictures().getBackground(), 0, 0, null);
+		g.drawImage(Pictures.getPictures().getMenuText(), 0, 0, null);
 	}
 	
 	private static final long serialVersionUID = 6023735830414114292L;

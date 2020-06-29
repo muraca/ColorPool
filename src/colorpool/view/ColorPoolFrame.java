@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import colorpool.config.Settings;
+import colorpool.core.Game;
 import colorpool.testbutton.*;
 import colorpool.threads.GameLoop;
 import colorpool.threads.PanelLoop;
@@ -16,6 +17,7 @@ public class ColorPoolFrame extends JFrame {
 	private Container container;
 	private StartPanel startP;
 	private MenuPanel menuP;
+	private GamePanel gameP;
 	
 	public static ColorPoolFrame frame=null;
 	
@@ -60,7 +62,16 @@ public class ColorPoolFrame extends JFrame {
 	}
 	
 	public void stop() {
+		thread.interrupt();
 		thread = null;
+	}
+	
+	public void stopGame() {
+		thread.interrupt();
+		thread = null;
+		container.remove(gameP);
+		gameP = null;
+		menu();
 	}
 	
 	//mostra la schermata di inizio, gestendo anche il thread
@@ -70,6 +81,7 @@ public class ColorPoolFrame extends JFrame {
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
 		layout.show(container, "start");
+		
 
 		//avvio delle animazioni
 		thread = new Thread(new PanelLoop(startP));
@@ -80,15 +92,17 @@ public class ColorPoolFrame extends JFrame {
 	
 	//passaggio al pannello menu
 	public void menu() {
-		menuP = new MenuPanel(this);
-		startP.setFocusable(true);
+		if(menuP == null)
+			menuP = new MenuPanel(this);
+		menuP.setFocusable(true);
 		//avvio delle animazioni
 		thread = new Thread(new PanelLoop(menuP));
 		run();
-		//aggiunta al container, visualizzazione del pannello
-		container.add("menu", menuP);
-		layout.show(container, "menu");
 		
+		//aggiunta al container, visualizzazione del pannello
+		if(!container.isAncestorOf(menuP))
+			container.add("menu", menuP);
+		layout.show(container, "menu");
 		
 	}
 	//passaggio al pannello impostazioni
@@ -100,21 +114,23 @@ public class ColorPoolFrame extends JFrame {
 	//avvia la modalità di gioco di allenamento
 	public void training() {
 		
-		GamePanel panel = new GamePanel();
+        Game.initGame(Game.SINGLEPLAYER);
+        gameP = new GamePanel();
+		
 		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
         TestButton testb = new TestButton();
         testb.addActionListener(new TestButtonListener());
         testb.setBounds(Settings.WIDTH-250, Settings.HEIGHT-60, 100, 30);
-        panel.add(testb);
+        gameP.add(testb);
         
-        panel.setFocusable(true);//focus per movimenti mouse
+        gameP.setFocusable(true);//focus per movimenti mouse
         //aggiunta al container, visualizzazione del pannello
-        container.add("game", panel);
+        container.add("game", gameP);
         layout.show(container, "game");
         
         stop();
         //avvio del gioco
-		thread = new Thread(new GameLoop(panel));
+		thread = new Thread(new GameLoop(gameP));
 		run();
 	}
 	//informazioni sul gioco

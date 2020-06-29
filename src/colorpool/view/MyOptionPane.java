@@ -45,8 +45,6 @@ public class MyOptionPane {
 		
 		JDialog dialog = pottedballpane.createDialog(ColorPoolFrame.getFrame(), title);
 		dialog.setVisible(true);
-		
-		
 	}
 	
 	public static int gameOverPane() {
@@ -60,21 +58,21 @@ public class MyOptionPane {
     	JDialog dialog = gameoverpane.createDialog(ColorPoolFrame.getFrame(), "Game Over!");
 		dialog.setVisible(true);
 		
-		return 1;
+		return (gameoverpane.getValue() == "Play") ? 1 : 0;
 	}
 	
 	public static int homebuttonPane() {
 		String[] options = {"Quit", "Play"};
-    	JOptionPane gameoverpane = new JOptionPane("Do you really want to quit?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[1]);
-    	gameoverpane.setOpaque(true);
+    	JOptionPane homebuttonpane = new JOptionPane("Do you really want to quit?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[1]);
+    	homebuttonpane.setOpaque(true);
     	
-    	colorComponentsBG(gameoverpane, backgroundColor);
-    	gameoverpane.setBackground(backgroundColor);
+    	colorComponentsBG(homebuttonpane, backgroundColor);
+    	homebuttonpane.setBackground(backgroundColor);
 		
-		JDialog dialog = gameoverpane.createDialog(ColorPoolFrame.getFrame(), "Quit game");
+		JDialog dialog = homebuttonpane.createDialog(ColorPoolFrame.getFrame(), "Quit game");
 		dialog.setVisible(true);
 		
-		return 0;
+		return (homebuttonpane.getValue() == "Play") ? 1 : 0;
 	}
 	
 	public static void infoPane() {

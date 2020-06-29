@@ -10,30 +10,91 @@ import colorpool.config.Settings;
 import colorpool.view.ColorPoolFrame;
 import colorpool.view.MyOptionPane;
 public class Game {
+	//modalità di gioco, singleplayer o multiplayer
+	public final static boolean SINGLEPLAYER = false;
+	public final static boolean MULTIPLAYER = true;
+	private boolean gamemode;
+	
+	//variabile che 
+	public final static boolean PLAYER1 = false;
+	public final static boolean PLAYER2 = true;
+	private boolean turn;
+	
+	
 	private WhiteBall whiteball;
 	private ArrayList<Ball> balls;
-	private ArrayList<Ball> pottedBalls;
 	
-
-	public int points;
+	private ArrayList<Ball> pottedBalls1;
+	private ArrayList<Ball> pottedBalls2;
+	private int points1;
+	private int points2;
+	
 	private static Game game = null;
 	
-	private Game(int _points) {
-		this.points = _points;
+	private Game(int p1) {
+		points1 = p1;
+		pottedBalls1 = new ArrayList<>();
+		gamemode = SINGLEPLAYER;
+		turn = PLAYER1;
+		
+		pottedBalls2 = new ArrayList<>(); //per evitare nullpointer exceptions
+
 		generateBalls();
-		pottedBalls = new ArrayList<>();
 	}
 	
-	private Game(int _points, ArrayList<Ball> pottedBalls) {
-		this.points = _points;
-		this.pottedBalls = pottedBalls;
+	private Game(int p1, int p2) {
+		points1 = p1;
+		points2 = p2;
+		pottedBalls1 = new ArrayList<>();
+		pottedBalls2 = new ArrayList<>();
+		gamemode = MULTIPLAYER;
+		turn = PLAYER1;
+
+		generateBalls();
+	}
+	
+	private Game(int p1, ArrayList<Ball> pB1) {
+		points1 = p1;
+		pottedBalls1 = pB1;
+		gamemode = SINGLEPLAYER;
+		turn = PLAYER1;
+		
+		pottedBalls2 = new ArrayList<>(); //per evitare nullpointer exceptions
+		
+		generateBalls();
+	}
+	
+	private Game(int p1, ArrayList<Ball> pB1, int p2, ArrayList<Ball> pB2) {
+		points1 = p1;
+		pottedBalls1 = pB1;
+		points2 = p2;
+		pottedBalls2 = pB2;
+		gamemode = MULTIPLAYER;
+		turn = PLAYER1;
+		
+		generateBalls();
+	}
+	
+	private Game(int p1, ArrayList<Ball> pB1, int p2, ArrayList<Ball> pB2, boolean nextTurn) {
+		points1 = p1;
+		pottedBalls1 = pB1;
+		points2 = p2;
+		pottedBalls2 = pB2;
+		gamemode = MULTIPLAYER;
+		turn = nextTurn;
+		
 		generateBalls();
 	}
 	
 	public static Game getGame() {
-		if(game == null)
-			game = new Game(0);
 		return game;
+	}
+	
+	public static void initGame(boolean gamemode) {
+		if(gamemode == SINGLEPLAYER)
+			game = new Game(0);
+		else
+			game = new Game(0, 0);
 	}
 	
 	public boolean canShot() {
@@ -53,8 +114,12 @@ public class Game {
 		return balls;
 	}
 
-	public ArrayList<Ball> getPottedBalls() {
-		return pottedBalls;
+	public ArrayList<Ball> getPottedBalls1() {
+		return pottedBalls1;
+	}
+	
+	public ArrayList<Ball> getPottedBalls2() {
+		return pottedBalls2;
 	}
 	
 	private void generateBalls() {
@@ -112,7 +177,7 @@ public class Game {
     			lose(whiteball);
     		}
     		else {
-    			for(Ball b: pottedBalls) {
+    			for(Ball b: pottedBalls1) {
     				if(b.equalsTo(pottedBall)) {
     					lose(b);
     					return;
@@ -120,12 +185,24 @@ public class Game {
     			}
     			Movements.stopBalls();
     			MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), true);
-    			pottedBalls.add(pottedBall);
-    			points++;
-    			if(pottedBalls.size()<balls.size())
-    				game = new Game(points, pottedBalls);
-    			else
-    				game = new Game(points);
+    			if(turn == PLAYER1) {
+    				pottedBalls1.add(pottedBall);
+    				points1++;
+    				if(pottedBalls1.size()<balls.size())
+    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, gamemode); //se gamemode è true allora sarà il turno del player2, altrimenti tira ancora player1
+    				else
+    					game = new Game(points1, new ArrayList<Ball>(), points2, pottedBalls2, gamemode);
+    			}
+    			else {
+    				pottedBalls2.add(pottedBall);
+    				points2++;
+    				if(pottedBalls2.size()<balls.size())
+    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, false);
+    				else
+    					game = new Game(points1, pottedBalls1, points2, new ArrayList<Ball>(), false);
+    				
+    			}
+    				
     		}
     	}
     }
@@ -133,30 +210,45 @@ public class Game {
     private void lose(Ball pottedBall) {
     	Movements.stopBalls();
 		MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), false);
-    	int chosen = MyOptionPane.gameOverPane();
-    	if(chosen==0) {
-    		game = null;
-    		ColorPoolFrame.getFrame().menu();
-    	}
-    	else {
+		
+    	if(MyOptionPane.gameOverPane() == 0) 
+    		ColorPoolFrame.getFrame().stopGame();
+    	
+    	else if(gamemode == SINGLEPLAYER)
     		game = new Game(0);
-    	}
+    	
+    	else
+    		game = new Game(0, 0);
+    	
     	
     	
     }
     
     public static void home() {
-    	int chosen = MyOptionPane.homebuttonPane();
-    	if(chosen==0) {
-    		game = null;
-    		ColorPoolFrame.getFrame().menu();
+    	if(MyOptionPane.homebuttonPane() == 0) {
+    		ColorPoolFrame.getFrame().stopGame();
     	}
     	
     }
 
 	public static void deleteGame() {
 		game = null;
-		
 	}
 
+	public int getPoints1() {
+		return points1;
+	}
+	
+	public int getPoints2() {
+		return points2;
+	}
+
+	
+	public boolean gamemode() {
+		return gamemode;
+	}
+	
+	public boolean turn() {
+		return turn;
+	}
 }
