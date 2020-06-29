@@ -31,7 +31,7 @@ public class MenuButtons {
 	
 	//modalità d'allenamento
 	public static JButton trainingButton(ColorPoolFrame frame, int x, int y) {
-		JButton trainingButton = menuButton("Training");
+		JButton trainingButton = menuButton("1 Player");
 		trainingButton.setBounds(x, y, 350, 62);
 		trainingButton.addActionListener(new ActionListener() {
 			@Override
@@ -40,6 +40,18 @@ public class MenuButtons {
 			}
 		});
 		return trainingButton;
+	}
+	
+	public static JButton multiplayerButton(ColorPoolFrame frame, int x, int y) {
+		JButton multiplayerButton = menuButton("2 Players");
+		multiplayerButton.setBounds(x, y, 350, 62);
+		multiplayerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.multiplayer();
+			}
+		});
+		return multiplayerButton;
 	}
 	
 	//impostazioni
@@ -87,4 +99,6 @@ public class MenuButtons {
 		});
 		return recordButton;
 	}
+
+	
 }

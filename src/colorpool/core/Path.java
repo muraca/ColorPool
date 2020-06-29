@@ -1,18 +1,14 @@
 package colorpool.core;
 
-import java.awt.Color;
-
 //indicatore della traiettoria della pallina bianca
 public class Path {
 	double x;
 	double y;
-	static final int dimension=10;
-	static final Color c=Color.WHITE;
+	static final int dimension = 10;
 	
-	public Path(double x,double y) 
-	{
-		this.x=x;
-		this.y=y;
+	public Path(double x,double y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	public double getX() {
@@ -27,8 +23,5 @@ public class Path {
 		return dimension;
 	}
 	
-	public Color getColor() {
-		return c;
-	}
 }
 

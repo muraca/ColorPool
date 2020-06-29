@@ -19,6 +19,7 @@ public class GameLoop implements Runnable {
 				Thread.sleep(10);
 				Movements.moveBalls();
 				panel.repaint();
+				Movements.movementControls();
 			}
 			catch (InterruptedException e) {
 				break;

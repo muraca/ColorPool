@@ -18,8 +18,9 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
     
     private Path p;
-    private JTextField text1;
-    private JTextField text2;
+    private JTextField player1points;
+    private JTextField player2points;
+    private JTextField playerShooting;
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -28,7 +29,7 @@ public class GamePanel extends JPanel {
 		
 		drawBalls(g);
 		drawPath(g);
-        points(g);
+        writeText(g);
 	}
 	
 	//inizializzazione dei vari componenti sfondo e testo
@@ -43,33 +44,46 @@ public class GamePanel extends JPanel {
     	GameListener gl = new GameListener(this);
     	this.addMouseListener(gl);
         this.addMouseMotionListener(gl);
-    	
+    	repaint();
 	}
 	
 	//inizializzazione del testo del punteggio
 	private void initText() {
-		text1 = new JTextField("");
-    	text1.setBounds(135, 17, 150, 30);
-    	text1.setForeground(Color.BLUE);
+		player1points = new JTextField("");
+    	player1points.setBounds(135, 17, 150, 30);
+    	if(Game.getGame().gamemode() == Game.MULTIPLAYER)
+    		player1points.setForeground(Settings.player1color);
+    	else
+        		player1points.setForeground(Settings.singleplayercolor);
 		
-		text1.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
+		player1points.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
 		
-    	text1.setOpaque(false);
-    	text1.setBorder(null);
-    	text1.setEditable(false);
-    	this.add(text1);
+    	player1points.setOpaque(false);
+    	player1points.setBorder(null);
+    	player1points.setEditable(false);
+    	this.add(player1points);
     	
-    	text2 = new JTextField("");
-    	text2.setBounds(776, 17, 150, 30);
-    	text2.setForeground(Color.RED);
+    	player2points = new JTextField("");
+    	player2points.setBounds(776, 17, 150, 30);
+    	player2points.setForeground(Settings.player2color);
 		
-		text2.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
+		player2points.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
 		
-    	text2.setOpaque(false);
-    	text2.setBorder(null);
-    	text2.setEditable(false);
-    	this.add(text2);
+    	player2points.setOpaque(false);
+    	player2points.setBorder(null);
+    	player2points.setEditable(false);
+    	this.add(player2points);
     	
+    	playerShooting = new JTextField("");
+    	
+    	playerShooting.setBounds(135, 760, 300, 30);
+		
+    	playerShooting.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
+		
+    	playerShooting.setOpaque(false);
+    	playerShooting.setBorder(null);
+    	playerShooting.setEditable(false);
+    	this.add(playerShooting);
 	}
 	
 	//disegna le palline all'interno del campo
@@ -84,28 +98,51 @@ public class GamePanel extends JPanel {
 	//disegna il puntatore
     private void drawPath(Graphics g){
         if (p!=null) {
-            g.setColor(p.getColor());
+        	if(Game.getGame().gamemode() == Game.SINGLEPLAYER)
+        		g.setColor(Settings.singleplayercolor);
+        	else if(Game.getGame().turn() == Game.PLAYER1)
+        		g.setColor(Settings.player1color);
+        	else
+        		g.setColor(Settings.player2color);
             g.drawLine((int)Game.getGame().getWhiteBall().getX()+Settings.WHITEBALLDIMENSION/2,(int) Game.getGame().getWhiteBall().getY()+Settings.WHITEBALLDIMENSION/2,(int)p.getX(),(int)p.getY());
         }
     }
     
-    //scrittura punteggio
-    private void points(Graphics g) {
-    	text1.setText(Integer.toString(Game.getGame().getPoints1()));
-    	int startx = text1.getX() + 50;
+    //scrittura punteggio e turno 
+    private void writeText(Graphics g) {
+    	player1points.setText(Integer.toString(Game.getGame().getPoints1()));
+    	
+    	int startx = player1points.getX() + 50;
+    	
     	for(Ball pottedBall: Game.getGame().getPottedBalls1()) {
-    		g.drawImage(Pictures.getPictures().getBall(pottedBall.getColor()), startx, text1.getY(), null);
+    		g.drawImage(Pictures.getPictures().getBall(pottedBall.getColor()), startx, player1points.getY(), null);
     		startx += Settings.BALLDIMENSION + 5;
     	}
     	
-    	if(Game.getGame().gamemode() == Game.MULTIPLAYER)
-    		text2.setText(Integer.toString(Game.getGame().getPoints2()));
-    	startx = text2.getX() + 50;
-    	for(Ball pottedBall: Game.getGame().getPottedBalls2()) {
-    		g.drawImage(Pictures.getPictures().getBall(pottedBall.getColor()), startx, text1.getY(), null);
-    		startx += Settings.BALLDIMENSION + 5;
-    	}
+    	if(Game.getGame().gamemode() == Game.MULTIPLAYER) {
+    		player2points.setText(Integer.toString(Game.getGame().getPoints2()));
     	
+    		startx = player2points.getX() + 50;
+    		
+    		for(Ball pottedBall: Game.getGame().getPottedBalls2()) {
+    			g.drawImage(Pictures.getPictures().getBall(pottedBall.getColor()), startx, player1points.getY(), null);
+    			startx += Settings.BALLDIMENSION + 5;
+    		}
+    		
+    		if(Game.getGame().turn() == Game.PLAYER1) {
+    			playerShooting.setForeground(Settings.player1color);
+    			playerShooting.setText("Player 1's turn");
+    		}
+    		else {
+    			playerShooting.setForeground(Settings.player2color);
+    			playerShooting.setText("Player 2's turn");
+    		}
+    				
+    	}
+    	else {
+			playerShooting.setForeground(Settings.singleplayercolor);
+			playerShooting.setText("Training mode");
+    	}
     }
     
     public void setPath(Path p) {

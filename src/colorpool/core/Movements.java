@@ -11,6 +11,7 @@ public class Movements {
     
     //Chiamato al click del mouse, serve a lanciare la pallina bianca se il gioco è fermo
 	public static void shotWhiteBall(int x, int y) {
+		Game.getGame().setMoving(true);
 		
 		double dx = (double) Math.abs(Game.getGame().getWhiteBall().x-x);
 		double dy = (double) Math.abs(Game.getGame().getWhiteBall().y-y);
@@ -44,10 +45,21 @@ public class Movements {
 			moveBall(b);
 			slowDown(b);
 		}
-		
+			
+	}
+	
+	public static void movementControls() {
+		//controllo delle buche
 		potting();
-		
+				
+		//controllo delle collisioni
 		collisions();
+				
+		//se tutte le palline son ferme, ma il gioco crede che ancora si stiano muovendo
+		if(Game.getGame().moving() && Game.getGame().canShot()) {
+			Game.getGame().setMoving(false); //il gioco sa che si sono fermate
+			Game.getGame().swapTurn(); //e sa che deve cambiare turno, se si è in multiplayer
+		}
 	}
 	
 	//Muove la singola pallina in direzione e verso dipendenti dalla velocità

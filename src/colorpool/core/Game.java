@@ -15,11 +15,13 @@ public class Game {
 	public final static boolean MULTIPLAYER = true;
 	private boolean gamemode;
 	
-	//variabile che 
+	//giocatore che sta tirando in questo momento
 	public final static boolean PLAYER1 = false;
 	public final static boolean PLAYER2 = true;
 	private boolean turn;
 	
+	//serve per comprendere se le palline sono ancora in movimento
+	private boolean moving = false;
 	
 	private WhiteBall whiteball;
 	private ArrayList<Ball> balls;
@@ -90,8 +92,8 @@ public class Game {
 		return game;
 	}
 	
-	public static void initGame(boolean gamemode) {
-		if(gamemode == SINGLEPLAYER)
+	public static void initGame(boolean mode) {
+		if(mode == SINGLEPLAYER)
 			game = new Game(0);
 		else
 			game = new Game(0, 0);
@@ -243,12 +245,25 @@ public class Game {
 		return points2;
 	}
 
-	
 	public boolean gamemode() {
 		return gamemode;
 	}
 	
 	public boolean turn() {
 		return turn;
+	}
+	
+	public boolean moving() {
+		return moving;
+	}
+	
+	public void setMoving(boolean m) {
+		moving = m;
+	}
+	
+	//cambia il turno solo se si è in multiplayer
+	public void swapTurn() {
+		if(gamemode == MULTIPLAYER)
+			turn = !turn;
 	}
 }

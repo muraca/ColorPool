@@ -1,5 +1,6 @@
 package colorpool.config;
 
+import java.awt.Color;
 import colorpool.view.ColorPoolFrame;
 import colorpool.view.MyOptionPane;
 
@@ -16,8 +17,9 @@ public class Settings {
 	public static final int BALLDIMENSION = 30;
 	public static final int WHITEBALLDIMENSION = 25;
 	
-	public static final String START = "start";
-	public static final String MENU = "menu";
+	public static Color player1color = Color.BLUE;
+	public static Color player2color = Color.RED;
+	public static Color singleplayercolor = Color.WHITE;
 	
 
     public static void init(){

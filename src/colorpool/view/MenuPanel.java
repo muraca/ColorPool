@@ -10,6 +10,7 @@ import colorpool.config.Pictures;
 
 public class MenuPanel extends JPanel{
 	private JButton trainingButton;
+	private JButton multiplayerButton;
 	
 	private JButton settingsButton;
 	private JButton infoButton;
@@ -21,7 +22,9 @@ public class MenuPanel extends JPanel{
 		
 		trainingButton = MenuButtons.trainingButton(frame, 525, 402); //TODO spazio 100 tra i bottoni
 		this.add(trainingButton);
-		
+
+		multiplayerButton = MenuButtons.multiplayerButton(frame, 525, 502);
+		this.add(multiplayerButton);
 		
 		settingsButton = MenuButtons.settingsButton(frame, 120, 650);
 		this.add(settingsButton);
