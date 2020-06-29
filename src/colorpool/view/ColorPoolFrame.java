@@ -80,7 +80,7 @@ public class ColorPoolFrame extends JFrame {
 	
 	//mostra la schermata di inizio, gestendo anche il thread
 	public void start() {
-		startP = new StartPanel(this);
+		startP = new StartPanel();
 		startP.setFocusable(true);//focus per ascolto click
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
@@ -97,7 +97,7 @@ public class ColorPoolFrame extends JFrame {
 	//passaggio al pannello menu
 	public void menu() {
 		if(menuP == null) {
-			menuP = new MenuPanel(this);
+			menuP = new MenuPanel();
 			menuP.setFocusable(true);
 		}
 		//avvio delle animazioni
@@ -115,9 +115,9 @@ public class ColorPoolFrame extends JFrame {
 		SettingsDialog.showSettings();
 	}
 	
-	//avvia la modalità di gioco di allenamento
-	public void training() {
-        Game.initGame(Game.SINGLEPLAYER);
+	//avvia il gioco secondo la modalità selezionata
+	public void game(boolean gamemode) {
+        Game.initGame(gamemode);
         gameP = new GamePanel();
 		
 		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
@@ -136,28 +136,7 @@ public class ColorPoolFrame extends JFrame {
 		thread = new Thread(new GameLoop(gameP));
 		run();
 	}
-	//avvia la modalità di gioco multiplayer
-	public void multiplayer() {
-		Game.initGame(Game.MULTIPLAYER);
-        gameP = new GamePanel();
-		
-		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
-        TestButton testb = new TestButton();
-        testb.addActionListener(new TestButtonListener());
-        testb.setBounds(Settings.WIDTH-250, Settings.HEIGHT-60, 100, 30);
-        gameP.add(testb);
-        
-        gameP.setFocusable(true);//focus per movimenti mouse
-        //aggiunta al container, visualizzazione del pannello
-        container.add("game", gameP);
-        layout.show(container, "game");
-        
-        stop();
-        //avvio del gioco
-		thread = new Thread(new GameLoop(gameP));
-		run();
-		
-	}
+	
 	//informazioni sul gioco
 	public void info() {
 		MyOptionPane.infoPane();

@@ -18,14 +18,13 @@ public class StartPanel extends JPanel {
 	private boolean loading; //se il caricamento è in corso, allora la pressione di un tasto non porta al 
 	private boolean toWrite; 
 	
-	public StartPanel(ColorPoolFrame frame) {
-		super();
+	public StartPanel() {
 		setLayout(null); //per il corretto posizionamento delle immagini
 		
 		loading = true;
 		toWrite = true;
 		
-		StartListener listener = new StartListener(frame);
+		StartListener listener = new StartListener(ColorPoolFrame.getFrame());
 		addKeyListener(listener);
 		addMouseListener(listener);
 		

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import colorpool.config.Pictures;
 import colorpool.config.Settings;
+import colorpool.core.Game;
 
 //vari JOptionPane personalizzati col colore di sfondo
 public class MyOptionPane {
@@ -48,7 +49,18 @@ public class MyOptionPane {
 	
 	public static int gameOverPane() {
     	String[] options = {"Quit", "Play"};
-    	JOptionPane gameoverpane = new JOptionPane("Do you want to play again?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[1]);
+    	StringBuffer message = new StringBuffer();
+    	if(Game.getGame().gamemode() == Game.MULTIPLAYER) {
+    		
+    		if(Game.getGame().getPoints1() < Game.getGame().getPoints2() || (Game.getGame().turn() == Game.PLAYER1 && Game.getGame().getPoints1() == Game.getGame().getPoints2()))
+    			message.append("Player 1 ");
+    		else
+    			message.append("Player 2 ");
+    		message.append("lost the match! \n");
+    	}
+    	message.append("Do you want to play again?");
+    		
+    	JOptionPane gameoverpane = new JOptionPane(message.toString(), JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[1]);
     	gameoverpane.setOpaque(true);
     	
     	colorComponentsBG(gameoverpane, Settings.BACKGROUNDCOLOR);

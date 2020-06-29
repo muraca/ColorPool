@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import colorpool.buttons.MenuButtons;
 import colorpool.config.Pictures;
+import colorpool.core.Game;
 
 
 public class MenuPanel extends JPanel{
@@ -16,23 +17,23 @@ public class MenuPanel extends JPanel{
 	private JButton infoButton;
 	private JButton recordButton;
 	
-	public MenuPanel(ColorPoolFrame frame) {
+	public MenuPanel() {
 		
 		setLayout(null); //indispensabile per il corretto posizionamento dei bottoni
 		
-		trainingButton = MenuButtons.trainingButton(frame, 525, 402); //TODO spazio 100 tra i bottoni
+		trainingButton = MenuButtons.playButton(525, 402, Game.SINGLEPLAYER);
 		this.add(trainingButton);
 
-		multiplayerButton = MenuButtons.multiplayerButton(frame, 525, 502);
+		multiplayerButton = MenuButtons.playButton(525, 502, Game.MULTIPLAYER);
 		this.add(multiplayerButton);
 		
-		settingsButton = MenuButtons.settingsButton(frame, 120, 650);
+		settingsButton = MenuButtons.settingsButton(120, 650);
 		this.add(settingsButton);
 		
-		infoButton = MenuButtons.infoButton(frame, 1238, 650);
+		infoButton = MenuButtons.infoButton(1238, 650);
 		this.add(infoButton);
 		
-		recordButton = MenuButtons.recordButton(frame, 120, 100);
+		recordButton = MenuButtons.recordButton(120, 100);
 		this.add(recordButton);
 		
 		

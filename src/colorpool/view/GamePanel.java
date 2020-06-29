@@ -39,7 +39,7 @@ public class GamePanel extends JPanel {
 		
 		initText();
     	
-		this.add(GameButtons.homeButton(ColorPoolFrame.getFrame(), Settings.WIDTH-180, 10));
+		this.add(GameButtons.homeButton(Settings.WIDTH-180, 10));
 		
     	GameListener gl = new GameListener(this);
     	this.addMouseListener(gl);

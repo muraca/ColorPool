@@ -11,13 +11,13 @@ import javax.swing.JButton;
 
 import colorpool.config.BitBold;
 import colorpool.config.Pictures;
+import colorpool.core.Game;
 import colorpool.view.ColorPoolFrame;
 
 //bottoni per il menu
 public class MenuButtons {
 	//template per i bottoni principali
 	private static JButton menuButton(String text) {
-		
 		JButton menuButton = new JButton(text, new ImageIcon(Pictures.getPictures().getButtonIcon()));
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
@@ -29,33 +29,27 @@ public class MenuButtons {
 		return menuButton;
 	}
 	
-	//modalità d'allenamento
-	public static JButton trainingButton(ColorPoolFrame frame, int x, int y) {
-		JButton trainingButton = menuButton("1 Player");
+	//avvia una partita
+	public static JButton playButton(int x, int y, boolean gamemode) {
+		String message;
+		if(gamemode == Game.SINGLEPLAYER)
+			message = "1 Player";
+		else
+			message = "2 Players";
+		JButton trainingButton = menuButton(message);
 		trainingButton.setBounds(x, y, 350, 62);
 		trainingButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.training();
+				ColorPoolFrame.getFrame().game(gamemode);
 			}
 		});
 		return trainingButton;
 	}
 	
-	public static JButton multiplayerButton(ColorPoolFrame frame, int x, int y) {
-		JButton multiplayerButton = menuButton("2 Players");
-		multiplayerButton.setBounds(x, y, 350, 62);
-		multiplayerButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.multiplayer();
-			}
-		});
-		return multiplayerButton;
-	}
 	
 	//impostazioni
-	public static JButton settingsButton(ColorPoolFrame frame, int x, int y) {
+	public static JButton settingsButton(int x, int y) {
 		JButton settingsButton = new JButton(new ImageIcon(Pictures.getPictures().getSettingsIcon()));
 		settingsButton.setBounds(x, y, 42, 42);
 		settingsButton.setOpaque(false);
@@ -63,14 +57,14 @@ public class MenuButtons {
 		settingsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.settings();
+				ColorPoolFrame.getFrame().settings();
 			}
 		});
 		return settingsButton;
 	}
 	
 	//informazioni sul gioco
-	public static JButton infoButton(ColorPoolFrame frame, int x, int y) {
+	public static JButton infoButton(int x, int y) {
 		JButton infoButton = new JButton(new ImageIcon(Pictures.getPictures().getInfoIcon()));
 		infoButton.setBounds(x, y, 42, 42);
 		infoButton.setOpaque(false);
@@ -78,7 +72,7 @@ public class MenuButtons {
 		infoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.info();
+				ColorPoolFrame.getFrame().info();
 			}
 		});
 		return infoButton;
@@ -86,7 +80,7 @@ public class MenuButtons {
 	}
 
 	//visualizzare i record
-	public static JButton recordButton(ColorPoolFrame frame, int x, int y) {
+	public static JButton recordButton(int x, int y) {
 		JButton recordButton = new JButton(new ImageIcon(Pictures.getPictures().getRecordIcon()));
 		recordButton.setBounds(x, y, 42, 42);
 		recordButton.setOpaque(false);
@@ -94,7 +88,7 @@ public class MenuButtons {
 		recordButton.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.record();
+				ColorPoolFrame.getFrame().record();
 			}
 		});
 		return recordButton;
