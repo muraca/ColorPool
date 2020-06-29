@@ -96,9 +96,10 @@ public class ColorPoolFrame extends JFrame {
 	
 	//passaggio al pannello menu
 	public void menu() {
-		if(menuP == null)
+		if(menuP == null) {
 			menuP = new MenuPanel(this);
-		menuP.setFocusable(true);
+			menuP.setFocusable(true);
+		}
 		//avvio delle animazioni
 		thread = new Thread(new PanelLoop(menuP));
 		run();
@@ -116,7 +117,6 @@ public class ColorPoolFrame extends JFrame {
 	
 	//avvia la modalità di gioco di allenamento
 	public void training() {
-		
         Game.initGame(Game.SINGLEPLAYER);
         gameP = new GamePanel();
 		
