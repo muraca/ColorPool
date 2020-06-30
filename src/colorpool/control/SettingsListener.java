@@ -33,5 +33,4 @@ public class SettingsListener implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) { }
 	
-
 }

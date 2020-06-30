@@ -23,7 +23,6 @@ public class ColorPoolFrame extends JFrame {
 	
 	public volatile Thread thread;
 	
-	
 	public ColorPoolFrame() {
 		//inizializzazione, assegna il layout al container
 		super("ColorPool");
@@ -85,7 +84,6 @@ public class ColorPoolFrame extends JFrame {
 		//aggiunta al container, visualizzazione del pannello
 		container.add("start", startP);
 		layout.show(container, "start");
-		
 
 		//avvio delle animazioni
 		thread = new Thread(new PanelLoop(startP));
@@ -148,9 +146,5 @@ public class ColorPoolFrame extends JFrame {
 	
 	
 	private static final long serialVersionUID = 588260456005796541L;
-
-
-	
-	
 
 }

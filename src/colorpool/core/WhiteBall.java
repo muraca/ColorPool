@@ -9,6 +9,4 @@ public class WhiteBall extends Ball{
 		super.d = 25;
 	}
 	
-	 
-	
 }

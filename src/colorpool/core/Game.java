@@ -222,8 +222,6 @@ public class Game {
     	else
     		game = new Game(0, 0);
     	
-    	
-    	
     }
     
     public static void home() {

@@ -161,6 +161,4 @@ public class Pictures {
 		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/purpleball.png"))); 
 	}
 	
-	
-	
 }

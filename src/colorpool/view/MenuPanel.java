@@ -36,7 +36,6 @@ public class MenuPanel extends JPanel{
 		recordButton = MenuButtons.recordButton(120, 100);
 		this.add(recordButton);
 		
-		
 	}
 	
 	@Override
