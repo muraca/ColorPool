@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import colorpool.view.TutorialPanel;
+
 //classe per la gestione delle immagini
 public class Pictures {
 	
@@ -105,7 +107,10 @@ public class Pictures {
 	}
 	
 	public Image getLanguageIcon(boolean language) {
-		return recordIcon;
+		if(language == TutorialPanel.ENGLISH)
+			return englishIcon;
+		
+		return italianIcon;
 	}
 
 	public Image getMenuText() {
@@ -146,8 +151,9 @@ public class Pictures {
 		homeIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/home.png"));
 	}
 	
-	void loadLanguageIcons() {
-		
+	void loadLanguageIcons() throws IOException {
+		englishIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/english.png"));
+		italianIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/italian.png"));
 	}
 	
 	void loadMenuText() throws IOException {

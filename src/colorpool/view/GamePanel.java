@@ -22,16 +22,6 @@ public class GamePanel extends JPanel {
     private JTextField player2points;
     private JTextField playerShooting;
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.drawImage(Pictures.getPictures().getBackground(), 0, 0, null);
-		
-		drawBalls(g);
-		drawPath(g);
-        paintPoints(g);
-	}
-	
 	//inizializzazione dei vari componenti sfondo e testo
 	public GamePanel() {
 		super();
@@ -53,7 +43,7 @@ public class GamePanel extends JPanel {
     	if(Game.getGame().gamemode() == Game.MULTIPLAYER)
     		player1points.setForeground(Settings.player1color);
     	else
-        		player1points.setForeground(Settings.singleplayercolor);
+        	player1points.setForeground(Settings.singleplayercolor);
 		
 		player1points.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
 		
@@ -147,5 +137,15 @@ public class GamePanel extends JPanel {
     public void setPath(Path p) {
     	this.p = p;
     }
+    
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(Pictures.getPictures().getBackground(), 0, 0, null);
+		
+		drawBalls(g);
+		drawPath(g);
+        paintPoints(g);
+	}
     
 }

@@ -56,6 +56,7 @@ public class Settings {
 			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
 			Thread.sleep(500);		
 
+			Pictures.getPictures().loadLanguageIcons();
 			Pictures.getPictures().loadMenuText(); 
 			
 			Pictures.getPictures().loadLoading(3);

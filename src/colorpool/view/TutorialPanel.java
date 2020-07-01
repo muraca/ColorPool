@@ -11,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import colorpool.buttons.TutorialButtons;
@@ -26,7 +25,7 @@ public class TutorialPanel extends JPanel {
 	
 	private boolean language = ITALIAN;
 	
-	private JTextField textArea;
+	private JTextField textField;
 	private String text;
 	
 	private JButton homeButton;
@@ -35,7 +34,7 @@ public class TutorialPanel extends JPanel {
 	
 	public TutorialPanel() {
 		super();
-		setLayout(null);
+		this.setLayout(null);
 		
 		homeButton = TutorialButtons.homeButton(Settings.WIDTH-180, 100);
 		this.add(homeButton);
@@ -48,22 +47,22 @@ public class TutorialPanel extends JPanel {
 	}
 
 	private void initText() {
-		textArea = new JTextField("");
-		textArea.setForeground(Color.WHITE);
-		textArea.setBackground(Color.RED);
-		textArea.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
-		textArea.setOpaque(false);
-		textArea.setBorder(BorderFactory.createLineBorder(Color.CYAN, 10));
-    	textArea.setEditable(true);
-    	textArea.setBounds(Settings.POOLMINX, Settings.POOLMINX, Settings.WIDTH-Settings.POOLMAXX, Settings.HEIGHT-Settings.POOLMAXX);
-    	textArea.setVisible(true);
+		textField = new JTextField("");
+		textField.setBounds(Settings.POOLMINX, Settings.POOLMINX, Settings.WIDTH-Settings.POOLMAXX, Settings.HEIGHT-Settings.POOLMAXX);
+		textField.setForeground(Color.WHITE);
+		textField.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25));
+		textField.setBackground(Color.YELLOW);
+		textField.setOpaque(true);
+		textField.setBorder(BorderFactory.createLineBorder(Color.RED, 22));
+    	textField.setEditable(true);
+    	textField.setVisible(true);
     	
-		this.add(textArea);
+		this.add(textField);
 		writeText(language);
 	}
 	
 	private void writeText(boolean newLanguage) {
-		if(textArea.getText() == null || language != newLanguage) {
+		if(textField.getText() == null || language != newLanguage) {
 			try {
 				File f = null;
 				if(newLanguage == ENGLISH) {
@@ -89,7 +88,7 @@ public class TutorialPanel extends JPanel {
 			}
 		}
 		text = "ciao Andrea come va la vita a Milano";
-		textArea.setText(text);
+		textField.setText(text);
 	}
 	
 	public void changeLanguage() {
