@@ -24,6 +24,10 @@ public class MyOptionPane {
 		
 		JDialog dialog = errorpane.createDialog(ColorPoolFrame.getFrame(), "Error "+id);
 		dialog.setVisible(true);
+		
+		if(errorpane.getValue() != null && id == 2) {
+			System.exit(2);
+		}
 	}
 	
 	public static void pottedBallPane(ImageIcon icon, boolean goodShot) {

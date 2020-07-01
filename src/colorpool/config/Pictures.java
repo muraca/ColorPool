@@ -24,8 +24,11 @@ public class Pictures {
 	private Image homeIcon;
 	private Image menuText;
 	
+	//icone lingua
+	private Image englishIcon;
+	private Image italianIcon;
+	
 	//immagini del gioco
-	private Image stick;
 	private ArrayList<Image> balls;
 	
 	private static Pictures instance = null;
@@ -100,14 +103,15 @@ public class Pictures {
 	public Image getHomeIcon() {
 		return homeIcon;
 	}
+	
+	public Image getLanguageIcon(boolean language) {
+		return recordIcon;
+	}
 
 	public Image getMenuText() {
 		return menuText;
 	}
 
-	public Image getStick() {
-		return stick;
-	}
 	
 	//caricamento delle immagini
 	void loadBackground() throws IOException {
@@ -142,12 +146,12 @@ public class Pictures {
 		homeIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/home.png"));
 	}
 	
-	void loadMenuText() throws IOException {
-		menuText = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/text.png"));
+	void loadLanguageIcons() {
+		
 	}
 	
-	void loadStick() throws IOException {
-		stick = ImageIO.read(getClass().getClassLoader().getResource("resources/game/stick.png"));
+	void loadMenuText() throws IOException {
+		menuText = ImageIO.read(getClass().getClassLoader().getResource("resources/menu/text.png"));
 	}
 
 	public void loadBalls() throws IOException{
@@ -160,5 +164,7 @@ public class Pictures {
 		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/blueball.png"))); 
 		balls.add(ImageIO.read(getClass().getClassLoader().getResource("resources/balls/purpleball.png"))); 
 	}
+
+	
 	
 }

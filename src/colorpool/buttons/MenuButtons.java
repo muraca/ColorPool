@@ -17,7 +17,7 @@ import colorpool.view.ColorPoolFrame;
 //bottoni per il menu
 public class MenuButtons {
 	//template per i bottoni principali
-	private static JButton menuButton(String text) {
+	private static JButton menuButton(String text, int x, int y) {
 		JButton menuButton = new JButton(text, new ImageIcon(Pictures.getPictures().getButtonIcon()));
 		menuButton.setOpaque(false);
 		menuButton.setBorder(BorderFactory.createEmptyBorder());
@@ -25,6 +25,7 @@ public class MenuButtons {
 		menuButton.setFont(BitBold.getFont().deriveFont(Font.BOLD, 40f));
 		menuButton.setHorizontalTextPosition(JButton.CENTER);
 		menuButton.setVerticalTextPosition(JButton.CENTER);
+		menuButton.setBounds(x, y, 350, 62);
 		
 		return menuButton;
 	}
@@ -36,8 +37,8 @@ public class MenuButtons {
 			message = "1 Player";
 		else
 			message = "2 Players";
-		JButton trainingButton = menuButton(message);
-		trainingButton.setBounds(x, y, 350, 62);
+		JButton trainingButton = menuButton(message, x, y);
+		
 		trainingButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -47,6 +48,18 @@ public class MenuButtons {
 		return trainingButton;
 	}
 	
+	//tutorial
+	public static JButton tutorialButton(int x, int y) {
+		JButton tutorialButton = menuButton("How to play", x, y);
+		
+		tutorialButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ColorPoolFrame.getFrame().tutorial();
+			}
+		});
+		return tutorialButton;
+	}
 	
 	//impostazioni
 	public static JButton settingsButton(int x, int y) {

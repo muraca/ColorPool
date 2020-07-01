@@ -1,0 +1,5 @@
+Like traditional pool, you want to pot all the balls, but be careful: don't pot them twice, or you'll lose!
+This is ColorPool!
+
+You can do training by yourself or play with a friend, and whenever somebody fails, the one who has more points wins.
+Don't pot the white ball and have fun!

@@ -14,7 +14,7 @@ public class BitBold {
 			bitbold = Font.createFont(Font.TRUETYPE_FONT, new File(getClass().getClassLoader().getResource("resources/fonts/bitbold.ttf").toURI()));
 			
 		} catch (Exception e) {
-			Settings.throwError(3);
+			
 			substituteFont();
 		} 
 	}
@@ -24,7 +24,7 @@ public class BitBold {
 	}
 	
 	private void substituteFont() {
-		bitbold = Font.getFont("Arial");
+		bitbold = new Font("Arial", Font.BOLD, 14);
 	}
 	
 	public static Font getFont() {

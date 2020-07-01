@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
 		
 		drawBalls(g);
 		drawPath(g);
-        writeText(g);
+        paintPoints(g);
 	}
 	
 	//inizializzazione dei vari componenti sfondo e testo
@@ -37,18 +37,17 @@ public class GamePanel extends JPanel {
 		super();
 		this.setLayout(null);  //indispensabile per il posizionamento corretto di bottoni, label, ecc
 		
-		initText();
+		initPoints();
     	
 		this.add(GameButtons.homeButton(Settings.WIDTH-180, 10));
 		
     	GameListener gl = new GameListener(this);
     	this.addMouseListener(gl);
         this.addMouseMotionListener(gl);
-    	repaint();
 	}
 	
 	//inizializzazione del testo del punteggio
-	private void initText() {
+	private void initPoints() {
 		player1points = new JTextField("");
     	player1points.setBounds(135, 17, 150, 30);
     	if(Game.getGame().gamemode() == Game.MULTIPLAYER)
@@ -109,7 +108,7 @@ public class GamePanel extends JPanel {
     }
     
     //scrittura punteggio e turno 
-    private void writeText(Graphics g) {
+    private void paintPoints(Graphics g) {
     	player1points.setText(Integer.toString(Game.getGame().getPoints1()));
     	
     	int startx = player1points.getX() + 50;

@@ -18,6 +18,7 @@ public class ColorPoolFrame extends JFrame {
 	private StartPanel startP;
 	private MenuPanel menuP;
 	private GamePanel gameP;
+	private TutorialPanel tutorialP;
 	
 	public static ColorPoolFrame frame=null;
 	
@@ -51,6 +52,10 @@ public class ColorPoolFrame extends JFrame {
 	
 	public MenuPanel getMenuPanel() {
 		return menuP;
+	}
+	
+	public TutorialPanel getTutorialPanel() {
+		return tutorialP;
 	}
 	
 	//metodi per il thread
@@ -119,11 +124,12 @@ public class ColorPoolFrame extends JFrame {
         gameP = new GamePanel();
 		
 		//bottone test utilizzato per riavviare il gioco da capo in fase di debugging
-        TestButton testb = new TestButton();
-        testb.addActionListener(new TestButtonListener());
-        testb.setBounds(Settings.WIDTH-250, Settings.HEIGHT-60, 100, 30);
-        gameP.add(testb);
-        
+        if(Settings.DEBUGGING) {
+        	TestButton testb = new TestButton();
+        	testb.addActionListener(new TestButtonListener());
+        	testb.setBounds(Settings.WIDTH-250, Settings.HEIGHT-60, 100, 30);
+        	gameP.add(testb);
+        }
         gameP.setFocusable(true);//focus per movimenti mouse
         //aggiunta al container, visualizzazione del pannello
         container.add("game", gameP);
@@ -133,6 +139,23 @@ public class ColorPoolFrame extends JFrame {
         //avvio del gioco
 		thread = new Thread(new GameLoop(gameP));
 		run();
+	}
+	
+	//passaggio al pannello tutorial
+	public void tutorial() {
+		stop();
+		if(tutorialP == null) {
+			tutorialP = new TutorialPanel();
+			tutorialP.setFocusable(true);
+		}
+		//avvio delle animazioni
+		thread = new Thread(new PanelLoop(tutorialP));
+		run();
+		
+		//aggiunta al container, visualizzazione del pannello
+		if(!container.isAncestorOf(tutorialP))
+			container.add("tutorial", tutorialP);
+		layout.show(container, "tutorial");
 	}
 	
 	//informazioni sul gioco
