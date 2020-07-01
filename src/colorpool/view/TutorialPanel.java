@@ -6,12 +6,10 @@ import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 import colorpool.buttons.TutorialButtons;
 import colorpool.config.BitBold;
@@ -25,44 +23,42 @@ public class TutorialPanel extends JPanel {
 	
 	private boolean language = ITALIAN;
 	
-	private JTextField textField;
-	private String text;
+	private JTextArea textArea;
 	
 	private JButton homeButton;
 	private JButton languageButton;
 	
 	
 	public TutorialPanel() {
-		super();
 		this.setLayout(null);
 		
+		initText();
+
 		homeButton = TutorialButtons.homeButton(Settings.WIDTH-180, 100);
 		this.add(homeButton);
 		
 		languageButton = TutorialButtons.languageButton(120, 100);
 		languageButton.setIcon(new ImageIcon(Pictures.getPictures().getLanguageIcon(language)));
 		this.add(languageButton);
-		
-		initText();
 	}
 
 	private void initText() {
-		textField = new JTextField("");
-		textField.setBounds(Settings.POOLMINX, Settings.POOLMINX, Settings.WIDTH-Settings.POOLMAXX, Settings.HEIGHT-Settings.POOLMAXX);
-		textField.setForeground(Color.WHITE);
-		textField.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25));
-		textField.setBackground(Color.YELLOW);
-		textField.setOpaque(true);
-		textField.setBorder(BorderFactory.createLineBorder(Color.RED, 22));
-    	textField.setEditable(true);
-    	textField.setVisible(true);
+		textArea = new JTextArea("");
+		textArea.setBounds(300, 200, 800, 250);
+		textArea.setForeground(Color.WHITE);
+		textArea.setFont(BitBold.getFont().deriveFont(Font.BOLD, 18));
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+    	textArea.setEditable(false);
+    	textArea.setVisible(true);
     	
-		this.add(textField);
-		writeText(language);
+		this.add(textArea);
+		this.revalidate();
+		writeText(ENGLISH);
 	}
 	
 	private void writeText(boolean newLanguage) {
-		if(textField.getText() == null || language != newLanguage) {
+		if(textArea.getText() == "" || language != newLanguage) {
 			try {
 				File f = null;
 				if(newLanguage == ENGLISH) {
@@ -75,10 +71,10 @@ public class TutorialPanel extends JPanel {
 				BufferedReader br = new BufferedReader(new FileReader(f)); 
 				StringBuffer str = new StringBuffer();
 				while(br.ready())
-					str.append(br.readLine());
+					str.append(br.readLine() + "\n");
 				
-				
-				text = str.toString();
+
+				textArea.setText(str.toString());
 				br.close();
 				language = newLanguage;
 				
@@ -87,8 +83,6 @@ public class TutorialPanel extends JPanel {
 				Settings.throwError(4);
 			}
 		}
-		text = "ciao Andrea come va la vita a Milano";
-		textField.setText(text);
 	}
 	
 	public void changeLanguage() {
@@ -99,7 +93,7 @@ public class TutorialPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(Pictures.getPictures().getBackground(), 0, 0, null);
-		writeText(language);
+		
 	}
 	
 	

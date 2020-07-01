@@ -1,5 +1,7 @@
-Imbuca tutte le palline, come nel biliardo tradizionale, ma fai attenzione a non imbucarle due volte o perderai!
+Imbuca tutte le palline, come nel biliardo tradizionale,
+ma fai attenzione a non imbucarle due volte o perderai!
 Questo è ColorPool!
 
-Puoi allenarti da solo o giocare con un amico, a turni alternati, ed al primo errore vince chi ha più punti.
+Puoi allenarti da solo o giocare con un amico, 
+ed al primo errore vince chi ha più punti.
 Non imbucare la pallina bianca e divertiti!

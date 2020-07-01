@@ -143,7 +143,6 @@ public class ColorPoolFrame extends JFrame {
 	
 	//passaggio al pannello tutorial
 	public void tutorial() {
-		stop();
 		if(tutorialP == null) {
 			tutorialP = new TutorialPanel();
 			tutorialP.setFocusable(true);
