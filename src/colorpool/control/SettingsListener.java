@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 import colorpool.view.MyColorPicker;
 import colorpool.view.SettingsDialog;
-
+//listener per i bottoni nel dialog delle impostazioni
 public class SettingsListener implements MouseListener {
 
 	private int type;

@@ -13,7 +13,6 @@ public class GameLoop implements Runnable {
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(true) {
 			try {
 				Thread.sleep(10);

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import colorpool.buttons.MenuButtons;
 import colorpool.config.Pictures;
+import colorpool.config.Settings;
 import colorpool.core.Game;
 //rappresenta il menu principale
 public class MenuPanel extends JPanel{
@@ -42,9 +43,10 @@ public class MenuPanel extends JPanel{
 		this.add(infoButton);
 		
 		//record
-		recordButton = MenuButtons.recordButton(120, 100);
-		this.add(recordButton);
-		
+		if(Settings.RECORD) {
+			recordButton = MenuButtons.recordButton(120, 100);
+			this.add(recordButton);
+		}
 	}
 	
 	@Override

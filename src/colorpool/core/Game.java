@@ -33,6 +33,7 @@ public class Game {
 	
 	private static Game game = null;
 	
+	//costruttore di base per il singleplayer
 	private Game(int p1) {
 		points1 = p1;
 		pottedBalls1 = new ArrayList<>();
@@ -43,7 +44,7 @@ public class Game {
 
 		generateBalls();
 	}
-	
+	//costruttore di base per il multiplayer
 	private Game(int p1, int p2) {
 		points1 = p1;
 		points2 = p2;
@@ -54,35 +55,13 @@ public class Game {
 
 		generateBalls();
 	}
-	
-	private Game(int p1, ArrayList<Ball> pB1) {
-		points1 = p1;
-		pottedBalls1 = pB1;
-		gamemode = SINGLEPLAYER;
-		turn = PLAYER1;
-		
-		pottedBalls2 = new ArrayList<>(); //per evitare nullpointer exceptions
-		
-		generateBalls();
-	}
-	
-	private Game(int p1, ArrayList<Ball> pB1, int p2, ArrayList<Ball> pB2) {
+	//costruttore utilizzato durante la partita
+	private Game(int p1, ArrayList<Ball> pB1, int p2, ArrayList<Ball> pB2, boolean gameMode, boolean nextTurn) {
 		points1 = p1;
 		pottedBalls1 = pB1;
 		points2 = p2;
 		pottedBalls2 = pB2;
-		gamemode = MULTIPLAYER;
-		turn = PLAYER1;
-		
-		generateBalls();
-	}
-	
-	private Game(int p1, ArrayList<Ball> pB1, int p2, ArrayList<Ball> pB2, boolean nextTurn) {
-		points1 = p1;
-		pottedBalls1 = pB1;
-		points2 = p2;
-		pottedBalls2 = pB2;
-		gamemode = MULTIPLAYER;
+		gamemode = gameMode;
 		turn = nextTurn;
 		
 		generateBalls();
@@ -99,7 +78,8 @@ public class Game {
 			game = new Game(0, 0);
 	}
 	
-	public boolean canShot() {
+	//controlla se le palline sono tutte ferme
+	public boolean ballsNotMoving() {
 		if(whiteball.vx!=0||whiteball.vy!=0)
 			return false;
 		for(Ball b: balls) {
@@ -124,6 +104,7 @@ public class Game {
 		return pottedBalls2;
 	}
 	
+	//genera le palline in maniera casuale
 	private void generateBalls() {
 		whiteball = randomWhiteBall();
 		
@@ -136,7 +117,7 @@ public class Game {
 		balls.add(randomBall(Color.CYAN));
 		balls.add(randomBall(Color.MAGENTA));
 		
-		initialControl(true);
+		initialControl();
 		
 	}
 	
@@ -152,33 +133,36 @@ public class Game {
 		return new Ball(r.nextInt(Settings.POOLMAXX-difference)+2*Settings.POOLMINX, r.nextInt(Settings.POOLMAXY-difference)+2*Settings.POOLMINY, c);
 	}
 	
-	private void initialControl(boolean control) {
-        
-		for(Ball b: balls) {
-			if(Movements.ballsCollide(whiteball, b)) {
-				b.x += b.getD();
-				b.y += b.getD();
-			}
-		}
-        
-        for(int i=0; i<balls.size() - 1; i++) {
-            for(int j=i+1; j<balls.size(); j++) {
-                if(Movements.ballsCollide(balls.get(i),balls.get(j))) {
-                   balls.get(j).x += balls.get(i).getD()*j;
-                   balls.get(j).y += balls.get(i).getD()*j;
+	//controllo iniziale, fatto due volte per maggiore sicurezza
+	private void initialControl() {
+        for(int control=0; control<2; control++) {
+        	for(Ball b: balls) {
+    			if(Movements.ballsCollide(whiteball, b)) {
+    				b.x += b.getD();
+    				b.y += b.getD();
+    			}
+    		}
+            
+            for(int i=0; i<balls.size() - 1; i++) {
+                for(int j=i+1; j<balls.size(); j++) {
+                    if(Movements.ballsCollide(balls.get(i),balls.get(j))) {
+                       balls.get(j).x += balls.get(i).getD()*j;
+                       balls.get(j).y += balls.get(i).getD()*j;
+                    }
                 }
             }
         }
-        if(control)
-        	initialControl(false);
 	}
     
+	//metodo richiamato quando una pallina viene imbucata
     public void pot(Ball pottedBall){
     	if(game!=null) { 
+    		//controlla se la pallina è bianca
     		if(pottedBall.equalsTo(whiteball)) {
     			lose(whiteball);
     		}
     		else {
+    			//controlla se è già stata imbucata
     			for(Ball b: pottedBalls1) {
     				if(b.equalsTo(pottedBall)) {
     					lose(b);
@@ -187,28 +171,29 @@ public class Game {
     			}
     			Movements.stopBalls();
     			MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), true);
+    			//punto al giocatore ed eventuale cambio di turno
     			if(turn == PLAYER1) {
     				pottedBalls1.add(pottedBall);
     				points1++;
     				if(pottedBalls1.size()<balls.size())
-    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, gamemode); //se gamemode è true allora sarà il turno del player2, altrimenti tira ancora player1
+    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, gamemode, gamemode && PLAYER2); 
     				else
-    					game = new Game(points1, new ArrayList<Ball>(), points2, pottedBalls2, gamemode);
+    					game = new Game(points1, new ArrayList<Ball>(), points2, pottedBalls2, gamemode, gamemode && PLAYER2);
     			}
     			else {
     				pottedBalls2.add(pottedBall);
     				points2++;
     				if(pottedBalls2.size()<balls.size())
-    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, false);
+    					game = new Game(points1, pottedBalls1, points2, pottedBalls2, gamemode, PLAYER1);
     				else
-    					game = new Game(points1, pottedBalls1, points2, new ArrayList<Ball>(), false);
+    					game = new Game(points1, pottedBalls1, points2, new ArrayList<Ball>(), gamemode, PLAYER1);
     				
     			}
     				
     		}
     	}
     }
-    
+    //fine partita
     private void lose(Ball pottedBall) {
     	Movements.stopBalls();
 		MyOptionPane.pottedBallPane(new ImageIcon(Pictures.getPictures().getBall(pottedBall.getColor())), false);
@@ -223,7 +208,7 @@ public class Game {
     		game = new Game(0, 0);
     	
     }
-    
+    //pulsante home
     public static void home() {
     	if(MyOptionPane.homebuttonPane() == 0) {
     		ColorPoolFrame.getFrame().stopGame();

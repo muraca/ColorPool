@@ -1,6 +1,8 @@
 package colorpool.config;
 
 import java.awt.Color;
+import java.io.IOException;
+
 import colorpool.view.ColorPoolFrame;
 import colorpool.view.MyOptionPane;
 
@@ -20,6 +22,7 @@ public class Settings {
 	public static final int WHITEBALLDIMENSION = 25; //dimensione della pallina bianca
 	
 	public static final boolean DEBUGGING = false; //controlla la comparsa del testbutton nel gioco
+	public static final boolean RECORD = true; //visibilità del bottone record, funzione non implementata
 	
 	public static final Color BACKGROUNDCOLOR = new Color(0, 105, 48); //colore di sfondo per i vari pannelli
 	
@@ -28,7 +31,7 @@ public class Settings {
 	public static Color player2color = Color.RED;
 	public static Color singleplayercolor = Color.WHITE;
 	
-
+	//inizializzazione di tutte le immagini, gestisce anche la schermata di caricamento
     public static void init(){
     	
     	try {
@@ -41,15 +44,19 @@ public class Settings {
 			Pictures.getPictures().loadLoading(0);
 			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
 			
+			Pictures.getPictures().loadErrorIcon();
 			Pictures.getPictures().loadButtonIcon();
 			Pictures.getPictures().loadSettingsIcon(); 
-			Pictures.getPictures().loadInfoIcon(); 
 			
 			Pictures.getPictures().loadLoading(1);
 			ColorPoolFrame.getFrame().getStartPanel().setLoadingImg(Pictures.getPictures().getLoading());
 			Thread.sleep(500);
 			
-			Pictures.getPictures().loadRecordIcon(); 
+
+			Pictures.getPictures().loadInfoIcon(); 
+			if(RECORD)
+				Pictures.getPictures().loadRecordIcon(); 
+			
 			Pictures.getPictures().loadHomeIcon(); 
 			
 			Pictures.getPictures().loadLoading(2);
@@ -71,13 +78,14 @@ public class Settings {
 			Thread.sleep(500);
 			
 		}
-		catch (Exception e) {
+		catch (IOException e) {
 			Settings.throwError(2);
-		}	
+		} catch (InterruptedException e) { }	
     	
     	ColorPoolFrame.getFrame().getStartPanel().completed();
     }
     
+    //metodo che lancia il dialog per mostrare un errore con il testo adatto, se necessario termina il gioco
 	public static void throwError(int code) {
 		String text;
 		switch (code) {
@@ -86,6 +94,7 @@ public class Settings {
 			break;
 		case 2:
 			text = "Can't find some pictures. Please download again the game or contact the developer.";
+			System.exit(2);
 			break;
 		default:
 			text = "Undefined error. Please try again.";

@@ -56,7 +56,7 @@ public class Movements {
 		collisions();
 				
 		//se tutte le palline son ferme, ma il gioco crede che ancora si stiano muovendo
-		if(Game.getGame().moving() && Game.getGame().canShot()) {
+		if(Game.getGame().moving() && Game.getGame().ballsNotMoving()) {
 			Game.getGame().setMoving(false); //il gioco sa che si sono fermate
 			Game.getGame().swapTurn(); //e sa che deve cambiare turno, se si è in multiplayer
 		}

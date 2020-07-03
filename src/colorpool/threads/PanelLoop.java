@@ -1,7 +1,6 @@
 package colorpool.threads;
 
 import javax.swing.JPanel;
-
 //runnable utilizzato nei vari pannelli
 public class PanelLoop implements Runnable {
 	

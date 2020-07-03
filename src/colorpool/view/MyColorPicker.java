@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.JColorChooser;
 
 import colorpool.config.Settings;
-
+//colorpicker utilizzato nel dialogo delle impostazioni
 public class MyColorPicker {
 
 	public static void pick(int type) {

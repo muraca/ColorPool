@@ -52,16 +52,18 @@ public class GamePanel extends JPanel {
     	player1points.setEditable(false);
     	this.add(player1points);
     	
-    	player2points = new JTextField("");
-    	player2points.setBounds(776, 17, 150, 30);
-    	player2points.setForeground(Settings.player2color);
+    	if(Game.getGame().gamemode() == Game.MULTIPLAYER) {
+    		player2points = new JTextField("");
+    		player2points.setBounds(776, 17, 150, 30);
+    		player2points.setForeground(Settings.player2color);
 		
-		player2points.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
+			player2points.setFont(BitBold.getFont().deriveFont(Font.BOLD, 25f));
 		
-    	player2points.setOpaque(false);
-    	player2points.setBorder(null);
-    	player2points.setEditable(false);
-    	this.add(player2points);
+    		player2points.setOpaque(false);
+    		player2points.setBorder(null);
+    		player2points.setEditable(false);
+    		this.add(player2points);
+    	}
     	
     	playerShooting = new JTextField("");
     	

@@ -15,7 +15,7 @@ import colorpool.buttons.TutorialButtons;
 import colorpool.config.BitBold;
 import colorpool.config.Pictures;
 import colorpool.config.Settings;
-
+//pannello che mostra il tutorial
 public class TutorialPanel extends JPanel {
 
 	public static final boolean ENGLISH = false;
@@ -34,14 +34,16 @@ public class TutorialPanel extends JPanel {
 		
 		initText();
 
+		//bottone per tornare al menu principale
 		homeButton = TutorialButtons.homeButton(Settings.WIDTH-180, 100);
 		this.add(homeButton);
-		
+		//bottone per cambiare la lingua
 		languageButton = TutorialButtons.languageButton(120, 100);
 		languageButton.setIcon(new ImageIcon(Pictures.getPictures().getLanguageIcon(language)));
 		this.add(languageButton);
 	}
-
+	
+	//inizializza l'area di testo e scrive in inglese
 	private void initText() {
 		textArea = new JTextArea("");
 		textArea.setBounds(300, 200, 800, 250);
@@ -56,7 +58,7 @@ public class TutorialPanel extends JPanel {
 		this.revalidate();
 		writeText(ENGLISH);
 	}
-	
+	//scrive il testo solo se necessario
 	private void writeText(boolean newLanguage) {
 		if(textArea.getText() == "" || language != newLanguage) {
 			try {
@@ -82,9 +84,11 @@ public class TutorialPanel extends JPanel {
 			catch (Exception e) {
 				Settings.throwError(4);
 			}
+			
 		}
 	}
 	
+	//cambia la lingua del testo ed il bottone da visualizzare
 	public void changeLanguage() {
 		writeText(!language);
 		languageButton.setIcon(new ImageIcon(Pictures.getPictures().getLanguageIcon(language)));

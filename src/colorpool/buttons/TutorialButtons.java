@@ -9,9 +9,9 @@ import javax.swing.JButton;
 
 import colorpool.config.Pictures;
 import colorpool.view.ColorPoolFrame;
-
+//bottoni utilizzati nel menu tutorial
 public class TutorialButtons {
-
+	//bottone per tornare alla home
 	public static JButton homeButton(int x, int y) {
 		JButton homeButton = new JButton(new ImageIcon(Pictures.getPictures().getHomeIcon()));
 		homeButton.setBounds(x, y, 42, 42);
@@ -26,7 +26,7 @@ public class TutorialButtons {
 		return homeButton;
 		
 	}
-	
+	//bottone di cambio lingua
 	public static JButton languageButton(int x, int y) {
 		JButton languageButton = new JButton();
 		languageButton.setBounds(x, y, 42, 42);

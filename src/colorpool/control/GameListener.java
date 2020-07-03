@@ -19,7 +19,7 @@ public class GameListener implements MouseListener, MouseMotionListener {
 	//al movimento del mouse, disegna il percorso della pallina
     @Override
     public void mouseMoved(MouseEvent e) {
-        if (e.getX()<=Settings.WIDTH && e.getY()<=Settings.HEIGHT && Game.getGame().canShot()) {
+        if (e.getX()<=Settings.WIDTH && e.getY()<=Settings.HEIGHT && Game.getGame().ballsNotMoving()) {
             panel.setPath(new Path(e.getX(), e.getY()));
         }
         else {
@@ -30,7 +30,7 @@ public class GameListener implements MouseListener, MouseMotionListener {
     //alla pressione del mouse, se è possibile effettua il colpo
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(Game.getGame().canShot()) {
+		if(Game.getGame().ballsNotMoving()) {
 			panel.setPath(null);
 			Movements.shotWhiteBall(e.getX(), e.getY());
 		}

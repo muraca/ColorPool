@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import colorpool.core.*;
 
+//listener per il bottone di test
 public class TestButtonListener implements ActionListener {
 
 	@Override

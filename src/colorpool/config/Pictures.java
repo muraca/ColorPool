@@ -18,6 +18,9 @@ public class Pictures {
 	private Image start;
 	private Image loading;
 	
+	//icona per i messaggi d'errore
+	private Image errorIcon;
+	
 	//bottoni del menu
 	private Image buttonIcon;
 	private Image settingsIcon;
@@ -86,6 +89,10 @@ public class Pictures {
 		return loading;
 	}
 	
+	public Image getErrorIcon() {
+		return errorIcon;
+	}
+	
 	public Image getButtonIcon() {
 		return buttonIcon;
 	}
@@ -129,6 +136,10 @@ public class Pictures {
 	
 	void loadLoading(int state) throws IOException {
 		loading = ImageIO.read(getClass().getClassLoader().getResource("resources/start/load"+state+".png"));
+	}
+	
+	void loadErrorIcon() throws IOException {
+		errorIcon = ImageIO.read(getClass().getClassLoader().getResource("resources/buttons/error.png"));
 	}
 	
 	void loadButtonIcon() throws IOException {
